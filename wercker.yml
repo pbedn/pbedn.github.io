@@ -6,7 +6,7 @@ build:
 deploy:
     steps:
         - install-packages:
-            packages: git
+            packages: git ssh-client
         - leipert/git-push:
             gh_oauth: $GIT_TOKEN
             repo: pbedn/pbedn.github.io

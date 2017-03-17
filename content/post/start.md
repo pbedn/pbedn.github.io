@@ -1,4 +1,5 @@
 +++
+tags = ["hugo"]
 date = "2017-03-13T11:50:42+01:00"
 title = "Hello World with Hugo"
 draft = false

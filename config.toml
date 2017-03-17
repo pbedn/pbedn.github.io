@@ -22,8 +22,8 @@ paginate = 10
   googleAnalytics = "UA-74192356-1"
   disqus = "pbedn"
   # CSS name for highlight.js
-  highlightjs = "androidstudio"
-  # highlightjs = "darkula"
+  # highlightjs = "androidstudio"
+  highlightjs = "default"
   dateFormat = "02 Jan 2006"
   # Include any custom CSS and/or JS files
   # (relative to /static folder)
@@ -50,11 +50,6 @@ paginate = 10
     weight = 3
     identifier = "about"
     url = "/about/"
-  # [[menu.main]]
-  #   name = "Contact"
-  #   pre = "<i class='fa fa-phone fa-fw'></i>"
-  #   weight = 4
-  #   url = "/contact/"
 
 [social]
   linkedin = "pbedn"
