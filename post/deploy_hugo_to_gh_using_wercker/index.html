@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.19" />
 
-  <title>Posts &middot; Coding Notes</title>
+  <title>Deploy Hugo to Github Pages using Wercker &middot; Coding Notes</title>
 
   
   
@@ -36,8 +36,6 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
   
-  
-  <link rel="alternate" type="application/rss+xml" title="Coding Notes" href="https://pbedn.github.io/post/index.xml" />
   
 
   
@@ -95,10 +93,6 @@
   <div class="pure-menu social">
   <ul class="pure-menu-list">
 
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://pbedn.github.io/post/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
-    </li>
     
 
     
@@ -202,21 +196,117 @@
 
 
 <div class="header">
-  <h1>Posts</h1>
+  <h1>Deploy Hugo to Github Pages using Wercker</h1>
+  <h2></h2>
 </div>
 <div class="content">
-  
-  <h2>2017</h2>
-  <ul>
-  
-    <li><time>17 Mar 2017</time> - <a href="https://pbedn.github.io/post/deploy_hugo_to_gh_using_wercker/">Deploy Hugo to Github Pages using Wercker</a></li>
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>17 Mar 2017</time>
+  </div>
 
   
-    <li><time>13 Mar 2017</time> - <a href="https://pbedn.github.io/post/start/">Hello World with Hugo</a></li>
 
   
-  </ul>
   
+  
+  
+
+  
+  
+  
+  
+
+</div>
+
+  <p>The easiest solution how to publish with Hugo to Github Pages is to have two separate repositories, one with blog source files and second with html files. Simple.</p>
+
+<p>We can push files from both repositories manually or can do better. Push just source content and leave the rest for automatic deployment.</p>
+
+<p>I did not know about Wercker until read <a href="https://gohugo.io/tutorials/automated-deployments/">automated deployment tutorial</a> on Hugo site. And with hint from <a href="http://skarlso.github.io/2016/02/10/hugo-autodeploy-with-wercker/">Skarlso post</a>, that process became so easy.</p>
+
+<p>Steps:</p>
+
+<ol>
+<li>Create new application on Wercker with Hugo source repository. Leave the recommended settings.</li>
+<li>In <em>Workflows</em> add new <em>Pipeline</em> with both names set to <em>deploy</em>.</li>
+<li>Create new <em>Personal access token</em> on Github, and copy its value to Wercker <em>Environment</em>, with key name: <em>GIT_TOKEN</em>.</li>
+
+<li><p>Add <em>wercker.yml</em> to your Hugo source repository. Just change your Github name.</p>
+
+<pre><code>box: golang
+build:
+    steps:
+        - arjen/hugo-build:
+            version: &quot;0.19&quot;
+deploy:
+    steps:
+        - install-packages:
+            packages: git
+        - leipert/git-push:
+            gh_oauth: $GIT_TOKEN
+            repo: &lt;name&gt;/&lt;name&gt;.github.io
+            branch: master
+            basedir: public
+
+</code></pre></li>
+
+<li><p>Push and enjoy.</p></li>
+</ol>
+
+<p>Note that in <em>arjen/hugo-build</em> I do not use <em>theme</em> option, I have all layouts and static files in my <a href="https://github.com/pbedn/hugo-blog">hugo-blog</a>. For more info go to <a href="https://github.com/ArjenSchwarz/wercker-step-hugo-build">arjen docs</a>.</p>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://pbedn.github.io/post/start/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://pbedn.github.io/post/start/">Hello World with Hugo</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'pbedn';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
 </div>
 
 </div>

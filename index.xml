@@ -7,8 +7,53 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 13 Mar 2017 11:50:42 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 17 Mar 2017 08:25:40 +0100</lastBuildDate>
     <atom:link href="https://pbedn.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Deploy Hugo to Github Pages using Wercker</title>
+      <link>https://pbedn.github.io/post/deploy_hugo_to_gh_using_wercker/</link>
+      <pubDate>Fri, 17 Mar 2017 08:25:40 +0100</pubDate>
+      
+      <guid>https://pbedn.github.io/post/deploy_hugo_to_gh_using_wercker/</guid>
+      <description>&lt;p&gt;The easiest solution how to publish with Hugo to Github Pages is to have two separate repositories, one with blog source files and second with html files. Simple.&lt;/p&gt;
+
+&lt;p&gt;We can push files from both repositories manually or can do better. Push just source content and leave the rest for automatic deployment.&lt;/p&gt;
+
+&lt;p&gt;I did not know about Wercker until read &lt;a href=&#34;https://gohugo.io/tutorials/automated-deployments/&#34;&gt;automated deployment tutorial&lt;/a&gt; on Hugo site. And with hint from &lt;a href=&#34;http://skarlso.github.io/2016/02/10/hugo-autodeploy-with-wercker/&#34;&gt;Skarlso post&lt;/a&gt;, that process became so easy.&lt;/p&gt;
+
+&lt;p&gt;Steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create new application on Wercker with Hugo source repository. Leave the recommended settings.&lt;/li&gt;
+&lt;li&gt;In &lt;em&gt;Workflows&lt;/em&gt; add new &lt;em&gt;Pipeline&lt;/em&gt; with both names set to &lt;em&gt;deploy&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Create new &lt;em&gt;Personal access token&lt;/em&gt; on Github, and copy its value to Wercker &lt;em&gt;Environment&lt;/em&gt;, with key name: &lt;em&gt;GIT_TOKEN&lt;/em&gt;.&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Add &lt;em&gt;wercker.yml&lt;/em&gt; to your Hugo source repository. Just change your Github name.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;box: golang
+build:
+    steps:
+        - arjen/hugo-build:
+            version: &amp;quot;0.19&amp;quot;
+deploy:
+    steps:
+        - install-packages:
+            packages: git
+        - leipert/git-push:
+            gh_oauth: $GIT_TOKEN
+            repo: &amp;lt;name&amp;gt;/&amp;lt;name&amp;gt;.github.io
+            branch: master
+            basedir: public
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Push and enjoy.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Note that in &lt;em&gt;arjen/hugo-build&lt;/em&gt; I do not use &lt;em&gt;theme&lt;/em&gt; option, I have all layouts and static files in my &lt;a href=&#34;https://github.com/pbedn/hugo-blog&#34;&gt;hugo-blog&lt;/a&gt;. For more info go to &lt;a href=&#34;https://github.com/ArjenSchwarz/wercker-step-hugo-build&#34;&gt;arjen docs&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Hello World with Hugo</title>
