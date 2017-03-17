@@ -39,7 +39,7 @@ build:
 deploy:
     steps:
         - install-packages:
-            packages: git
+            packages: git ssh-client
         - leipert/git-push:
             gh_oauth: $GIT_TOKEN
             repo: &amp;lt;name&amp;gt;/&amp;lt;name&amp;gt;.github.io

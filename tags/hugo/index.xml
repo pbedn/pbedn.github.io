@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Coding Notes</title>
-    <link>https://pbedn.github.io/index.xml</link>
-    <description>Recent content on Coding Notes</description>
+    <title>Hugo on Coding Notes</title>
+    <link>https://pbedn.github.io/tags/hugo/index.xml</link>
+    <description>Recent content in Hugo on Coding Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 17 Mar 2017 08:25:40 +0100</lastBuildDate>
-    <atom:link href="https://pbedn.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pbedn.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Deploy Hugo to Github Pages using Wercker</title>
@@ -107,22 +106,6 @@ deploy:
 &lt;h4 id=&#34;what-if-after-running-hugo-serve-i-do-not-see-anytinng-in-the-public-directory&#34;&gt;What if after running hugo serve I do not see anytinng in the &lt;em&gt;public&lt;/em&gt; directory?&lt;/h4&gt;
 
 &lt;p&gt;Sometimes it helps to run hugo with &amp;lsquo;-v&amp;rsquo;, it shows more verbose output. My solution was to copy theme files inside my main folder (sometimes you just have to copy static files).&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://pbedn.github.io/about/</link>
-      <pubDate>Sun, 12 Mar 2017 21:04:18 +0100</pubDate>
-      
-      <guid>https://pbedn.github.io/about/</guid>
-      <description>&lt;p&gt;Hi my name is Pawel. I work currently for technology startup as a Python programmer. I do mostly scripting (dealing with lots of transportation schedule files), managing internal web app in Flask and writing tests.&lt;/p&gt;
-
-&lt;p&gt;Here on this blog I want to share some of the problems I encounter on my journey to being better developer.&lt;/p&gt;
-
-&lt;p&gt;You can read something more about my work experience on linkedln.&lt;/p&gt;
-
-&lt;p&gt;In the free time I enjoy training Capoeira, dancing Forro and playing the guitar.&lt;/p&gt;
-</description>
     </item>
     
   </channel>
