@@ -11,6 +11,8 @@ copyright = "&copy; 2017. All rights reserved."
 canonifyurls = true
 paginate = 10
 
+DefaultContentLanguage = "en"
+
 [indexes]
   tag = "tags"
   topic = "topics"
@@ -55,3 +57,30 @@ paginate = 10
   linkedin = "pbedn"
   github = "pbedn"
   stackoverflow = "4877932"
+
+[Languages]
+[Languages.en]
+weight = 1
+
+[Languages.pl]
+title = "Notatki programisty"
+weight = 2
+subtitle = "Python, Ubuntu & inne"
+[[Languages.pl.menu.main]]
+  name = "Główna"
+  pre = "<i class='fa fa-home fa-fw'></i>"
+  weight = 1
+  identifier = "home"
+  url = "/pl/"
+[[Languages.pl.menu.main]]
+  name = "Posty"
+  pre = "<i class='fa fa-list fa-fw'></i>"
+  weight = 2
+  identifier = "post"
+  url = "/pl/post/"
+[[Languages.pl.menu.main]]
+  name = "O mnie"
+  pre = "<i class='fa fa-user fa-fw'></i>"
+  weight = 3
+  identifier = "about"
+  url = "/pl/about/"

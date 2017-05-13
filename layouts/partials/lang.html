@@ -1,0 +1,5 @@
+{{ if .IsTranslated }}
+    {{ range .Translations }}
+        <h4><a href="{{ .Permalink }}">{{ .Lang }} {{ if .IsPage }} {{ end }}</a></h4>
+    {{ end}}
+{{ end }}
