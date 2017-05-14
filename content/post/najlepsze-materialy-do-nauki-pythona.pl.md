@@ -6,7 +6,7 @@ draft = false
 
 +++
 Obecnie na start polecam wszystkim materiały z cyklu Koduj z klasa czyli tzw. python101.
-
+<!--more-->
 Plusy:
 
  * Dopracowane i ciekawe materiały

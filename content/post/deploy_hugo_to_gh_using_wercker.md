@@ -9,7 +9,7 @@ title = "Deploy Hugo to Github Pages using Wercker"
 The easiest solution how to publish with Hugo to Github Pages is to have two separate repositories, one with blog source files and second with html files. Simple.
 
 We can push files from both repositories manually or can do better. Push just source content and leave the rest for automatic deployment.
-
+<!--more-->
 I did not know about Wercker until read [automated deployment tutorial](https://gohugo.io/tutorials/automated-deployments/) on Hugo site. And with hint from [Skarlso post](http://skarlso.github.io/2016/02/10/hugo-autodeploy-with-wercker/), that process became so easy.
 
 Steps:
