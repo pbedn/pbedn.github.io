@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Notatki programisty</title>
-    <link>https://pbedn.github.io/pl/index.xml</link>
-    <description>Recent content on Notatki programisty</description>
+    <title>Posts on Notatki programisty</title>
+    <link>https://pbedn.github.io/pl/post/index.xml</link>
+    <description>Recent content in Posts on Notatki programisty</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017. All rights reserved.</copyright>
     <lastBuildDate>Sat, 13 May 2017 20:49:33 +0200</lastBuildDate>
-    <atom:link href="https://pbedn.github.io/pl/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pbedn.github.io/pl/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Najlepsze materiały do rozpoczęcia nauki programowania w Pythonie po polsku</title>
@@ -72,20 +72,6 @@
 &lt;li&gt;&lt;a href=&#34;http://helion.pl/ksiazki/mysl-w-jezyku-python-nauka-programowania-wydanie-ii-allen-b-downey,myjep2.htm&#34;&gt;Myśl w języku Python - Helion&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://learnpythonthehardway.org/book/&#34;&gt;[Angielski] - Metoda nauki od Zed Shaw&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>O mnie</title>
-      <link>https://pbedn.github.io/pl/about/</link>
-      <pubDate>Sat, 13 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://pbedn.github.io/pl/about/</guid>
-      <description>&lt;p&gt;Cześc, nazywam się Pawel. Na co dzień pracuję dla transportowego startupu jako programista w Pythonie, gdzie piszę narzędzia do konwersji rozkładów jazdy i tworzę wewnętrzną aplikację do zarzadzania danymi we Flasku.&lt;/p&gt;
-
-&lt;p&gt;Na tym blogu chciałbym dzielic się problemami, na które napotykam podczas misji bycia lepszym developerem.&lt;/p&gt;
-
-&lt;p&gt;W wolnym czasie trenuję Capoeirę, tańczę Forro i gram na gitarze.&lt;/p&gt;
 </description>
     </item>
     

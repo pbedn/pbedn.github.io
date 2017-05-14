@@ -2,13 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://pbedn.github.io/pl/post/najlepsze-materialy-do-nauki-pythona/</loc>
+    <lastmod>2017-05-13T20:49:33+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/pl/about/</loc>
     <lastmod>2017-05-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://pbedn.github.io/pl/</loc>
-    <lastmod>2017-05-13T00:00:00+00:00</lastmod>
+    <lastmod>2017-05-13T20:49:33+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://pbedn.github.io/pl/post/</loc>
+    <lastmod>2017-05-13T20:49:33+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://pbedn.github.io/pl/tags/python/</loc>
+    <lastmod>2017-05-13T20:49:33+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://pbedn.github.io/pl/tags/</loc>
     <priority>0</priority>
   </url>
   
