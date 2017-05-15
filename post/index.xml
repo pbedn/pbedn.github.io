@@ -7,8 +7,86 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 17 Mar 2017 08:25:40 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 15 May 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pbedn.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Deploy Python app using PostgreSQL to CircleCI</title>
+      <link>https://pbedn.github.io/post/python-postgresql-and-circleci/</link>
+      <pubDate>Mon, 15 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://pbedn.github.io/post/python-postgresql-and-circleci/</guid>
+      <description>&lt;p&gt;Deploying to CircleCI as easy as creating yaml file (sometimes you even do not need it as Circle will automatically recognize structure and behavior). But usually it is better to setup at least basic configuration. The problem begins with more complicated functionality and CI documentation is minimal, or to say &amp;lsquo;very hacker friendly&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;My problem was how to use build-in PostgreSQL database with Python application. This is quick tip how I solved it.
+&lt;/p&gt;
+
+&lt;p&gt;I created simple Python app for this post purpose. All files are inside &lt;a href=&#34;https://github.com/pbedn/circleci-1.0-pytest-postgresql&#34;&gt;my repository&lt;/a&gt;, which I connected to Github with version 1.0 of CircleCI.&lt;/p&gt;
+
+&lt;p&gt;CircleCI settings are all default except &lt;em&gt;BUILD SETTINGS: Environment Variables&lt;/em&gt;, where I added variable&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Name: DB_NAME
+Value: circleci
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create &lt;strong&gt;circle.yml&lt;/strong&gt; file, and put inside root of repository&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;machine:
+  timezone:
+    Europe/Warsaw
+  python:
+    version: 3.5.2
+
+  environment:
+    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+
+dependencies:
+  pre:
+   - pip install pytest
+   - pip install psycopg2
+
+database:
+  override:
+    - psql -U ubuntu -d circle_test -a -f schema.sql
+
+test:
+  override:
+    - py.test --junitxml=$CIRCLE_TEST_REPORTS/output.xml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The most time it took me to find correct configuration how to override database, and it turned out to be very simple.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- psql -U ubuntu -d circle_test -a -f schema.sql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This line deciphered using &lt;a href=&#34;https://www.postgresql.org/docs/9.5/static/app-psql.html&#34;&gt;psql-docs&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;-U ubuntu: username&lt;/li&gt;
+&lt;li&gt;-d circleci: database name&lt;/li&gt;
+&lt;li&gt;-a echo all&lt;/li&gt;
+&lt;li&gt;-f schema.sql: filename&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you look inside my repository at the &lt;a href=&#34;https://github.com/pbedn/circleci-1.0-pytest-postgresql/blob/master/tests/test_database.py&#34;&gt;test_database.py&lt;/a&gt; file. You will find line which says:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;DATABASE = os.environ[&amp;quot;DB_NAME&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here I am using that environmental variable, added in the beginning.&lt;/p&gt;
+
+&lt;p&gt;That is it. Now push to Github, and enjoy having automatic testing. If it still does not work, try to fork &lt;a href=&#34;https://github.com/pbedn/circleci-1.0-pytest-postgresql&#34;&gt;my repo&lt;/a&gt; and play with it.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Links:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/pbedn/circleci-1.0-pytest-postgresql&#34;&gt;My repository with example app and configuration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://circleci.com/docs/1.0/manually/#databases&#34;&gt;CircleCI documentation about database setup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.postgresql.org/docs/9.5/static/app-psql.html&#34;&gt;Psql documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     
     <item>
       <title>Deploy Hugo to Github Pages using Wercker</title>

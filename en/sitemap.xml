@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://pbedn.github.io/post/python-postgresql-and-circleci/</loc>
+    <lastmod>2017-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/deploy_hugo_to_gh_using_wercker/</loc>
     <lastmod>2017-03-17T08:25:40+01:00</lastmod>
   </url>
@@ -18,7 +23,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2017-03-17T08:25:40+01:00</lastmod>
+    <lastmod>2017-05-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -30,7 +35,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2017-03-17T08:25:40+01:00</lastmod>
+    <lastmod>2017-05-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
