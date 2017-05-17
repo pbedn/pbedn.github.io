@@ -32,6 +32,15 @@ DefaultContentLanguage = "en"
   # custom_css = ["css/my.css"]
   # custom_js = ["js/my.js"]
 
+[social]
+  linkedin = "pbedn"
+  github = "pbedn"
+  stackoverflow = "4877932"
+
+[Languages]
+[Languages.en]
+weight = 1
+
 [menu]
   # Shown in the side menu.
   [[menu.main]]
@@ -52,19 +61,17 @@ DefaultContentLanguage = "en"
     weight = 3
     identifier = "about"
     url = "/about/"
+  [[menu.main]]
+    name = "Blogroll"
+    pre = "<i class='fa fa-link fa-fw'></i>"
+    weight = 4
+    identifier = "links"
+    url = "/links/"
 
-[social]
-  linkedin = "pbedn"
-  github = "pbedn"
-  stackoverflow = "4877932"
-
-[Languages]
-[Languages.en]
-weight = 1
 
 [Languages.pl]
 title = "Notatki programisty"
-weight = 2
+weight = 1
 subtitle = "Python, Ubuntu & inne"
 [[Languages.pl.menu.main]]
   name = "Główna"
