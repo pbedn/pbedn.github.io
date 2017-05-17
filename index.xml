@@ -200,5 +200,17 @@ deploy:
 </description>
     </item>
     
+    <item>
+      <title>Links</title>
+      <link>https://pbedn.github.io/links/</link>
+      <pubDate>Sun, 12 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://pbedn.github.io/links/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://fle.github.io/git-tip-keep-your-branch-clean-with-fixup-and-autosquash.html&#34;&gt;GIT tip : Keep your branch clean with fixup and autosquash&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
