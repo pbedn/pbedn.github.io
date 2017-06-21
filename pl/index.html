@@ -41,7 +41,7 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/github.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   
@@ -51,6 +51,7 @@
   
   
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 </head>
 
 
@@ -202,6 +203,19 @@
     
         <h4><a href="https://pbedn.github.io/">en </a></h4>
     
+
+
+<div>
+  <input id="highlight" type="button" value="Highlight Dark" class="pure-button" style="
+  font-size: 65%; background: #999; text-align: center;" />
+</div>
+
+
+<script type="text/javascript">
+$("#highlight").click(function () {
+$('head').append('<link href="https://pbedn.github.io/css/dracula.css" rel="stylesheet" id="mycss"/>');
+});
+</script>
 
 </div>
 
