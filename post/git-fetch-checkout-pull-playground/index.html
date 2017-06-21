@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.19" />
 
-  <title>Coding Notes</title>
+  <title>How to make automatic deployment with git: fetch and checkout vs pull &middot; Coding Notes</title>
 
   
   
@@ -36,8 +36,6 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
   
-  
-  <link rel="alternate" type="application/rss+xml" title="Coding Notes" href="https://pbedn.github.io/index.xml" />
   
 
   
@@ -101,10 +99,6 @@
   <div class="pure-menu social">
   <ul class="pure-menu-list">
 
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://pbedn.github.io/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
-    </li>
     
 
     
@@ -205,10 +199,6 @@
 
 
   
-    
-        <h4><a href="https://pbedn.github.io/pl/">pl </a></h4>
-    
-
 </div>
 
 
@@ -216,17 +206,12 @@
 
 
 <div class="header">
-  <h1>Coding Notes</h1>
-  <h2>Python, Ubuntu &amp; other tricks</h2>
+  <h1>How to make automatic deployment with git: fetch and checkout vs pull</h1>
+  <h2></h2>
 </div>
-
 <div class="content">
-  
-    <article>
-  <header>
-    <h2><a href="https://pbedn.github.io/post/git-fetch-checkout-pull-playground/">How to make automatic deployment with git: fetch and checkout vs pull</a></h2>
 
-    <div class="post-meta">
+  <div class="post-meta">
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
@@ -253,156 +238,138 @@
 
 </div>
 
-  </header>
+  <p>Can git be used as automatic deploment tool? Some say that as for mvp it is enough. Others give quite good explanations how to do it, see <a href="http://gitolite.com/deploy.html">gitolite.com/deploy</a>.</p>
 
-  <p>
-  Can git be used as automatic deploment tool? Some say that as for mvp it is enough. Others give quite good explanations how to do it, see gitolite.com/deploy.
-My first naive solution was to use in deployment script for production, commands:
-$ git checkout . $ git pull --ff-only  It works if production repository is clean. But sometimes there are problems with merging, and unless you catch the error, remote deploy script will just give you the message &ldquo;fatal: Not possible to fast-forward, aborting.
-  </p>
+<p>My first naive solution was to use in deployment script for production, commands:</p>
+
+<pre><code class="language-bash">$ git checkout .
+$ git pull --ff-only
+</code></pre>
+
+<p>It works if production repository is clean. But sometimes there are problems with merging, and unless you catch the error, remote deploy script will just give you the message &ldquo;<em>fatal: Not possible to fast-forward, aborting.</em>&rdquo;, leaving the repository in bad shape.. So what is the proper solution?</p>
+
+<p>Let say that in production environment &ldquo;<em>git log &ndash;oneline</em>&rdquo; gives me:</p>
+
+<pre><code class="language-git">114dbc5 Some changes
+2fe6adb Some changes
+e38c033 Added broken file
+6f6ba61 Changed Readme
+ab6d78a Initial commit
+</code></pre>
+
+<p>In development environment I did a &ldquo;<em>git rebase -i 6f6ba</em>&rdquo;, squashing last two commits into one, and &ldquo;<em>git push &ndash;force</em>&rdquo; to repair my master branch. That will give me:</p>
+
+<pre><code class="language-git">5e88aca Some changes
+e38c033 Added broken file
+6f6ba61 Changed Readme
+ab6d78a Initial commit
+</code></pre>
+
+<p>My deployment script will run in production and produce output:</p>
+
+<pre><code class="language-bash">$ git pull --ff-only
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/pbedn/git-playground
+ + 114dbc5...5e88aca master       -&gt; origin/master  (forced update)
+ * [new tag]         after-rebase -&gt; after-rebase
+fatal: Not possible to fast-forward, aborting.
+</code></pre>
+
+<p>That is a problem. Solution is to use:</p>
+
+<pre><code class="language-bash">$ git fetch --all
+$ git checkout --force origin/master
+</code></pre>
+
+<p>Commits in the production are now correct!</p>
+
+<pre><code>$ git fetch --all
+Fetching origin
+
+$ git checkout --force origin/master
+Note: checking out 'origin/master'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b &lt;new-branch-name&gt;
+
+HEAD is now at 5e88aca... Some changes
+
+$ git log --oneline
+5e88aca Some changes
+e38c033 Added broken file
+6f6ba61 Changed Readme
+ab6d78a Initial commit
+</code></pre>
+
+<p>&ndash;</p>
+
+<p><em>Exercise</em></p>
+
+<p>If you like to play with these exact examples you can follow the steps below (note that we are working with HEAD detached, but for the exercise purpose that is ok):</p>
+
+<pre><code class="language-bash">$ git clone https://github.com/pbedn/git-playground
+$ git checkout tags/duplicate
+$ git pull --ff-only origin master
+$ git checkout tags/after-rebase
+$ git fetch --all
+$ git checkout --force origin/master
+</code></pre>
+
 
   
-  <footer>
-    <a href="https://pbedn.github.io/post/git-fetch-checkout-pull-playground/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://pbedn.github.io/post/python-postgresql-and-circleci/">Deploy Python app using PostgreSQL to CircleCI</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>15 May 2017</time>
-
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 2 min</i>
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://pbedn.github.io/post/python-postgresql-and-circleci/"><i class="fa fa-chevron-left"></i></a>
+    
   </div>
-
-  
-
-  
-
-  
-  
-  
-  
-
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://pbedn.github.io/post/python-postgresql-and-circleci/">Deploy Python app using PostgreSQL to CircleCI</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
 </div>
 
-  </header>
 
-  <p>
-  <p>Deploying to CircleCI as easy as creating yaml file (sometimes you even do not need it as Circle will automatically recognize structure and behavior). But usually it is better to setup at least basic configuration. The problem begins with more complicated functionality and CI documentation is minimal, or to say &lsquo;very hacker friendly&rsquo;.</p>
-
-<p>My problem was how to use build-in PostgreSQL database with Python application. This is quick tip how I solved it.
-</p>
-  </p>
 
   
-  <footer>
-    <a href="https://pbedn.github.io/post/python-postgresql-and-circleci/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
 
-  
-    <article>
-  <header>
-    <h2><a href="https://pbedn.github.io/post/deploy_hugo_to_gh_using_wercker/">Deploy Hugo to Github Pages using Wercker</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>17 Mar 2017</time>
-
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 1 min</i>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
+(function() {
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/hugo">hugo</a>
     
-  </div>
-  
-  
+    if (window.location.hostname == "localhost")
+        return;
 
-</div>
-
-  </header>
-
-  <p>
-  <p>The easiest solution how to publish with Hugo to Github Pages is to have two separate repositories, one with blog source files and second with html files. Simple.</p>
-  </p>
-
-  
-  <footer>
-    <a href="https://pbedn.github.io/post/deploy_hugo_to_gh_using_wercker/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://pbedn.github.io/post/start/">Hello World with Hugo</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>13 Mar 2017</time>
-
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 2 min</i>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/hugo">hugo</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>While trying to make this little space in the web finally working, I set up dozens of different static site generators (Jekyll, Pelican, Nikola, Lektor, Sculpin..). I was even thinking about writing my own for some time. I tried wordpress and blogspot. But finally arrived at <a href="https://gohugo.io/">Hugo</a> and it make my day much better.
-</p>
-  </p>
-
-  
-  <footer>
-    <a href="https://pbedn.github.io/post/start/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-
-  
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'pbedn';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 </div>
