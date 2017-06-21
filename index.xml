@@ -18,7 +18,8 @@
       <guid>https://pbedn.github.io/post/git-fetch-checkout-pull-playground/</guid>
       <description>&lt;p&gt;Can git be used as automatic deploment tool? Some say that as for mvp it is enough. Others give quite good explanations how to do it, see &lt;a href=&#34;http://gitolite.com/deploy.html&#34;&gt;gitolite.com/deploy&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;My first naive solution was to use in deployment script for production, commands:&lt;/p&gt;
+&lt;p&gt;My first naive solution was to use in deployment script for production, commands:
+&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout .
 $ git pull --ff-only
@@ -28,7 +29,7 @@ $ git pull --ff-only
 
 &lt;p&gt;Let say that in production environment &amp;ldquo;&lt;em&gt;git log &amp;ndash;oneline&lt;/em&gt;&amp;rdquo; gives me:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;114dbc5 Some changes
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;114dbc5 Some changes
 2fe6adb Some changes
 e38c033 Added broken file
 6f6ba61 Changed Readme
@@ -37,7 +38,7 @@ ab6d78a Initial commit
 
 &lt;p&gt;In development environment I did a &amp;ldquo;&lt;em&gt;git rebase -i 6f6ba&lt;/em&gt;&amp;rdquo;, squashing last two commits into one, and &amp;ldquo;&lt;em&gt;git push &amp;ndash;force&lt;/em&gt;&amp;rdquo; to repair my master branch. That will give me:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;5e88aca Some changes
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;5e88aca Some changes
 e38c033 Added broken file
 6f6ba61 Changed Readme
 ab6d78a Initial commit
@@ -64,7 +65,7 @@ $ git checkout --force origin/master
 
 &lt;p&gt;Commits in the production are now correct!&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ git fetch --all
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git fetch --all
 Fetching origin
 
 $ git checkout --force origin/master
@@ -100,8 +101,7 @@ $ git pull --ff-only origin master
 $ git checkout tags/after-rebase
 $ git fetch --all
 $ git checkout --force origin/master
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
