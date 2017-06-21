@@ -24,8 +24,8 @@ DefaultContentLanguage = "en"
   googleAnalytics = "UA-74192356-1"
   disqus = "pbedn"
   # CSS name for highlight.js
-  # highlightjs = "androidstudio"
-  highlightjs = "default"
+  highlightjs = "github"
+
   dateFormat = "02 Jan 2006"
   # Include any custom CSS and/or JS files
   # (relative to /static folder)
