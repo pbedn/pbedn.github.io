@@ -1,6 +1,6 @@
 +++
 tags = ["hugo"]
-date = "2017-03-13T11:50:42+01:00"
+date = "2017-03-13"
 title = "Hello World with Hugo"
 draft = false
 +++
@@ -17,11 +17,11 @@ Some things that could be better:
 
 * Better deployment to Github Pages
 
---- 
+---
 
 ### Quick tips:
 
-After some fight to publish it nicely to Github Pages, I tried to use automate deployment (Wecker tutorial on Hugo website doesn't work out of the box, and my knowledge on CI is not good yet). Finally I settled easiest solution - having two repositories. 
+After some fight to publish it nicely to Github Pages, I tried to use automate deployment (Wecker tutorial on Hugo website doesn't work out of the box, and my knowledge on CI is not good yet). Finally I settled easiest solution - having two repositories.
 
 * First repository is 'User Page' - 'pbedn.github.io'. Please refer to [pages docs](https://help.github.com/articles/user-organization-and-project-pages/) about more info.
 * Second is with source content of hugo - 'hugo-blog'
@@ -29,14 +29,14 @@ After some fight to publish it nicely to Github Pages, I tried to use automate d
 How to maintain pushing to two repositories? I use GitKraken, so it is just few clicks. Additonaly I am all the time inside 'hugo-blog' directory.
 
 1. When I create new content I run command
-    ```
-    hugo serve -w -D
-    ```
+```
+hugo serve -w -D
+```
 
 2. When I want to push to github, firstly I create html files
-    ```
-    hugo -d ../pbedn.github.io
-    ```
+```
+hugo -d ../pbedn.github.io
+```
     And use GitKraken.
 
 

@@ -1,14 +1,16 @@
 +++
-date = "2017-06-21T17:24:11+02:00"
-title = "How to make automatic deployment with git: fetch and checkout vs pull"
+date = "2017-06-21"
+title = "How to make automatic deployment with git: 'fetch and checkout' vs 'pull --ff-only'"
 tags = ['git']
 draft = false
 +++
 
 Can git be used as automatic deploment tool? Some say that as for mvp it is enough. Others give quite good explanations how to do it, see [gitolite.com/deploy](http://gitolite.com/deploy.html).
 
-My first naive solution was to use in deployment script for production, commands:
 <!--more-->
+
+My first naive solution was to use in deployment script for production, commands:
+
 ```bash
 $ git checkout .
 $ git pull --ff-only

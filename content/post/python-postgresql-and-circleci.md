@@ -1,6 +1,6 @@
 +++
-title = "Deploy Python app using PostgreSQL to CircleCI"
-tags = []
+title = "Python and PostgreSQL deployment to CircleCI 1.0"
+tags = ["python", "postgresql", "circleci"]
 draft = false
 date = "2017-05-15"
 +++

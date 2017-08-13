@@ -4,12 +4,14 @@ title = "Coding Notes"
 author = "Pawel Bednarz"
 license = "MIT"
 licenselink = "https://github.com/pbedn/blog/blob/master/LICENSE.md"
-tags = ["blog", "personal", "purecss", "responsive"]
-features = ["blog", "personal", "purecss", "responsive"]
+tags = ["blog", "python", "programming"]
+features = ["blog", "python", "programming"]
 # Shown in the side menu
-copyright = "&copy; 2017. All rights reserved."
+copyright = "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."
 canonifyurls = true
 paginate = 10
+disableRSS = true
+enableRobotsTXT = true
 
 DefaultContentLanguage = "en"
 

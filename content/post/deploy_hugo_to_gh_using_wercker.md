@@ -1,7 +1,7 @@
 +++
-tags = ["hugo"]
+tags = ["hugo", "wercker"]
 draft = false
-date = "2017-03-17T08:25:40+01:00"
+date = "2017-03-17"
 title = "Deploy Hugo to Github Pages using Wercker"
 
 +++

@@ -1,14 +1,18 @@
 +++
-date = "2017-05-13T20:49:33+02:00"
+date = "2017-05-13"
 title = "Najlepsze materiały do nauki programowania w Pythonie po polsku"
 tags = ['python']
 draft = false
 
 +++
 
+Subiektywna lista materiałów do nauki Pythona w języku polskim.
+
+<!--more-->
+
 ## Koduj z klasą - Python101 (tekst)
 Obecnie na start polecam wszystkim materiały z cyklu [Koduj z klasą czyli tzw. python101.](http://python101.readthedocs.io/pl/latest/index.html)
-<!--more-->
+
 
 **Plusy:**
 
