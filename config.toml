@@ -21,7 +21,6 @@ DefaultContentLanguage = "en"
 
 [params]
   # Shown in the home page
-  subtitle = "Python, Ubuntu & other tricks"
   brand = "PBedn"
   googleAnalytics = "UA-74192356-1"
   disqus = "pbedn"
@@ -74,7 +73,6 @@ weight = 1
 [Languages.pl]
 title = "Notatki programisty"
 weight = 1
-subtitle = "Python, Ubuntu & inne"
 [[Languages.pl.menu.main]]
   name = "Główna"
   pre = "<i class='fa fa-home fa-fw'></i>"
