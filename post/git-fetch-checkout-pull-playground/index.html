@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.19" />
 
-  <title>How to make automatic deployment with git: fetch and checkout vs pull &middot; Coding Notes</title>
+  <title>How to make automatic deployment with git: &#39;fetch and checkout&#39; vs &#39;pull --ff-only&#39; &middot; Coding Notes</title>
 
   
   
@@ -100,7 +100,7 @@
   <div class="pure-menu social">
   <ul class="pure-menu-list">
 
-    
+
 
     
 
@@ -190,7 +190,7 @@
 
   <div>
   <div class="small-print">
-    <small>&copy; 2017. All rights reserved.</small>
+    <small>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</small>
   </div>
   <div class="small-print">
     <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
@@ -213,7 +213,7 @@
 
 
 <div class="header">
-  <h1>How to make automatic deployment with git: fetch and checkout vs pull</h1>
+  <h1>How to make automatic deployment with git: &#39;fetch and checkout&#39; vs &#39;pull --ff-only&#39;</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -247,8 +247,9 @@
 
   <p>Can git be used as automatic deploment tool? Some say that as for mvp it is enough. Others give quite good explanations how to do it, see <a href="http://gitolite.com/deploy.html">gitolite.com/deploy</a>.</p>
 
-<p>My first naive solution was to use in deployment script for production, commands:
-</p>
+<p></p>
+
+<p>My first naive solution was to use in deployment script for production, commands:</p>
 
 <pre><code class="language-bash">$ git checkout .
 $ git pull --ff-only
@@ -342,7 +343,7 @@ $ git checkout --force origin/master
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://pbedn.github.io/post/python-postgresql-and-circleci/">Deploy Python app using PostgreSQL to CircleCI</a>
+      <a href="https://pbedn.github.io/post/python-postgresql-and-circleci/">Python and PostgreSQL deployment to CircleCI 1.0</a>
     </nav>
     
   </div>
@@ -351,14 +352,8 @@ $ git checkout --force origin/master
   </div>
   <div class="pure-u-10-24">
     
-    <nav class="next">
-      <a href="https://pbedn.github.io/post/I-do-not-like-django/">I do not like Django</a>
-    </nav>
-    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://pbedn.github.io/post/I-do-not-like-django/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
