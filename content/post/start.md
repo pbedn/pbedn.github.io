@@ -5,6 +5,9 @@ title = "Hello World with Hugo"
 draft = false
 +++
 
+Update:
+[Use Wercker. It is better.](/post/deploy_hugo_to_gh_using_wercker/)
+
 While trying to make this little space in the web finally working, I set up dozens of different static site generators (Jekyll, Pelican, Nikola, Lektor, Sculpin..). I was even thinking about writing my own for some time. I tried wordpress and blogspot. But finally arrived at [Hugo](https://gohugo.io/) and it make my day much better.
 <!--more-->
 
@@ -21,7 +24,7 @@ Some things that could be better:
 
 ### Quick tips:
 
-After some fight to publish it nicely to Github Pages, I tried to use automate deployment (Wecker tutorial on Hugo website doesn't work out of the box, and my knowledge on CI is not good yet). Finally I settled easiest solution - having two repositories.
+After some fight to publish it nicely to Github Pages, I tried to use automate deployment (Wecker tutorial on Hugo website doesn't work out of the box, and my knowledge on CI is not good yet). Finally I settled with easiest solution - having two repositories.
 
 * First repository is 'User Page' - 'pbedn.github.io'. Please refer to [pages docs](https://help.github.com/articles/user-organization-and-project-pages/) about more info.
 * Second is with source content of hugo - 'hugo-blog'
@@ -33,7 +36,7 @@ How to maintain pushing to two repositories? I use GitKraken, so it is just few 
 hugo serve -w -D
 ```
 
-2. When I want to push to github, firstly I create html files
+2. When I want to push to github, firstly I create html files (notice parent *../directory*)
 ```
 hugo -d ../pbedn.github.io
 ```
@@ -43,3 +46,14 @@ hugo -d ../pbedn.github.io
 #### What if after running hugo serve I do not see anytinng in the *public* directory?
 
 Sometimes it helps to run hugo with '-v', it shows more verbose output. My solution was to copy theme files inside my main folder (sometimes you just have to copy static files).
+
+---
+
+**Hugo commands I use:**
+```html
+serve                      A high performance webserver]
+-D, --buildDrafts          Include content marked as draft
+-w, --watch                Watch filesystem for changes and recreate as needed
+-d, --destination string   Filesystem path to write files to
+-v, --verbose              Verbose output
+```
