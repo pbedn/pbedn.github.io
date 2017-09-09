@@ -7,10 +7,10 @@ licenselink = "https://github.com/pbedn/blog/blob/master/LICENSE.md"
 tags = ["blog", "python", "programming"]
 features = ["blog", "python", "programming"]
 # Shown in the side menu
-copyright = "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."
+copyright = "&#169; 2017 Pawel Bednarz"
 canonifyurls = true
 paginate = 10
-disableRSS = true
+disableKinds=["RSS"]
 enableRobotsTXT = true
 
 DefaultContentLanguage = "en"
