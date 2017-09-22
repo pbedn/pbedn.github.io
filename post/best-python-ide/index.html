@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.19" />
 
-  <title>How to make automatic deployment with git: &#39;fetch and checkout&#39; vs &#39;pull --ff-only&#39; &middot; Coding Notes</title>
+  <title>Best Python IDE: Sublime Text vs PyCharm vs Wing IDE &middot; Coding Notes</title>
 
   
   
@@ -213,7 +213,7 @@
 
 
 <div class="header">
-  <h2>How to make automatic deployment with git: &#39;fetch and checkout&#39; vs &#39;pull --ff-only&#39;</h2>
+  <h2>Best Python IDE: Sublime Text vs PyCharm vs Wing IDE</h2>
   <h3></h3>
 </div>
 <div class="content">
@@ -222,9 +222,9 @@
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>21 Jun 2017</time>
+    <time>22 Sep 2017</time>
 
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 2 min</i>
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 3 min</i>
   </div>
 
   
@@ -237,7 +237,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/git">git</a>
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/ide">ide</a>
     
   </div>
   
@@ -245,105 +247,88 @@
 
 </div>
 
-  <p>Can git be used as automatic deploment tool? Some say that as for mvp it is enough. Others give quite good explanations how to do it, see <a href="http://gitolite.com/deploy.html">gitolite.com/deploy</a>.</p>
+  <p>After three years of using Sublime Text 3, more than one year with PyCharm (Community at home and Professional at work) it is time for Wing IDE. Why? Well it is has some best features from previous both editors.</p>
 
 <p></p>
 
-<p>My first naive solution was to use in deployment script for production, commands:</p>
+<p><strong>Sublime Text</strong></p>
 
-<pre><code class="language-bash">$ git checkout .
-$ git pull --ff-only
-</code></pre>
+<p>I like Sublime because it is fast. Simple. It was able to open huge files when other editors just crashed. Opening time is instant. Multiple selection is fantastic and so on.. I am writing this inside Sublime. After many trials with packages, and trying to make it a good IDE for Python I just settled with few must-have. But in general more external tools, slower it gets, and even this super stable platform crashed a few times (git gutter is the worst of them). I like that plugins can be written in Python, but this type of hacking is not for me.</p>
 
-<p>It works if production repository is clean. But sometimes there are problems with merging, and unless you catch the error, remote deploy script will just give you the message &ldquo;<em>fatal: Not possible to fast-forward, aborting.</em>&rdquo;, leaving the repository in bad shape.. So what is the proper solution?</p>
+<p>Plugins I use (I will not mention Package Control, I do not get why it is not default?):</p>
 
-<p>Let say that in production environment &ldquo;<em>git log &ndash;oneline</em>&rdquo; gives me:</p>
+<ul>
+<li>Side Bar Enhancements</li>
+<li>Compare Side-By-Side</li>
+<li>Terminal</li>
+</ul>
 
-<pre><code class="language-bash">114dbc5 Some changes
-2fe6adb Some changes
-e38c033 Added broken file
-6f6ba61 Changed Readme
-ab6d78a Initial commit
-</code></pre>
+<p>That is it. I tried Anaconda to make my Sublime a full featured IDE, like they advertised and it is.. ok (before my co-worker showed me PyCharm). I tried to install different packages manually, and I liked especially <em>Pylinter</em>. For small side projects that was enough. But when I started working with a bit bigger legacy code base, my Sublime failed. And I always wanted to have integrated terminal, well..</p>
 
-<p>In development environment I did a &ldquo;<em>git rebase -i 6f6ba</em>&rdquo;, squashing last two commits into one, and &ldquo;<em>git push &ndash;force</em>&rdquo; to repair my master branch. That will give me:</p>
+<p><strong>PyCharm</strong></p>
 
-<pre><code class="language-bash">5e88aca Some changes
-e38c033 Added broken file
-6f6ba61 Changed Readme
-ab6d78a Initial commit
-</code></pre>
+<p>First of all I have to say it once.. I hate it. Still I am going to use it because of its powerful debugger.</p>
 
-<p>My deployment script will run in production and produce output:</p>
+<p>Things I like:</p>
 
-<pre><code class="language-bash">$ git pull --ff-only
-remote: Counting objects: 3, done.
-remote: Compressing objects: 100% (3/3), done.
-remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
-Unpacking objects: 100% (3/3), done.
-From https://github.com/pbedn/git-playground
- + 114dbc5...5e88aca master       -&gt; origin/master  (forced update)
- * [new tag]         after-rebase -&gt; after-rebase
-fatal: Not possible to fast-forward, aborting.
-</code></pre>
+<ul>
+<li>Free</li>
+<li>Configuration of environment</li>
+<li>Debugger</li>
+</ul>
 
-<p>That is a problem. Solution is to use:</p>
+<p>Things I hate:</p>
 
-<pre><code class="language-bash">$ git fetch --all
-$ git checkout --force origin/master
-</code></pre>
+<ul>
+<li>Slow</li>
+<li>I can open it only once per day, as it is eating 90% of my IvyBridge i7 and I do not even know how much RAM because I just make a break..</li>
+<li>Searching</li>
+<li>Jupyter notebook functionality is terrible (who would use it inside anyway, but I like to have additional negative point here)</li>
+</ul>
 
-<p>Commits in the production are now correct!</p>
+<p>Conclusion. Do not bother with PyCharm if your project is small, life is too short. On the other hand, it will save you a lot of hours as did for me when I switched from pdb (and ipdb) to its debugger.</p>
 
-<pre><code class="language-bash">$ git fetch --all
-Fetching origin
+<p><strong>Wing IDE</strong></p>
 
-$ git checkout --force origin/master
-Note: checking out 'origin/master'.
+<p>Some reviews on the web I say that it is slow. Not true, maybe older versions but the current is pretty fast. Overall it feels like a middle ground in comparison to previous ones. It has missing debugger and terminal from Sublime and runs much faster than PyCharm. Nice. And <em>Source Assistant</em> is pretty cool. (in addition I like dark theme Monokai better than Darcula ;)</p>
 
-You are in 'detached HEAD' state. You can look around, make experimental
-changes and commit them, and you can discard any commits you make in this
-state without impacting any branches by performing another checkout.
+<p>I did not even installed it. It has portable versions.</p>
 
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -b with the checkout command again. Example:
+<blockquote>
+<p>..</p>
+</blockquote>
 
-  git checkout -b &lt;new-branch-name&gt;
+<p><strong>And the winner is.. Jupyter Notebook</strong></p>
 
-HEAD is now at 5e88aca... Some changes
+<hr />
 
-$ git log --oneline
-5e88aca Some changes
-e38c033 Added broken file
-6f6ba61 Changed Readme
-ab6d78a Initial commit
-</code></pre>
+<p><strong>Price</strong></p>
 
-<p>&ndash;</p>
+<ul>
+<li>Sublime Text - Buy once and enjoy</li>
+<li>PyCharm - Community version is free, Professional free as well because you get it from company</li>
+<li>Wing IDE - Personal Edition is free (there is more basic 101 edition, but they size is almost the same and functionality much superior in Personal).</li>
+</ul>
 
-<p><em>Exercise</em></p>
+<p><strong>RAM usage (single python file opened)</strong></p>
 
-<p>If you like to play with these exact examples you can follow the steps below (note that we are working with HEAD detached, but for the exercise purpose that is ok):</p>
-
-<pre><code class="language-bash">$ git clone https://github.com/pbedn/git-playground
-$ git checkout tags/duplicate
-$ git pull --ff-only origin master
-$ git checkout tags/after-rebase
-$ git fetch --all
-$ git checkout --force origin/master
-</code></pre>
+<ul>
+<li>Sublime Text - 15 MB</li>
+<li>PyCharm - 425 MB</li>
+<li>Wing IDE - 45 MB</li>
+</ul>
 
   
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://pbedn.github.io/post/python-postgresql-and-circleci/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://pbedn.github.io/post/git-fetch-checkout-pull-playground/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://pbedn.github.io/post/python-postgresql-and-circleci/">Python and PostgreSQL deployment to CircleCI 1.0</a>
+      <a href="https://pbedn.github.io/post/git-fetch-checkout-pull-playground/">How to make automatic deployment with git: &#39;fetch and checkout&#39; vs &#39;pull --ff-only&#39;</a>
     </nav>
     
   </div>
@@ -352,14 +337,8 @@ $ git checkout --force origin/master
   </div>
   <div class="pure-u-10-24">
     
-    <nav class="next">
-      <a href="https://pbedn.github.io/post/best-python-ide/">Best Python IDE: Sublime Text vs PyCharm vs Wing IDE</a>
-    </nav>
-    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://pbedn.github.io/post/best-python-ide/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
