@@ -1,11 +1,11 @@
 +++
 date = "2017-03-12"
-title = "About"
+title = "Paweł Bednarz"
 draft = false
 +++
 
-Hi, I am Pawel. In my 9-5 I work for transportation startup as a Python programmer, where I write tools for converting schedule files and build internal web app for data team in Flask.
+I like to call myself a Sci-Fi Engineer, because of my technical background and love for science fiction.
 
-Here on this blog I want to share some of the problems I encounter on my journey to being better developer.
+In my 9-5 I manage data for Czech transportation startup with my favourite programming language - Python.
 
-In the free time I enjoy training Capoeira, dancing Forro and playing the guitar.
+When not playing strategy game I train Capoeira, dance Forro or play the guitar.
