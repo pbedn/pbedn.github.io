@@ -23,7 +23,7 @@ DefaultContentLanguage = "en"
   # Shown in the home page
   brand = "PBedn"
   googleAnalytics = "UA-74192356-1"
-  disqus = "pbedn"
+  # disqus = "pbedn"
   # CSS name for highlight.js
   highlightjs = "github"
 
