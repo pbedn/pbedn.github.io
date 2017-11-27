@@ -85,9 +85,3 @@ weight = 1
   weight = 2
   identifier = "post"
   url = "/pl/post/"
-[[Languages.pl.menu.main]]
-  name = "O mnie"
-  pre = "<i class='fa fa-user fa-fw'></i>"
-  weight = 3
-  identifier = "about"
-  url = "/pl/about/"
