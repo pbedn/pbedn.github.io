@@ -68,11 +68,16 @@ weight = 1
     weight = 4
     identifier = "links"
     url = "/links/"
-
+  [[menu.main]]
+    name = "Tricks & Tips"
+    pre = "<i class='fa fa-question fa-fw'></i>"
+    weight = 5
+    identifier = "tips"
+    url = "/tips/"
 
 [Languages.pl]
 title = "Notatki programisty"
-weight = 1
+weight = 2
 [[Languages.pl.menu.main]]
   name = "Główna"
   pre = "<i class='fa fa-home fa-fw'></i>"
