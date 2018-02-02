@@ -1,6 +1,6 @@
 +++
 title = "Ubuntu Mate on Thinkpad T470"
-date = 2018-02-01T15:00:36+01:00
+date = "2018-02-01"
 draft = false
 tags =  ["ubuntu", "thinkpad"]
 +++
