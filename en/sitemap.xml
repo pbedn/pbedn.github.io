@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/ubuntu-mate-on-thinkpad-t470/</loc>
+    <lastmod>2018-02-01T15:00:36+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/best-python-ide/</loc>
     <lastmod>2017-09-22T00:00:00+00:00</lastmod>
   </url>
@@ -45,7 +50,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2017-09-22T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-01T15:00:36+01:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -85,7 +90,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2017-09-22T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-01T15:00:36+01:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -132,6 +137,12 @@
   </url>
   
   <url>
+    <loc>https://pbedn.github.io/tags/thinkpad/</loc>
+    <lastmod>2018-02-01T15:00:36+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/topics/</loc>
     <priority>0</priority>
     <xhtml:link
@@ -144,6 +155,12 @@
                 hreflang="en"
                 href="https://pbedn.github.io/topics/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://pbedn.github.io/tags/ubuntu/</loc>
+    <lastmod>2018-02-01T15:00:36+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
