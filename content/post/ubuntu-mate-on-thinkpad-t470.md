@@ -5,9 +5,12 @@ draft = false
 tags =  ["ubuntu", "thinkpad"]
 +++
 
-I was looking for a new laptop for some time now, and specifically, I wanted to try ThinkPad series, based on sound reviews. Electronic equipment in Poland has a higher price compared to for example the USA, but I bought on a sale a T470 without Windows preinstalled for 1140$ (3800 PLN on 26 Jan 2018). The usual price for this model was around 5000 PLN. Anyway, I was going to install Ubuntu, with choices between Lubuntu (my long-time favourite on all virtual machines) and Ubuntu Mate (more pretty but not so heavy as default Unity or currently Gnome 3). The second consideration was to choose 16.04 LTS, especially after recent bad news for some Lenovo users who installed 17.10 and their laptop got bricked because of BIOS failure (T470 was not on 'broken' list but let's not play with the devil). I expect somewhere in late autumn to switch to 18.04 after it is tried out for some months.
+I was looking for a new laptop for some time now, and specifically, I wanted to try ThinkPad series, based on sound reviews. Electronic equipment in Poland has a higher price compared to for example the USA, but I bought on a sale a T470 without Windows preinstalled for 1140$ (3800 PLN on 26 Jan 2018). The usual price for this model was around 5000 PLN. Anyway, I was going to install Ubuntu, with choices between Lubuntu (my long-time favourite on all virtual machines) and Ubuntu Mate (more pretty but not so heavy as default Unity or currently Gnome 3).
 
 <!--more-->
+
+The second consideration was to choose 16.04 LTS, especially after recent bad news for some Lenovo users who installed 17.10 and their laptop got bricked because of BIOS failure (T470 was not on 'broken' list but let's not play with the devil). I expect somewhere in late autumn to switch to 18.04 after it is tried out for some months.
+
 
 My specification:
 
