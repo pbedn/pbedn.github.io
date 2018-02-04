@@ -217,10 +217,14 @@
   <h2></h2>
 </div>
 <div class="content">
-  <p><strong>Permanent disable bluetooth on linux with systemd</strong></p>
+  <p><strong>Disable bluetooth on linux with systemd</strong></p>
 
 <pre><code>sudo systemctl [start, stop, enable, disable] bluetooth.service 
 </code></pre>
+
+<p><strong>Disable bluetooth on startup on Ubuntu Mate 16.04</strong></p>
+
+<p>Go to <em>dconf-editor-&gt;org.blueman.plugins.powermanager</em> and set value on <em>auto-power-on</em> to <strong>false</strong></p>
 
 </div>
 
