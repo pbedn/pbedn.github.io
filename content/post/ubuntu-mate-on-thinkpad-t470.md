@@ -5,6 +5,9 @@ draft = false
 tags =  ["ubuntu", "thinkpad"]
 +++
 
+Update:
+After recent update laptop freezes at boot!
+
 I was looking for a new laptop for some time now, and specifically, I wanted to try ThinkPad series, based on sound reviews. Electronic equipment in Poland has a higher price compared to for example the USA, but I bought on a sale a T470 without Windows preinstalled for 1140$ (3800 PLN on 26 Jan 2018). The usual price for this model was around 5000 PLN. Anyway, I was going to install Ubuntu, with choices between Lubuntu (my long-time favourite on all virtual machines) and Ubuntu Mate (more pretty but not so heavy as default Unity or currently Gnome 3).
 
 <!--more-->
