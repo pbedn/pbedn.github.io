@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.34" />
 
-  <title>Codility Demo Test: Part One &middot; Coding Notes</title>
+  <title>Codility Demo Test &middot; Coding Notes</title>
 
   
   
@@ -213,7 +213,7 @@
 
 
 <div class="header">
-  <h2>Codility Demo Test: Part One</h2>
+  <h2>Codility Demo Test</h2>
   <h3></h3>
 </div>
 <div class="content">
@@ -251,7 +251,7 @@
 
 <p></p>
 
-<p>It is fascinating that each programmer solves the same task differently. First two solutions are mine, third belongs to my girlfriend, and last I found on <a href="https://github.com/johnmee/codility/blob/master/ex-4-1-missinginteger.py">Github</a>.</p>
+<p>It is fascinating that each programmer solves the same task differently. First two solutions are mine, third belongs to my girlfriend, and last I found on [Github][github-codility].</p>
 
 <hr />
 
@@ -358,31 +358,24 @@ Complexity:</p>
 
 <h3 id="fourth-try-how-to-make-o-n">Fourth try: How to make O(N) ?</h3>
 
-<p>Looking for the solution, the best answer from [stackoverflow][stackoverflow] was to use pigeonhole principle. I found a ready answer on <a href="https://github.com/johnmee/codility/blob/master/ex-4-1-missinginteger.py">github</a> with that approach, but after running demo test, I still got O(N) or O(N * log(N)) time complexity&hellip; Why? Is this Python language fault?</p>
+<p>Looking for the solution, the best answer from <a href="https://stackoverflow.com/questions/25002381/missing-integer-variation-on-solution-needed">stackoverflow</a> was to use <strong>pigeonhole principle</strong>. I found a ready answer on <a href="https://blog.nkbits.com/2015/07/14/codility-missing-integer/">nkbits blog</a> with that approach, and the author claims that solution should be O(N) in time and space complexity. When analyzing tha code it looks he is right, but after running demo test in codility, I still got O(N) or O(N * log(N))&hellip; Why? Is this Python language fault or Codility server error?</p>
 
 <pre><code class="language-python">def solution(A):
-    # dictionary of booleans indicating which ints we've seen
-    roll = {}
-    largest = 0
-
-    # mark the roll
-    for element in A:
-        if element &gt; 0:
-            roll[element] = True
-            # track the largest int
-            if element &gt; largest:
-                largest = element
-
-    # find the first missing element
-    # NB: using `not in roll.keys()` contributes an O(N) loop which ruins time complexity on the codility platform
-    counter = 1
-    while counter &lt;= largest:
-        if counter in roll:
-            counter += 1
-        else:
-            break
-
-    return counter
+    N = len(A)
+    count = [0]*(N + 1)
+    
+    # Counts all elements of A tha belongs to sequence {1, ..., N}
+    for k in range(N):
+        if N &gt;= A[k] &gt; 0:
+            count[A[k]] += 1
+    
+    # Searches for the lesser integer that not belongs to A 
+    for k in range(1, N + 1):
+        if count[k] == 0:
+            return k
+    
+    # If A has all elements from 1 to N, N + 1 is the minimal integer
+    return N + 1
 </code></pre>
 
 <p>Results:</p>
@@ -395,7 +388,7 @@ Complexity:</p>
 
 <p>Detected time complexity: O(N) or O(N * log(N))</p>
 
-<p><a href="https://app.codility.com/demo/results/demoPQZZ6P-BP9/">Link to results</a></p>
+<p><a href="https://app.codility.com/demo/results/demo5GNVDV-2NB/">Link to results</a></p>
 
   
 <div class="prev-next-post pure-g">
