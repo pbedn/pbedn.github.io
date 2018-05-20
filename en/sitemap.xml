@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/wargames-bandit/</loc>
+    <lastmod>2018-05-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/codility-demo-test/</loc>
     <lastmod>2018-05-18T00:00:00+00:00</lastmod>
   </url>
@@ -71,7 +76,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2018-05-18T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -92,6 +97,12 @@
   </url>
   
   <url>
+    <loc>https://pbedn.github.io/tags/hacking/</loc>
+    <lastmod>2018-05-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/tags/hugo/</loc>
     <lastmod>2017-03-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -104,6 +115,12 @@
   </url>
   
   <url>
+    <loc>https://pbedn.github.io/tags/linux/</loc>
+    <lastmod>2018-05-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/tags/postgresql/</loc>
     <lastmod>2017-05-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -111,7 +128,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2018-05-18T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
