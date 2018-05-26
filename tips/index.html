@@ -226,6 +226,16 @@
 
 <p>Go to <em>dconf-editor-&gt;org.blueman.plugins.powermanager</em> and set value on <em>auto-power-on</em> to <strong>false</strong></p>
 
+<p><strong>Wireless Bluetooth Creative Soundblaster Jam headphones not connecting in Ubuntu 16.04/18.04</strong>
+Solution found <a href="https://ubuntuforums.org/showthread.php?t=2308489">here</a>. Download file, move to /lib/firmware/brcm/ and restart.</p>
+
+<pre><code>wget https://s3.amazonaws.com/plugable/bin/fw-0a5c_21e8.hcd
+sudo mv fw-0a5c_21e8.hcd /lib/firmware/brcm/BCM20702A0-0a5c-21e8.hcd
+sudo shutdown -r now
+</code></pre>
+
+<p>Alternate file location -&gt; <a href="https://www.dropbox.com/s/12504w56lm3brtm/fw-0a5c_21e8.hcd?dl=0">Dropbox</a></p>
+
 </div>
 
 </div>
