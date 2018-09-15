@@ -1,9 +1,11 @@
 +++
-title = "Python and PostgreSQL deployment to CircleCI 1.0"
+title = "Python and PostgreSQL deployment to CircleCI"
 tags = ["python", "postgresql", "circleci"]
 draft = false
 date = "2017-05-15"
 +++
+
+Update: Similar setup but for CircleCI 2.0 is [HERE][my-circleci-repo-2]
 
 Deploying to CircleCI as easy as creating yaml file (sometimes you even do not need it as Circle will automatically recognize structure and behavior). But usually it is better to setup at least basic configuration. The problem begins with more complicated functionality and CI documentation is minimal, or to say 'very hacker friendly'.
 
@@ -72,6 +74,7 @@ Links:
 
 
 [my-circleci-repo]: https://github.com/pbedn/circleci-1.0-pytest-postgresql
+[my-circleci-repo-2]: https://github.com/pbedn/circleci-2.0-pytest-postgresql
 [circleci-db-docs]: https://circleci.com/docs/1.0/manually/#databases
 [psql-docs]: https://www.postgresql.org/docs/9.5/static/app-psql.html
 [test_database.py]: https://github.com/pbedn/circleci-1.0-pytest-postgresql/blob/master/tests/test_database.py
