@@ -2,5 +2,19 @@
 title = "{{ replace .TranslationBaseName "-" " " | title }}"
 date = "{{ .Date }}"
 draft = true
-tags = []
+tags = ['tag']
 +++
+
+Intro
+
+<!--more-->
+
+Main part
+
+---
+
+Resources:
+
+* [Visible text][some-name]
+
+[some-name]: https://example.com
