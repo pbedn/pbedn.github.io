@@ -280,7 +280,7 @@
     return temp
 </code></pre>
 
-<p>Some tests in Jupyter notebook to measure execution time:</p>
+<p>Some tests in Jupyter notebook to measure execution time. As we see each next function is faster.</p>
 
 <pre><code class="language-python">%timeit list_a(1000)
 32.7 ms ± 937 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
@@ -305,16 +305,12 @@ It is nice feature that allows us to unpack lists with ease:</p>
 
 <p>But can we modify our function to one-liner?</p>
 
-<pre><code class="language-python">def list_d(n):
-    temp = []
-    for i in range(1, n+1):
-        temp.append(*[[i] * i])
-    return temp
+<pre><code class="language-python">list_d = [*[i]*i for i in range(1, n+1)] 
  
 SyntaxError: iterable unpacking cannot be used in comprehension
 </code></pre>
 
-<p>Unfortunately not yet. However, as we read in PEP 448</p>
+<p>Unfortunately not yet. However, as we read in PEP 448:</p>
 
 <blockquote>
 <p>This PEP does not include unpacking operators inside list, set and dictionary comprehensions <strong>although this has not been ruled out for future proposals</strong>.</p>
