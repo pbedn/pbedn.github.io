@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.34" />
 
-  <title>Interview &middot; Coding Notes</title>
+  <title>Series: Python Interview Questions #1 &middot; Coding Notes</title>
 
   
   
@@ -36,8 +36,6 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
   
-  
-  <link rel="alternate" type="application/rss+xml" title="Coding Notes" href="https://pbedn.github.io/tags/interview/index.xml" />
   
 
   
@@ -217,16 +215,12 @@
 
 
 <div class="header">
-  <h1>Interview</h1>
+  <h2>Series: Python Interview Questions #1</h2>
+  <h3></h3>
 </div>
-
 <div class="content">
-  
-    <article>
-  <header>
-    <h2><a href="https://pbedn.github.io/post/python-algorithmic-interview-questions-1/">Series: Python Interview Questions #1</a></h2>
 
-    <div class="post-meta">
+  <div class="post-meta">
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
@@ -255,78 +249,102 @@
 
 </div>
 
-  </header>
-
-  <p>
   <p>This morning for the interviewed person we had a short algorithmic task. Given n = 5, create a list of multiplied integers:</p>
 
 <pre><code class="language-python">[1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5]
 </code></pre>
 
 <p></p>
-  </p>
+
+<p>First working example we got was:</p>
+
+<pre><code class="language-python">def list_a(n):
+    temp = []
+    for i in range(1, n+1):
+        for j in range(i):
+            temp.append(f)
+    return temp
+</code></pre>
+
+<p>This is ok, but we could do better and suggested for shorter version. Then we got nicer one-liner:</p>
+
+<pre><code class="language-python">list_b = [i for i in range(1, n+1) for k in range(i)]
+</code></pre>
+
+<p>My question was about algorythmic complexity, can we do even better?</p>
+
+<pre><code class="language-python">def list_c(n):
+    temp = []
+    for i in range(1, n+1):
+        temp += [i] * i
+    return temp
+</code></pre>
+
+<p>Some tests in Jupyter notebook to measure execution time. As we see each next function is faster.</p>
+
+<pre><code class="language-python">%timeit list_a(1000)
+32.7 ms ± 937 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+%timeit list_b(1000)
+14.3 ms ± 396 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+%timeit list_c(1000)
+3.47 ms ± 52.7 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</code></pre>
+
+<hr />
+
+<p>The final note, beginning from python 3.5 we can use &lsquo;Additional Unpacking Generalizations&rsquo; as described in PEP 448.
+It is nice feature that allows us to unpack lists with ease:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; print(*[1], *[2], 3)
+1 2 3
+&gt;&gt;&gt; [*range(4), 4]
+[0, 1, 2, 3, 4]
+</code></pre>
+
+<p>But can we modify our function to one-liner?</p>
+
+<pre><code class="language-python">list_d = [*[i]*i for i in range(1, n+1)] 
+ 
+SyntaxError: iterable unpacking cannot be used in comprehension
+</code></pre>
+
+<p>Unfortunately not yet. However, as we read in PEP 448:</p>
+
+<blockquote>
+<p>This PEP does not include unpacking operators inside list, set and dictionary comprehensions <strong>although this has not been ruled out for future proposals</strong>.</p>
+</blockquote>
 
   
-  <footer>
-    <a href="https://pbedn.github.io/post/python-algorithmic-interview-questions-1/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://pbedn.github.io/post/python-interview-questions-for-webdev/">Python Interview Questions for Web Developer Position</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>09 Sep 2018</time>
-
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 3 min</i>
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://pbedn.github.io/post/python-interview-questions-for-webdev/"><i class="fa fa-chevron-left"></i></a>
+    
   </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
+  <div class="pure-u-10-24">
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/interview">interview</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/django">django</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/web">web</a>
+    <nav class="prev">
+      <a href="https://pbedn.github.io/post/python-interview-questions-for-webdev/">Python Interview Questions for Web Developer Position</a>
+    </nav>
     
   </div>
-  
-  
-
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
 </div>
 
-  </header>
 
-  <p>
-  <p>My little tour on Python Web Shops is over for now. It has been an excellent chance to see what is going on in the town. I have been applying mainly for a web developer position. Below is a list of few interview questions I have got. I will answer the most interesting or ones that require more in-depth research in the next articles.</p>
-
-<p></p>
-  </p>
 
   
-  <footer>
-    <a href="https://pbedn.github.io/post/python-interview-questions-for-webdev/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
 
-  
 </div>
 
 </div>
@@ -355,3 +373,4 @@ $('head').append('<link href="https://pbedn.github.io/css/dracula.css" rel="styl
 
 </body>
 </html>
+
