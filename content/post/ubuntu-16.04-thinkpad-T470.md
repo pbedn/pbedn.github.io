@@ -7,6 +7,9 @@ tags = ["ubuntu", "thinkpad"]
 
 One month of fighting with Mate I returned to "classic Ubuntu" with Unity desktop. And it just works. That's it.
 
+Update (December 2018):
+Ubuntu 18.04 is running fine as well. Even my bluetooth headphones ;)
+
 <!--more-->
 
 ---
