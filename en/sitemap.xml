@@ -3,67 +3,72 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://pbedn.github.io/post/python-interview-questions-1/</loc>
+    <loc>https://pbedn.github.io/post/2018-django-problems-mature-framework/</loc>
+    <lastmod>2018-12-14T19:32:19+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pbedn.github.io/post/2018-python-interview-questions-1/</loc>
     <lastmod>2018-11-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/python-interview-questions-for-webdev/</loc>
+    <loc>https://pbedn.github.io/post/2018-python-interview-questions-for-webdev/</loc>
     <lastmod>2018-09-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/politically-incorrect-cv-summary/</loc>
+    <loc>https://pbedn.github.io/post/2018-politically-incorrect-cv-summary/</loc>
     <lastmod>2018-08-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/ordered-dict-officially-ordered/</loc>
+    <loc>https://pbedn.github.io/post/2018-ordered-dict-officially-ordered/</loc>
     <lastmod>2018-06-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/wargames-bandit/</loc>
+    <loc>https://pbedn.github.io/post/2018-wargames-bandit/</loc>
     <lastmod>2018-05-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/codility-demo-test/</loc>
+    <loc>https://pbedn.github.io/post/2017-codility-demo-test/</loc>
     <lastmod>2018-05-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/ubuntu-16.04-thinkpad-t470/</loc>
+    <loc>https://pbedn.github.io/post/2018-ubuntu-16.04-thinkpad-t470/</loc>
     <lastmod>2018-03-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/ubuntu-mate-on-thinkpad-t470/</loc>
+    <loc>https://pbedn.github.io/post/2018-ubuntu-mate-on-thinkpad-t470/</loc>
     <lastmod>2018-02-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/best-python-ide/</loc>
+    <loc>https://pbedn.github.io/post/2017-best-python-ide/</loc>
     <lastmod>2017-09-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/git-fetch-checkout-pull-playground/</loc>
+    <loc>https://pbedn.github.io/post/2017-git-fetch-checkout-pull-playground/</loc>
     <lastmod>2017-06-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/python-postgresql-and-circleci/</loc>
+    <loc>https://pbedn.github.io/post/2017-python-postgresql-and-circleci/</loc>
     <lastmod>2017-05-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/deploy_hugo_to_gh_using_wercker/</loc>
+    <loc>https://pbedn.github.io/post/2017-deploy_hugo_to_gh_using_wercker/</loc>
     <lastmod>2017-03-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/post/start/</loc>
+    <loc>https://pbedn.github.io/post/2017-start/</loc>
     <lastmod>2017-03-13T00:00:00+00:00</lastmod>
   </url>
   
@@ -96,7 +101,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2018-11-15T00:00:00+00:00</lastmod>
+    <lastmod>2018-12-14T19:32:19+01:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -112,7 +117,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/django/</loc>
-    <lastmod>2018-09-09T00:00:00+00:00</lastmod>
+    <lastmod>2018-12-14T19:32:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -160,7 +165,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2018-11-15T00:00:00+00:00</lastmod>
+    <lastmod>2018-12-14T19:32:19+01:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"

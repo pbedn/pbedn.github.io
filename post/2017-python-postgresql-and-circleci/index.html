@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.34" />
 
-  <title>Wercker &middot; Coding Notes</title>
+  <title>Python and PostgreSQL deployment to CircleCI &middot; Coding Notes</title>
 
   
   
@@ -36,8 +36,6 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
   
-  
-  <link rel="alternate" type="application/rss+xml" title="Coding Notes" href="https://pbedn.github.io/tags/wercker/index.xml" />
   
 
   
@@ -217,22 +215,18 @@
 
 
 <div class="header">
-  <h1>Wercker</h1>
+  <h2>Python and PostgreSQL deployment to CircleCI</h2>
+  <h3></h3>
 </div>
-
 <div class="content">
-  
-    <article>
-  <header>
-    <h2><a href="https://pbedn.github.io/post/2017-deploy_hugo_to_gh_using_wercker/">Deploy Hugo to Github Pages using Wercker</a></h2>
 
-    <div class="post-meta">
+  <div class="post-meta">
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>17 Mar 2017</time>
+    <time>15 May 2017</time>
 
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 1 min</i>
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 2 min</i>
   </div>
 
   
@@ -245,9 +239,11 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/hugo">hugo</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/wercker">wercker</a>
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/postgresql">postgresql</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/circleci">circleci</a>
     
   </div>
   
@@ -255,20 +251,114 @@
 
 </div>
 
-  </header>
+  <p>Update: Similar setup but for CircleCI 2.0 is <a href="https://github.com/pbedn/circleci-2.0-pytest-postgresql">HERE</a></p>
 
-  <p>
-  <p>The easiest solution how to publish with Hugo to Github Pages is to have two separate repositories, one with blog source files and second with html files. Simple.</p>
-  </p>
+<p>Deploying to CircleCI as easy as creating yaml file (sometimes you even do not need it as Circle will automatically recognize structure and behavior). But usually it is better to setup at least basic configuration. The problem begins with more complicated functionality and CI documentation is minimal, or to say &lsquo;very hacker friendly&rsquo;.</p>
+
+<p>My problem was how to use build-in PostgreSQL database with Python application. This is quick tip how I solved it.
+</p>
+
+<p>I created simple Python app for this post purpose. All files are inside <a href="https://github.com/pbedn/circleci-1.0-pytest-postgresql">my repository</a>, which I connected to Github with version 1.0 of CircleCI.</p>
+
+<p>CircleCI settings are all default except <em>BUILD SETTINGS: Environment Variables</em>, where I added variable</p>
+
+<pre><code>Name: DB_NAME
+Value: circleci
+</code></pre>
+
+<p>Create <strong>circle.yml</strong> file, and put inside root of repository</p>
+
+<pre><code>machine:
+  timezone:
+    Europe/Warsaw
+  python:
+    version: 3.5.2
+
+  environment:
+    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+
+dependencies:
+  pre:
+   - pip install pytest
+   - pip install psycopg2
+
+database:
+  override:
+    - psql -U ubuntu -d circle_test -a -f schema.sql
+
+test:
+  override:
+    - py.test --junitxml=$CIRCLE_TEST_REPORTS/output.xml
+</code></pre>
+
+<p>The most time it took me to find correct configuration how to override database, and it turned out to be very simple.</p>
+
+<pre><code>- psql -U ubuntu -d circle_test -a -f schema.sql
+</code></pre>
+
+<p>This line deciphered using <a href="https://www.postgresql.org/docs/9.5/static/app-psql.html">psql-docs</a></p>
+
+<ul>
+<li>-U ubuntu: username</li>
+<li>-d circleci: database name</li>
+<li>-a echo all</li>
+<li>-f schema.sql: filename</li>
+</ul>
+
+<p>If you look inside my repository at the <a href="https://github.com/pbedn/circleci-1.0-pytest-postgresql/blob/master/tests/test_database.py">test_database.py</a> file. You will find line which says:</p>
+
+<pre><code>DATABASE = os.environ[&quot;DB_NAME&quot;]
+</code></pre>
+
+<p>Here I am using that environmental variable, added in the beginning.</p>
+
+<p>That is it. Now push to Github, and enjoy having automatic testing. If it still does not work, try to fork <a href="https://github.com/pbedn/circleci-1.0-pytest-postgresql">my repo</a> and play with it.</p>
+
+<hr />
+
+<p>Links:</p>
+
+<ul>
+<li><a href="https://github.com/pbedn/circleci-1.0-pytest-postgresql">My repository with example app and configuration</a></li>
+<li><a href="https://circleci.com/docs/1.0/manually/#databases">CircleCI documentation about database setup</a></li>
+<li><a href="https://www.postgresql.org/docs/9.5/static/app-psql.html">Psql documentation</a></li>
+</ul>
 
   
-  <footer>
-    <a href="https://pbedn.github.io/post/2017-deploy_hugo_to_gh_using_wercker/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://pbedn.github.io/post/2017-deploy_hugo_to_gh_using_wercker/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://pbedn.github.io/post/2017-deploy_hugo_to_gh_using_wercker/">Deploy Hugo to Github Pages using Wercker</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="https://pbedn.github.io/post/2017-git-fetch-checkout-pull-playground/">How to make automatic deployment with git: &#39;fetch and checkout&#39; vs &#39;pull --ff-only&#39;</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="https://pbedn.github.io/post/2017-git-fetch-checkout-pull-playground/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
 
   
+
 </div>
 
 </div>
@@ -297,3 +387,4 @@ $('head').append('<link href="https://pbedn.github.io/css/dracula.css" rel="styl
 
 </body>
 </html>
+
