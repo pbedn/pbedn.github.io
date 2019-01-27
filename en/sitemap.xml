@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/2019-best-django-hosting/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2018-django-problems-mature-framework/</loc>
     <lastmod>2018-12-14T19:32:19+01:00</lastmod>
   </url>
@@ -101,7 +106,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2018-12-14T19:32:19+01:00</lastmod>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -117,7 +122,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/django/</loc>
-    <lastmod>2018-12-14T19:32:19+01:00</lastmod>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -165,7 +170,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2018-12-14T19:32:19+01:00</lastmod>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -240,7 +245,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/ubuntu/</loc>
-    <lastmod>2018-03-10T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
