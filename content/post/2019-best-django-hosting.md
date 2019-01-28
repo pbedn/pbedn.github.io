@@ -39,4 +39,4 @@ To be honest, I did not try this service, but with the similar pricing to digita
 
 ---
 
-After such marketing, Digital should pay me ;) but well at least you can click my referral link to create an account there.. [Referral Link](https://m.do.co/c/79380110cc20)
+After such marketing, Digital should pay me ;) but well at least you can click my referral link to create an account there.. [Referral Link](https://www.digitalocean.com/?refcode=79380110cc20)
