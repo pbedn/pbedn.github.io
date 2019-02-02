@@ -17,19 +17,13 @@ a:visited {
 .small-print {
   font-size: 0.8em;
   margin: 0.6em;
-  color: #777;
 }
 
 .post-meta {
   font-size: 90%;
 }
 
-article > header {
-  margin-top: 2em;
-}
-
 article > footer {
-  margin-top: -1em;
   text-align: right;
 }
 
@@ -53,6 +47,14 @@ article > footer {
   overflow: hidden;
 }
 
+#menu {
+  overflow-y: visible;
+}
+
+#menu a {
+  padding: 0.6em;
+}
+
 #menu .brand {
   font-family: Raleway;
   font-weight: bold;
@@ -66,6 +68,10 @@ article > footer {
 
 #menu .pure-menu {
   font-size: 0.9em;
+}
+
+#menu .pure-menu ul.pure-menu-children {
+  border-top: none;
 }
 
 i {
