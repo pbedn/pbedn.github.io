@@ -36,7 +36,7 @@ DefaultContentLanguage = "en"
 [social]
   linkedin = "pbedn"
   github = "pbedn"
-  stackoverflow = "4877932"
+#  stackoverflow = "4877932"
 
 [Languages]
 [Languages.en]
