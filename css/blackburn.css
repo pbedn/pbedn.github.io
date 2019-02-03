@@ -2,6 +2,22 @@
   font-family: "Raleway", Helvetica, Arial, sans-serif
 }
 
+.header h2 {
+    color: #333333;
+}
+
+p {
+  color: #191818;
+}
+
+li {
+  color: #191818;
+}
+
+.dark-color {
+  color: #191818;
+}
+
 a {
   color: #3b8bba;
   text-decoration: none;
