@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.34" />
 
-  <title>Best Django hosting server &middot; Coding Notes</title>
+  <title>Series: Python Interview Questions #2 &middot; Coding Notes</title>
 
   
   
@@ -216,7 +216,7 @@
 
 
 <div class="header">
-  <h2>Best Django hosting server</h2>
+  <h2>Series: Python Interview Questions #2</h2>
   <h3></h3>
 </div>
 <div class="content">
@@ -225,9 +225,9 @@
 
   <div class="dark-color">
     <i class="fa fa-calendar fa-fw"></i>
-    <time>27 Jan 2019</time>
+    <time>28 Feb 2019</time>
 
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 2 min</i>
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 3 min</i>
   </div>
 
   
@@ -240,9 +240,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/django">django</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/ubuntu">ubuntu</a>
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/interview">interview</a>
     
   </div>
   
@@ -250,61 +250,133 @@
 
 </div>
 
-  <p>In my spare time, I am creating small Django web application, designed for language schools administration. This month I decided to deploy it to the server finally. Quick research gave me a few possibilities: home setup with raspberry pi (kind of free), pythonanywhere.com (free/paid), heroku.com (free/paid), digitalocean.com (paid), linode.com (paid). I have chosen DigitalOcean, and here are is why.</p>
+  <p>Task: merge and sort two ordered lists</p>
+
+<pre><code class="language-python">list_a = [8, 10, 12, 44, 63, 66]
+list_b = [2, 3, 20, 106, 144]
+solution = [2, 3, 8, 10, 12, 20, 44, 63, 66, 106, 144]
+</code></pre>
 
 <p></p>
 
-<p>Pros and cons: RaspberryPi:</p>
+<p>And here pythonista might cheat a bit by using Python built-in functionality. But is this an efficient solution?</p>
 
-<ul>
-<li>Good: fairly cheap computer and easy to setup</li>
-<li>Bad: slow SD card makes updates painful</li>
-<li>Ugly: need to set up a good firewall and buy DNS as I have a dynamic IP address</li>
-</ul>
+<pre><code class="language-python"># 1. Adding the list and use sorted 
+def solution1(a, b):
+    lst = a + b
+    return sorted(lst)
 
-<p>Pros and cons: pythonanywhere.com</p>
+# 2. Is extending list better?
+def solution2(a, b):
+    lst = a[:]
+    lst.extend(b)
+    return sorted(lst)
+    
+# 3. Smart way using heapq
+from heapq import merge
+def solution3(a, b):
+    return merge(a, b)
+</code></pre>
 
-<ul>
-<li>Good: it is free, and I had used it before because Harry Percival recommended it (Testing Goat? ;)</li>
-<li>Bad: site UI/UX, lack of documentation, old python and Django versions available</li>
-<li>Ugly: seems like they stopped developing that service, or most of the things are blocked for free users</li>
-</ul>
+<p>If the task was to write the pure algorithm manually, we could do the following:</p>
 
-<p>Pros and cons: heroku.com</p>
+<pre><code class="language-python">def solution4(a, b):
+    solution = [0] * (len(a)-1 + len(b)-1)
+    i, j, k = 0, 0, 0
+    
+    while i &lt; len(a) and j &lt; len(b):
+        if a[i] &lt; b[j]:
+            solution[k] = a[i]
+            i += 1
+        else:
+            solution[k] = b[j]
+            j += 1
+        k += 1
 
-<ul>
-<li>Good: FreeDyno and excellent app configuration options</li>
-<li>Bad: HobbyDyno is 7$/mo that gives me only 512MB RAM</li>
-<li>Ugly: I give up quickly after app creation, and researching deploy options. Did not recognise Poetry (pyproject.toml)</li>
-</ul>
+    if i &lt; len(a):
+        solution.extend(a[i:])
+    if j &lt; len(b):
+        solution.extend(b[j:])
+    return solution
+</code></pre>
 
-<p>Pros and cons: digitalocean.com</p>
+<p>And final solution using Python tricks again (iterator)</p>
 
-<ul>
-<li>Good: fast Linux machine of choice (1vCPU, 1GB RAM, 25GB SSD), great docs and tutorials</li>
-<li>Bad: no free plans and the cheapest virtual machine is 5$/mo</li>
-<li>Ugly: did not find anything yet</li>
-</ul>
+<pre><code class="language-python">def solution5(a, b):
+    if a[-1] &gt; b[-1]:
+        a, b = b, a
 
-<p>What about linode.com?</p>
+    iterator = iter(b)
+    y = iterator.__next__()
+    solution = []
 
-<p>To be honest, I did not try this service, but with the similar pricing to digitalocean.com, I have chosen the latter, because most of the tutorials of how to setup ubuntu with Django comes from the Digital community, and initial zero-problem configuration proved that choice.</p>
+    for x in a:
+        while y &lt; x:
+            solution.append(y)
+            y = iterator.__next__()
+        solution.append(x)
+
+    solution.append(y)
+    solution.extend(iterator)
+    return solution
+</code></pre>
 
 <hr />
 
-<p>After such marketing, Digital should pay me ;) but well at least you can click my referral link to create an account there.. <a href="https://www.digitalocean.com/?refcode=79380110cc20">Referral Link</a></p>
+<p>Summarizing the results:</p>
+
+<ol>
+<li>Python clearly wins over manually written algorithms and solution three is a way better than solution five. So there is not too much need to implement our own algorithm in real world. Just use Python batteries.</li>
+<li>And using <code>heapq.merge</code> (solution three) is clearly the fastest way froem first three.</li>
+</ol>
+
+<p>And for those who wants to see numbers:</p>
+
+<pre><code class="language-python">ms - milisoconds
+µs - microseconds
+ns - nanoseconds
+
+list_a = [8, 10, 12, 44, 63, 66]
+list_b = [2, 3, 20, 106, 144]
+
+%timeit solution1(list_a, list_b)
+669 ns ± 10.1 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+
+%timeit solution2(list_a, list_b)
+886 ns ± 48.1 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+
+%timeit solution3(list_a, list_b)
+594 ns ± 17 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+
+%timeit solution4(list_a, list_b)
+5.64 µs ± 188 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+%timeit solution5(list_a, list_b)
+2.6 µs ± 104 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+</code></pre>
+
+<p>I have have been using Jupyter notebook for calculations, located <a href="https://github.com/pbedn/hugo-blog/blob/master/src/merge_and_sort_two_ordered_lists.ipynb">HERE</a></p>
+
+<hr />
+
+<p>References:</p>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/464342/combining-two-sorted-lists-in-python">stackoverflow thread on combining two sorted lists</a></li>
+<li><a href="https://www.geeksforgeeks.org/merge-two-sorted-arrays/">geeksforgeeks on merging two sorted arrays</a></li>
+</ul>
 
   
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://pbedn.github.io/post/2018-django-problems-mature-framework/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://pbedn.github.io/post/2019-best-django-hosting/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://pbedn.github.io/post/2018-django-problems-mature-framework/">Django problems as a mature web framework</a>
+      <a href="https://pbedn.github.io/post/2019-best-django-hosting/">Best Django hosting server</a>
     </nav>
     
   </div>
@@ -313,14 +385,8 @@
   </div>
   <div class="pure-u-10-24">
     
-    <nav class="next">
-      <a href="https://pbedn.github.io/post/2019-python-interview-questions-2/">Series: Python Interview Questions #2</a>
-    </nav>
-    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://pbedn.github.io/post/2019-python-interview-questions-2/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
