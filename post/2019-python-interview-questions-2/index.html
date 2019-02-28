@@ -259,7 +259,7 @@ solution = [2, 3, 8, 10, 12, 20, 44, 63, 66, 106, 144]
 
 <p></p>
 
-<p>And here pythonista might cheat a bit by using Python built-in functionality. But is this an efficient solution?</p>
+<p>And here Pythonista might cheat a bit by using Python built-in functionality. However, is this an efficient solution?</p>
 
 <pre><code class="language-python"># 1. Adding the list and use sorted 
 def solution1(a, b):
@@ -300,7 +300,7 @@ def solution3(a, b):
     return solution
 </code></pre>
 
-<p>And final solution using Python tricks again (iterator)</p>
+<p>The final solution using Python tricks again (iterator)</p>
 
 <pre><code class="language-python">def solution5(a, b):
     if a[-1] &gt; b[-1]:
@@ -323,16 +323,16 @@ def solution3(a, b):
 
 <hr />
 
-<p>Summarizing the results:</p>
+<p>Summarising the results:</p>
 
 <ol>
-<li>Python clearly wins over manually written algorithms and solution three is a way better than solution five. So there is not too much need to implement our own algorithm in real world. Just use Python batteries.</li>
-<li>And using <code>heapq.merge</code> (solution three) is clearly the fastest way froem first three.</li>
+<li>Python clearly wins over manually written algorithms, and solution three is a way better than solution five. So there is not too much need to implement our algorithm in the real world. Just use Python batteries.</li>
+<li>Also, using <code>heapq.merge</code> (solution three) is the fastest way from the first three solutions.</li>
 </ol>
 
-<p>And for those who wants to see numbers:</p>
+<p>For those who like to see numbers:</p>
 
-<pre><code class="language-python">ms - milisoconds
+<pre><code class="language-python">ms - milliseconds
 µs - microseconds
 ns - nanoseconds
 
