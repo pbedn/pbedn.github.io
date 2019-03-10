@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/2019-python-interview-questions-3/</loc>
+    <lastmod>2019-03-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2019-python-interview-questions-2/</loc>
     <lastmod>2019-02-28T00:00:00+00:00</lastmod>
   </url>
@@ -111,7 +116,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2019-02-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -157,7 +162,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/interview/</loc>
-    <lastmod>2019-02-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -175,7 +180,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2019-02-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -191,7 +196,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/python/</loc>
-    <lastmod>2019-02-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"

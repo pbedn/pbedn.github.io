@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.34" />
 
-  <title>Tags &middot; Coding Notes</title>
+  <title>Series: Python Interview Questions #3 &middot; Coding Notes</title>
 
   
   
@@ -39,8 +39,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
  
-  
-  <link rel="alternate" type="application/rss+xml" title="Coding Notes" href="https://pbedn.github.io/tags/index.xml" />
   
 
   
@@ -205,10 +203,6 @@
 
 
   
-    
-        <h4><a href="https://pbedn.github.io/pl/tags/">pl </a></h4>
-    
-
 
 <div>
   <input id="highlight" type="button" value="Highlight Code Dark" class="pure-button" style="
@@ -222,93 +216,152 @@
 
 
 <div class="header">
-  <h1>Tags</h1>
+  <h2>Series: Python Interview Questions #3</h2>
+  <h3></h3>
 </div>
 <div class="content">
-  <ul>
+
+  <div class="post-meta">
+
+  <div class="dark-color">
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>10 Mar 2019</time>
+
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 2 min</i>
+  </div>
+
+  
+
+  
+
   
   
-    <li>
-      <a href="python">python</a>
-      <span>&#40;8&#41;</span>
-    </li>
   
-    <li>
-      <a href="interview">interview</a>
-      <span>&#40;4&#41;</span>
-    </li>
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/interview">interview</a>
+    
+  </div>
   
-    <li>
-      <a href="django">django</a>
-      <span>&#40;3&#41;</span>
-    </li>
   
-    <li>
-      <a href="ubuntu">ubuntu</a>
-      <span>&#40;3&#41;</span>
-    </li>
+
+</div>
+
+  <p>Task: Define the function that takes two parameters (dictionaries as default). Without modifying original dictionaries return the new one that includes all key and value pairs
+however, if key repeats itself, then add values</p>
+
+<pre><code class="language-python">a = {'a': 5, 'b': 1, 'c': -1, 'd': 1}
+b = {'a': 1, 'b': 5, 'c': 1, 'e': 1}
+solution = {'a': 6, 'b': 6, 'c': 0, 'd': 1, 'e': 1}
+</code></pre>
+
+<p></p>
+
+<pre><code class="language-python"># 1. Copy and check for existing key
+def solution1(a, b):
+    result = dict(a)
+    for k, v in b.items():
+        if result.get(k):
+            result[k] += v
+        else:
+            result[k] = v
+    return result
+
+# 2. We could use try-except clause instead
+def solution2(a, b):
+    result = dict(a)
+    for k, v in b.items():
+        try:
+            result[k] += v
+        except KeyError:
+            result[k] = v
+    return result
+    
+# 3. If values would be ONLY POSITIVE, we could use Counter
+from collections import Counter
+
+def solution3(a, b):
+    return Counter(a) + Counter(b)
+
+# 4. For Python 3.5+ there is dictionary unpacking
+def solution4(a, b):
+    intersection = set(a) &amp; set(b)
+    c = {k: a[k] + b[k] for k in intersection}
+    return {**a, **b, **c}
+    
+
+# 5. Or even shorter
+solution5 = lambda a, b: {**a, **b, **{k: a[k] + b[k] for k in a.keys() &amp; b}}
+</code></pre>
+
+<p>I like solution three, but it could be used only for individual cases, and solution 4, because of
+sets, unpacking dictionaries and being very clear for reading. A nice trick is in solution five. We do not have to make parameter b as set explicitly, it is enough to take keys from parameter a (<a href="https://docs.python.org/release/3.3.0/library/stdtypes.html#dict-views">dictionary view objects</a>) and use intersection with parameter b.</p>
+
+<hr />
+
+<p>Also, traditionally I would like to see which solution is the fastest (solution three excluded):</p>
+
+<pre><code class="language-python">µs - microseconds
+ns - nanoseconds
+
+%timeit -n 100000 solution1(a, b)
+1.56 µs ± 80.1 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+%timeit -n 100000 solution2(a, b)
+1.61 µs ± 106 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+%timeit -n 100000 solution3(a, b)
+11 µs ± 216 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+%timeit -n 100000 solution4(a, b)
+2.01 µs ± 64.8 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+%timeit -n 100000 solution5(a, b)
+2.08 µs ± 122 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+</code></pre>
+
+<p>I have have been using <a href="https://github.com/pbedn/hugo-blog/blob/master/src/combine_two_dicts_and_add_values_if_repeating.ipynb">Jupyter notebook</a> for calculations</p>
+
+<hr />
+
+<p>References:</p>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/11011756/is-there-any-pythonic-way-to-combine-two-dicts-adding-values-for-keys-that-appe/11011846?fbclid=IwAR0TDEIuWeCkmHJw3UyBrsLdnrymq-AXyel9ox1oOaxFK6xe9m7gS3008qI">Stack Overflow thread: combining two dicts</a></li>
+</ul>
+
   
-    <li>
-      <a href="hugo">hugo</a>
-      <span>&#40;2&#41;</span>
-    </li>
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://pbedn.github.io/post/2019-python-interview-questions-2/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://pbedn.github.io/post/2019-python-interview-questions-2/">Series: Python Interview Questions #2</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
   
-    <li>
-      <a href="thinkpad">thinkpad</a>
-      <span>&#40;2&#41;</span>
-    </li>
-  
-    <li>
-      <a href="circleci">circleci</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="codility">codility</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="git">git</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="hacking">hacking</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="ide">ide</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="linux">linux</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="postgresql">postgresql</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="thoughts">thoughts</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="web">web</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="wercker">wercker</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-  </ul>
+
 </div>
 
 </div>
@@ -340,3 +393,4 @@ $('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel
 
 </body>
 </html>
+
