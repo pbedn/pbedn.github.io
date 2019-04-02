@@ -362,7 +362,7 @@ That is usually considered an anti-pattern in Python. So think twice about your 
 <pre><code class="language-python">class Main:
     def __init__(self):
         self.print_score(&quot;Paul&quot;, 100)
-        self.print_score(&quot;&quot;, &quot;Paul&quot;)
+        self.print_score(100, &quot;Paul&quot;)
         self.print_score(50)
         self.print_score(10, 20, 30, 40)
         self.print_score()
@@ -392,8 +392,8 @@ does not help, for example when overloading constructors - see <a href="https://
 
 <pre><code class="language-python">class Main:
     def __init__(self):
-        self.print_score(&quot;Paul&quot;, 100)
-        self.print_score(&quot;&quot;, &quot;Paul&quot;)
+        self.print_score(player_name=&quot;Paul&quot;, score=100)
+        self.print_score(score=100, player_name=&quot;Paul&quot;)
         self.print_score(50)
         self.print_score(10, 20, 30, 40)
         self.print_score()
@@ -428,7 +428,7 @@ A method is a piece of code that is called by a name like a function but is asso
 <p>If we would like to use single dispatch generic functions we need to change them into <em>bound methods</em> (<a href="http://lukasz.langa.pl/8/single-dispatch-generic-functions/">read more here</a>).</p>
 
 <p>Our example modified with single dispatch shows that it is not possible to catch all cases. I had to remove two of them. One with arguments switched,
-and one without any arguments (in single dispatch requires at least one positional).</p>
+and one without any arguments (single dispatch requires at least one positional).</p>
 
 <pre><code class="language-python">class Main:
     def __init__(self):
