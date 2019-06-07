@@ -1,5 +1,5 @@
 +++
-title = "Summary: Python Enhancement Proposal (PEP) #1"
+title = "Summary: Python Enhancement Proposal - PEP 1"
 date = "2019-05-23"
 draft = false
 tags = ['python']
