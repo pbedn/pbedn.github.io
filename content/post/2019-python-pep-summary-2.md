@@ -5,10 +5,10 @@ draft = true
 tags = ['python', 'python 3.8+']
 +++
 
-In Python we have positional and keywords arguments. With introduction of new syntax in PEP 570,
+In Python, we have positional and keywords arguments. With the introduction of new syntax in PEP 570,
 we can specify positional-only parameters in Python function definitions.
-This feature will be especially useful for library developers, to ensure
-correct usage of and API. Let's discuss what this PEP is all about.
+This feature is especially useful for library developers, to ensure
+correct usage of an API. Let's discuss what this PEP is all about.
 
 <!--more-->
 
@@ -33,8 +33,8 @@ function_arg(1, *(2, 3))  # b)
 
 **Keyword arguments:**
 
-    a) Are arguments preceded by an indentifier in the format *kwarg=value*
-    b) And/Or passed as value in a dictionary preceded by **
+    a) Are arguments preceded by an identifier in the format *kwarg=value*
+    b) And/Or passed as a value in a dictionary preceded by **
 
 ```python
 def function_kwarg(a=None, b=None, c=None):
@@ -50,7 +50,7 @@ function_kwarg(5, b=10, **{'c': 15})            # b)
 
 ```
 
-Common beginner mistake is to put keyword argument before the positional in the function, then we get SyntaxError.
+Typical beginner mistake is to put the keyword argument before the positional in the function; then we get SyntaxError.
 
 ```python
 f(a=1, 2, 3)
@@ -82,37 +82,49 @@ def function_limited_pos_and_kwargs(a, *, b=None, c=None):
 TypeError: function_limited_pos_and_kwargs() takes 1 positional argument but 2 positional arguments (and 1 keyword-only argument) were given
 ```
 
-To summarize this recap, old function definition grammar looks like:
+To recap this part, old function definition grammar looks like:
 
     def function_name(positional_or_keyword_parameters, *, keyword_only_parameters):
 
 #### PEP 570
 
-This PEP introduces a new syntax, /, for specifying positional-only parameters. If we read the internal docs,
-we could already see such sign in some function definitions, but as noted it was only a documentation
-convention. Currently the new function definition grammar will look like:
+This PEP introduces new syntax, /, for specifying positional-only parameters. If we read the internal docs, we could already see such sign in some function definitions, but as noted it was only a documentation convention. Currently, the new function definition grammar looks like:
 
     def function_name(positional_only_parameters, /, positional_or_keyword_parameters,
          *, keyword_only_parameters):
 
-As we can see, all parameters left to the slash are positional-only, and after slash we use previous rules.
+As we can see, all parameters left to the slash are positional-only, and after slash, we use previous rules.
+
+Lets look at some valid  and invalid function definitions:
 
 Valid:
-def name(p1, p2, /, p_or_kw, *, kw):
-def name(p1, p2=None, /, p_or_kw=None, *, kw):
-def name(p1, p2=None, /, *, kw):
-def name(p1, p2=None, /):
-def name(p1, p2, /, p_or_kw):
-def name(p1, p2, /):
+```python
+function(p1, p2, /, p_or_kw, *, kw)
+function(p1, p2=None, /, p_or_kw=None, *, kw)
+function(p1, p2=None, /, *, kw)
+function(p1, p2=None, /)
+function(p1, p2, /, p_or_kw)
+function(p1, p2, /)
 
-def name(p_or_kw, *, kw):
-def name(*, kw):
+function(p_or_kw, *, kw)
+function(*, kw)
+```
 
-Invalid
-def name(p1, p2=None, /, p_or_kw, *, kw):
-def name(p1=None, p2, /, p_or_kw=None, *, kw):
-def name(p1=None, p2, /):
+Invalid:
+```python
+function(p1, p2=None, /, p_or_kw, *, kw)
+function(p1=None, p2, /, p_or_kw=None, *, kw)
+function(p1=None, p2, /)
+```
 
+We have to remember that / and * are optional. When they are not present in a function definition,
+arguments may be passed by a position or by keyword.
+
+Finally, two guidelines from the official documentation:
+
+    
+    Use positional-only if names do not matter or have no meaning, and there are only a few arguments which will always be passed in the same order.
+    Use keyword-only when names have meaning, and the function definition is more understandable by being explicit with names.
 
 ---
 
