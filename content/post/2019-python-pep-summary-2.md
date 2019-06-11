@@ -12,14 +12,15 @@ correct usage of an API. Let's discuss what this PEP is all about.
 
 <!--more-->
 
-#### First some background
+### First some background
 
 We should understand the difference between positional and keyword arguments.
 
 **Positional arguments:**
 
-    a) Appear at the beginning of a function argument list in the format *arg=value*
-    b) And/Or they could be passed as elements of an iterable preceded by *
+1) Appear at the beginning of a function argument list in the format *arg=value*
+
+2) And/Or they could be passed as elements of an iterable preceded by *
 
 ```python
 def function_arg(a, b, c):
@@ -33,8 +34,9 @@ function_arg(1, *(2, 3))  # b)
 
 **Keyword arguments:**
 
-    a) Are arguments preceded by an identifier in the format *kwarg=value*
-    b) And/Or passed as a value in a dictionary preceded by **
+1 Are arguments preceded by an identifier in the format *kwarg=value*
+
+2) And/Or passed as a value in a dictionary preceded by **
 
 ```python
 def function_kwarg(a=None, b=None, c=None):
@@ -86,7 +88,7 @@ To recap this part, old function definition grammar looks like:
 
     def function_name(positional_or_keyword_parameters, *, keyword_only_parameters):
 
-#### PEP 570
+### PEP 570
 
 This PEP introduces new syntax, /, for specifying positional-only parameters. If we read the internal docs, we could already see such sign in some function definitions, but as noted it was only a documentation convention. Currently, the new function definition grammar looks like:
 
@@ -123,8 +125,9 @@ arguments may be passed by a position or by keyword.
 Finally, two guidelines from the official documentation:
 
     
-    Use positional-only if names do not matter or have no meaning, and there are only a few arguments which will always be passed in the same order.
-    Use keyword-only when names have meaning, and the function definition is more understandable by being explicit with names.
+1) Use positional-only if names do not matter or have no meaning, and there are only a few arguments which will always be passed in the same order.
+   
+2) Use keyword-only when names have meaning, and the function definition is more understandable by being explicit with names.
 
 ---
 
