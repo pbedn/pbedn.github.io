@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/2019-python-pep-summary-2/</loc>
+    <lastmod>2019-06-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2019-python-pep-summary-1/</loc>
     <lastmod>2019-05-23T00:00:00+00:00</lastmod>
   </url>
@@ -126,7 +131,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -196,7 +201,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -212,7 +217,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/python/</loc>
-    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -224,6 +229,12 @@
                 hreflang="en"
                 href="https://pbedn.github.io/tags/python/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://pbedn.github.io/tags/python-3.8&#43;/</loc>
+    <lastmod>2019-06-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
