@@ -257,15 +257,15 @@ correct usage of an API. Let&rsquo;s discuss what this PEP is all about.</p>
 
 <p></p>
 
-<h4 id="first-some-background">First some background</h4>
+<h3 id="first-some-background">First some background</h3>
 
 <p>We should understand the difference between positional and keyword arguments.</p>
 
 <p><strong>Positional arguments:</strong></p>
 
-<pre><code>a) Appear at the beginning of a function argument list in the format *arg=value*
-b) And/Or they could be passed as elements of an iterable preceded by *
-</code></pre>
+<p>1) Appear at the beginning of a function argument list in the format <em>arg=value</em></p>
+
+<p>2) And/Or they could be passed as elements of an iterable preceded by *</p>
 
 <pre><code class="language-python">def function_arg(a, b, c):
     return a, b, c
@@ -278,9 +278,9 @@ function_arg(1, *(2, 3))  # b)
 
 <p><strong>Keyword arguments:</strong></p>
 
-<pre><code>a) Are arguments preceded by an identifier in the format *kwarg=value*
-b) And/Or passed as a value in a dictionary preceded by **
-</code></pre>
+<p>1 Are arguments preceded by an identifier in the format <em>kwarg=value</em></p>
+
+<p>2) And/Or passed as a value in a dictionary preceded by **</p>
 
 <pre><code class="language-python">def function_kwarg(a=None, b=None, c=None):
     return a, b, c
@@ -329,7 +329,7 @@ TypeError: function_limited_pos_and_kwargs() takes 1 positional argument but 2 p
 <pre><code>def function_name(positional_or_keyword_parameters, *, keyword_only_parameters):
 </code></pre>
 
-<h4 id="pep-570">PEP 570</h4>
+<h3 id="pep-570">PEP 570</h3>
 
 <p>This PEP introduces new syntax, /, for specifying positional-only parameters. If we read the internal docs, we could already see such sign in some function definitions, but as noted it was only a documentation convention. Currently, the new function definition grammar looks like:</p>
 
@@ -366,9 +366,9 @@ arguments may be passed by a position or by keyword.</p>
 
 <p>Finally, two guidelines from the official documentation:</p>
 
-<pre><code>Use positional-only if names do not matter or have no meaning, and there are only a few arguments which will always be passed in the same order.
-Use keyword-only when names have meaning, and the function definition is more understandable by being explicit with names.
-</code></pre>
+<p>1) Use positional-only if names do not matter or have no meaning, and there are only a few arguments which will always be passed in the same order.</p>
+
+<p>2) Use keyword-only when names have meaning, and the function definition is more understandable by being explicit with names.</p>
 
 <hr />
 
