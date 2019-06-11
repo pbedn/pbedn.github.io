@@ -1,7 +1,7 @@
 +++
 title = "Summary: Python Positional-Only Parameters - PEP 570"
 date = "2019-06-07"
-draft = true
+draft = false
 tags = ['python', 'python 3.8+']
 +++
 
