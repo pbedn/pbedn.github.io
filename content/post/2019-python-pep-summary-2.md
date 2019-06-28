@@ -119,6 +119,34 @@ function(p1=None, p2, /, p_or_kw=None, *, kw)
 function(p1=None, p2, /)
 ```
 
+And a few examples:
+
+```python
+def function(a, b, /, c, d=None, *, e=None):
+    return a, b, c, d, e
+    
+>>> function(1, 2, 3, 4, 5)
+...
+TypeError: function() takes from 3 to 4 positional arguments but 5 were given
+
+>>> function(1, 2, 3, 4, e=5)
+(1, 2, 3, 4, 5)
+
+>>> function(1, 2, 3, c=4, e=5)
+...
+TypeError: function() got multiple values for argument 'c'
+
+>>> function(1, 2, 3, d=4, e=5)
+(1, 2, 3, 4, 5)
+
+>>> function(1, 2, c=3, d=4, e=5)
+(1, 2, 3, 4, 5)
+
+>>> function(1, b=2, c=3, d=4, e=5)
+...
+TypeError: function() got some positional-only arguments passed as keyword arguments: 'b'
+```
+
 We have to remember that / and * are optional. When they are not present in a function definition,
 arguments may be passed by a position or by keyword.
 
