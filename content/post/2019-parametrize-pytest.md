@@ -6,6 +6,7 @@ tags = ['python', 'pytest']
 +++
 
 In pytest we can parametrize in three different ways:
+
 * *pytest.fixture()* - allows to parametrize fixture functions
 * *@pytest.mark.parametrize* - allows to define arguments for a test function or class
 * *pytest_generate_tests* - allows to define custom parametrization schemes
