@@ -271,15 +271,15 @@ these are special variants of general I/O bound definition.</p>
 <h4 id="preemptive-multitasking">Preemptive multitasking</h4>
 
 <p>Going into something more difficult. Preemption is &ldquo;act of temporarily interrupting a task being carried out by
-a computer system.. with the intention of resuming the task at a later time&rdquo;. [Preemptive in Wikipedia][preemptive].
+a computer system.. with the intention of resuming the task at a later time&rdquo; (<a href="https://en.wikipedia.org/wiki/Preemption_(computing)">Preemptive in Wikipedia</a>).
 That means that at any time operating system (OS) can stop our program and switch context to another task.
 Allowing OS to manage threads is the easiest way, however with a disadvantage of interrupting in the wrong moment.
 In Python, the threading module uses this technique.</p>
 
 <h4 id="event-driven-cooperative-multitasking">Event-driven cooperative multitasking</h4>
 
-<p>Cooperative multitasking, on the other hand, never initiates a context switch. Instead, the program must yield control.
-<a href="https://en.wikipedia.org/wiki/Cooperative_multitasking">Cooperative in Wikipedia</a>. Advantage of that is that we always know when the task will be stopped and context switched. However, our program must be modified for that. In Python, asyncio module use this technique.</p>
+<p>Cooperative multitasking, on the other hand, never initiates a context switch. Instead, the program must yield control
+(<a href="https://en.wikipedia.org/wiki/Cooperative_multitasking">Cooperative in Wikipedia</a>). Advantage of that is that we always know when the task will be stopped and context switched. However, our program must be modified for that. In Python, asyncio module use this technique.</p>
 
 <h4 id="multiprocessing">Multiprocessing</h4>
 
@@ -287,7 +287,7 @@ In Python, the threading module uses this technique.</p>
 then the multiprocessing module in Python allows for that. That way, we can achieve true parallelism, as each program
 is run in the separate core.</p>
 
-<p>To summarize all three concurrency types, let&rsquo;s look at a table below <a href="https://realpython.com/python-concurrency">Real Python post about concurrency</a>:</p>
+<p>To summarize all three concurrency types, let&rsquo;s look at a table below (<a href="https://realpython.com/python-concurrency">Concurrency in Real Python</a>):</p>
 
 <table>
 <thead>
@@ -300,21 +300,39 @@ is run in the separate core.</p>
 
 <tbody>
 <tr>
-<td>Pre-emptive multitasking (threading</td>
+<td>Pre-emptive multitasking</td>
 <td>OS decides when to switch tasks</td>
 <td>1</td>
 </tr>
 
 <tr>
-<td>Cooperative multitasking (asyncio)</td>
+<td>(threading)</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>Cooperative multitasking</td>
 <td>Program decides when to give up control</td>
 <td>1</td>
 </tr>
 
 <tr>
-<td>Multiprocessing (multiprocessing)</td>
-<td>Processes run at the same time on different cores</td>
+<td>(asyncio)</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>Multiprocessing</td>
+<td>Processes run at the same time</td>
 <td>Many</td>
+</tr>
+
+<tr>
+<td>(multiprocessing)</td>
+<td>on different cores</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -325,7 +343,7 @@ is run in the separate core.</p>
 
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Preemption_(computing)">Preemptive multitasking - Wikipedia</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Cooperative_multitasking">Cooperative multitasking</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Cooperative_multitasking">Cooperative multitasking - Wikipedia</a></li>
 <li><a href="https://realpython.com/python-concurrency">Concurrency - Real Python</a></li>
 </ul>
 
