@@ -43,19 +43,43 @@ Both techniques described above use a single CPU for the program. If we would li
 then the multiprocessing module in Python allows for that. That way, we can achieve true parallelism, as each program
 is run in the separate core.
 
-To summarize all three concurrency types, let's look at a table below ([Concurrency in Real Python][real-concurrency]):
+#### Summary
 
-| Concurrency Type | Switching Decision | Number of Processors |
-|---|---|---|
-| Pre-emptive multitasking | OS decides when to switch tasks | 1 |
-| (threading) | | |
-| Cooperative multitasking | Program decides when to give up control | 1 |
-| (asyncio) | | |
-| Multiprocessing | Processes run at the same time  | Many |
-| (multiprocessing) | on different cores | |
+To summarize all three concurrency types, let's look at a table below (source: [Concurrency in Real Python][real-concurrency]):
+
+<!--  Unfortunately manual table, as markdown one does not work well-->
+<!--  https://www.tablesgenerator.com/html_tables -->
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-weight:normal;padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-header{font-weight:bold;color:#191818;border-color:#9b9b9b;text-align:left;vertical-align:top}
+.tg .tg-row{border-color:#c0c0c0;color:#191818;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-header">Concurrency Type</th>
+    <th class="tg-header">Switching Decision</th>
+    <th class="tg-header">Number of Processors</th>
+  </tr>
+  <tr>
+    <td class="tg-row">Pre-emptive multitasking (threading)</td>
+    <td class="tg-row">OS decides when to switch tasks</td>
+    <td class="tg-row">1</td>
+  </tr>
+  <tr>
+    <td class="tg-row">Cooperative multitasking (asyncio)</td>
+    <td class="tg-row">Program decides when to give up control</td>
+    <td class="tg-row">1</td>
+  </tr>
+  <tr>
+    <td class="tg-row">Multiprocessing (multiprocessing)</td>
+    <td class="tg-row">Processes run at the same time on different cores</td>
+    <td class="tg-row">Many</td>
+  </tr>
+</table>
 
 ---
-
 
 References:
 
