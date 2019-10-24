@@ -227,7 +227,7 @@
     <i class="fa fa-calendar fa-fw"></i>
     <time>02 Oct 2019</time>
 
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 2 min</i>
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 3 min</i>
   </div>
 
   
@@ -287,55 +287,43 @@ In Python, the threading module uses this technique.</p>
 then the multiprocessing module in Python allows for that. That way, we can achieve true parallelism, as each program
 is run in the separate core.</p>
 
-<p>To summarize all three concurrency types, let&rsquo;s look at a table below (<a href="https://realpython.com/python-concurrency">Concurrency in Real Python</a>):</p>
+<h4 id="summary">Summary</h4>
 
-<table>
-<thead>
-<tr>
-<th>Concurrency Type</th>
-<th>Switching Decision</th>
-<th>Number of Processors</th>
-</tr>
-</thead>
+<p>To summarize all three concurrency types, let&rsquo;s look at a table below (source: <a href="https://realpython.com/python-concurrency">Concurrency in Real Python</a>):</p>
 
-<tbody>
-<tr>
-<td>Pre-emptive multitasking</td>
-<td>OS decides when to switch tasks</td>
-<td>1</td>
-</tr>
+<!--  Unfortunately manual table, as markdown one does not work well-->
 
-<tr>
-<td>(threading)</td>
-<td></td>
-<td></td>
-</tr>
+<!--  https://www.tablesgenerator.com/html_tables -->
 
-<tr>
-<td>Cooperative multitasking</td>
-<td>Program decides when to give up control</td>
-<td>1</td>
-</tr>
-
-<tr>
-<td>(asyncio)</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td>Multiprocessing</td>
-<td>Processes run at the same time</td>
-<td>Many</td>
-</tr>
-
-<tr>
-<td>(multiprocessing)</td>
-<td>on different cores</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p><style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-weight:normal;padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-header{font-weight:bold;color:#191818;border-color:#9b9b9b;text-align:left;vertical-align:top}
+.tg .tg-row{border-color:#c0c0c0;color:#191818;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-header">Concurrency Type</th>
+    <th class="tg-header">Switching Decision</th>
+    <th class="tg-header">Number of Processors</th>
+  </tr>
+  <tr>
+    <td class="tg-row">Pre-emptive multitasking (threading)</td>
+    <td class="tg-row">OS decides when to switch tasks</td>
+    <td class="tg-row">1</td>
+  </tr>
+  <tr>
+    <td class="tg-row">Cooperative multitasking (asyncio)</td>
+    <td class="tg-row">Program decides when to give up control</td>
+    <td class="tg-row">1</td>
+  </tr>
+  <tr>
+    <td class="tg-row">Multiprocessing (multiprocessing)</td>
+    <td class="tg-row">Processes run at the same time on different cores</td>
+    <td class="tg-row">Many</td>
+  </tr>
+</table></p>
 
 <hr />
 
