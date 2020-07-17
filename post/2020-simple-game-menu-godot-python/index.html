@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.34" />
 
-  <title>Tags &middot; Coding Notes</title>
+  <title>Simple game menu in Python and Godot &middot; Coding Notes</title>
 
   
   
@@ -39,8 +39,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
  
-  
-  <link rel="alternate" type="application/rss+xml" title="Coding Notes" href="https://pbedn.github.io/tags/index.xml" />
   
 
   
@@ -205,10 +203,6 @@
 
 
   
-    
-        <h4><a href="https://pbedn.github.io/pl/tags/">pl </a></h4>
-    
-
 
 <div>
   <input id="highlight" type="button" value="Highlight Code Dark" class="pure-button" style="
@@ -222,133 +216,112 @@
 
 
 <div class="header">
-  <h1>Tags</h1>
+  <h2>Simple game menu in Python and Godot</h2>
+  <h3></h3>
 </div>
 <div class="content">
-  <ul>
+
+  <div class="post-meta">
+
+  <div class="dark-color">
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>17 Jul 2020</time>
+
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 1 min</i>
+  </div>
+
+  
+
+  
+
   
   
-    <li>
-      <a href="python">python</a>
-      <span>&#40;16&#41;</span>
-    </li>
   
-    <li>
-      <a href="interview">interview</a>
-      <span>&#40;4&#41;</span>
-    </li>
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/godot">godot</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/pyglet">pyglet</a>
+    
+  </div>
   
-    <li>
-      <a href="django">django</a>
-      <span>&#40;3&#41;</span>
-    </li>
   
-    <li>
-      <a href="ubuntu">ubuntu</a>
-      <span>&#40;3&#41;</span>
-    </li>
+
+</div>
+
+  <p>Recently I have started to dive into game programming a bit more. Coming from Python with Pyglet,
+my current choice is Godot game engine. I created a simple text-based game menu in both to see what is easier for someone without any prior experience.</p>
+
+<p></p>
+
+<h4 id="python-pyglet-gooey">Python - Pyglet - Gooey</h4>
+
+<p><a href="https://github.com/kxgames/glooey">Glooey</a> is an object-oriented GUI library, based on Pyglet (cross-platform windowing and multimedia library).</p>
+
+<p><img src="../img/glooey-menu.gif" alt="Gooey" /></p>
+
+<p><a href="https://github.com/pbedn/glooey-game-hud-example">Checkout Github repository for Glooey game menu</a></p>
+
+<h4 id="gdscript-godot">GDScript - Godot</h4>
+
+<p><a href="https://godotengine.org/">Godot</a> is an open-source game engine with 2D and 3D capabilities.
+The officially supported languages are GDScript (Python-like), Visual Scripting, C#, and C++</p>
+
+<p><img src="../img/godot-menu.gif" alt="Godot" /></p>
+
+<p><a href="https://github.com/pbedn/godot-game-hud-example">Checkout Github repository for Godot game menu</a></p>
+
+<h4 id="summary">Summary</h4>
+
+<p>No surprise here, Godot is much simpler, and enjoyable, though Glooey is a very solid library.
+If you would like to craft a game menu specifically using Python, I can recommend Glooey for that.</p>
+
+<p>Godot is very flexible because it is not drag and drop, and you have to use scripting for various actions. One thing I had to fight through was font scaling, I could not do it simply as
+in Glooey, but instead, use animation and some hacks. Is there a better way?</p>
+
+<hr />
+
+<p>Resources:</p>
+
+<ul>
+<li><a href="https://github.com/pbedn/godot-game-hud-example">github: Godot game menu</a></li>
+<li><a href="https://github.com/pbedn/glooey-game-hud-example">github: Python game menu</a></li>
+<li><a href="https://github.com/kxgames/glooey">Glooey: An object-oriented GUI library for pyglet</a></li>
+<li><a href="https://godotengine.org/">Godot game engine main site</a></li>
+</ul>
+
   
-    <li>
-      <a href="hugo">hugo</a>
-      <span>&#40;2&#41;</span>
-    </li>
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://pbedn.github.io/post/2020-entity-attribute-value/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://pbedn.github.io/post/2020-entity-attribute-value/">Entity-Attribute-Value (EAV) database model</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
   
-    <li>
-      <a href="python-3.8&#43;">python-3.8&#43;</a>
-      <span>&#40;2&#41;</span>
-    </li>
-  
-    <li>
-      <a href="thinkpad">thinkpad</a>
-      <span>&#40;2&#41;</span>
-    </li>
-  
-    <li>
-      <a href="circleci">circleci</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="codility">codility</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="concurrency">concurrency</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="database">database</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="design-pattern">design-pattern</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="git">git</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="godot">godot</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="hacking">hacking</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="ide">ide</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="java">java</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="linux">linux</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="postgresql">postgresql</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="pyglet">pyglet</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="pytest">pytest</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="thoughts">thoughts</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="web">web</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="wercker">wercker</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-  </ul>
+
 </div>
 
 </div>
@@ -380,3 +353,4 @@ $('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel
 
 </body>
 </html>
+

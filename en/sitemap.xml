@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/2020-simple-game-menu-godot-python/</loc>
+    <lastmod>2020-07-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2020-entity-attribute-value/</loc>
     <lastmod>2020-05-25T00:00:00+00:00</lastmod>
   </url>
@@ -156,7 +161,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2020-05-25T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -197,6 +202,12 @@
   <url>
     <loc>https://pbedn.github.io/tags/git/</loc>
     <lastmod>2017-06-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://pbedn.github.io/tags/godot/</loc>
+    <lastmod>2020-07-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -244,7 +255,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2020-05-25T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -259,6 +270,12 @@
   </url>
   
   <url>
+    <loc>https://pbedn.github.io/tags/pyglet/</loc>
+    <lastmod>2020-07-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/tags/pytest/</loc>
     <lastmod>2019-08-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -266,7 +283,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/python/</loc>
-    <lastmod>2020-01-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
