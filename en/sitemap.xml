@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/2020-ubuntu-wsl-python-mysql/</loc>
+    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2020-simple-game-menu-godot-python/</loc>
     <lastmod>2020-07-17T00:00:00+00:00</lastmod>
   </url>
@@ -161,7 +166,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2020-07-17T00:00:00+00:00</lastmod>
+    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -248,6 +253,12 @@
   </url>
   
   <url>
+    <loc>https://pbedn.github.io/tags/mysql/</loc>
+    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/tags/postgresql/</loc>
     <lastmod>2017-05-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -255,7 +266,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2020-07-17T00:00:00+00:00</lastmod>
+    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -283,7 +294,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/python/</loc>
-    <lastmod>2020-07-17T00:00:00+00:00</lastmod>
+    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -348,7 +359,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/ubuntu/</loc>
-    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -361,6 +372,12 @@
   <url>
     <loc>https://pbedn.github.io/tags/wercker/</loc>
     <lastmod>2017-03-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://pbedn.github.io/tags/wsl/</loc>
+    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.34" />
 
-  <title>Simple game menu in Python and Godot &middot; Coding Notes</title>
+  <title>Mysql &middot; Coding Notes</title>
 
   
   
@@ -39,6 +39,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
  
+  
+  <link rel="alternate" type="application/rss+xml" title="Coding Notes" href="https://pbedn.github.io/tags/mysql/index.xml" />
   
 
   
@@ -216,18 +218,22 @@
 
 
 <div class="header">
-  <h2>Simple game menu in Python and Godot</h2>
-  <h3></h3>
+  <h1>Mysql</h1>
 </div>
-<div class="content">
 
-  <div class="post-meta">
+<div class="content">
+  
+    <article>
+  <header>
+    <h2><a href="https://pbedn.github.io/post/2020-ubuntu-wsl-python-mysql/">Guide: MySQL and Python (WSL2) &#43; Pycharm (Windows)</a></h2>
+
+    <div class="post-meta">
 
   <div class="dark-color">
     <i class="fa fa-calendar fa-fw"></i>
-    <time>17 Jul 2020</time>
+    <time>30 Sep 2020</time>
 
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 1 min</i>
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 2 min</i>
   </div>
 
   
@@ -240,11 +246,13 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/godot">godot</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/ubuntu">ubuntu</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/wsl">wsl</a>&nbsp;&#47;
     
       <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/pyglet">pyglet</a>
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/mysql">mysql</a>
     
   </div>
   
@@ -252,82 +260,22 @@
 
 </div>
 
-  <p>Recently I have started to dive into game programming a bit more. Coming from Python with Pyglet,
-my current choice is Godot game engine. I created a simple text-based game menu in both to see what is easier for someone without any prior experience.</p>
+  </header>
+
+  <p>
+  <p>Let&rsquo;s connect MySQL database installed in Ubuntu (WSL2) with Pycharm Professional on Windows.</p>
 
 <p></p>
-
-<h4 id="python-pyglet-gooey">Python - Pyglet - Gooey</h4>
-
-<p><a href="https://github.com/kxgames/glooey">Glooey</a> is an object-oriented GUI library, based on Pyglet (cross-platform windowing and multimedia library).</p>
-
-<p><img src="../img/glooey-menu.gif" alt="Gooey" /></p>
-
-<p><a href="https://github.com/pbedn/glooey-game-hud-example">Checkout Github repository for Glooey game menu</a></p>
-
-<h4 id="gdscript-godot">GDScript - Godot</h4>
-
-<p><a href="https://godotengine.org/">Godot</a> is an open-source game engine with 2D and 3D capabilities.
-The officially supported languages are GDScript (Python-like), Visual Scripting, C#, and C++</p>
-
-<p><img src="../img/godot-menu.gif" alt="Godot" /></p>
-
-<p><a href="https://github.com/pbedn/godot-game-hud-example">Checkout Github repository for Godot game menu</a></p>
-
-<h4 id="summary">Summary</h4>
-
-<p>No surprise here, Godot is much simpler, and enjoyable, though Glooey is a very solid library.
-If you would like to craft a game menu specifically using Python, I can recommend Glooey for that.</p>
-
-<p>Godot is very flexible because it is not drag and drop, and you have to use scripting for various actions. One thing I had to fight through was font scaling, I could not do it simply as
-in Glooey, but instead, use animation and some hacks. Is there a better way?</p>
-
-<hr />
-
-<p>Resources:</p>
-
-<ul>
-<li><a href="https://github.com/pbedn/godot-game-hud-example">github: Godot game menu</a></li>
-<li><a href="https://github.com/pbedn/glooey-game-hud-example">github: Python game menu</a></li>
-<li><a href="https://github.com/kxgames/glooey">Glooey: An object-oriented GUI library for pyglet</a></li>
-<li><a href="https://godotengine.org/">Godot game engine main site</a></li>
-</ul>
+  </p>
 
   
-<div class="prev-next-post pure-g">
-  <div class="pure-u-1-24" style="text-align: left;">
-    
-    <a href="https://pbedn.github.io/post/2020-entity-attribute-value/"><i class="fa fa-chevron-left"></i></a>
-    
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="prev">
-      <a href="https://pbedn.github.io/post/2020-entity-attribute-value/">Entity-Attribute-Value (EAV) database model</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-2-24">
-    &nbsp;
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="next">
-      <a href="https://pbedn.github.io/post/2020-ubuntu-wsl-python-mysql/">Guide: MySQL and Python (WSL2) &#43; Pycharm (Windows)</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://pbedn.github.io/post/2020-ubuntu-wsl-python-mysql/"><i class="fa fa-chevron-right"></i></a>
-    
-  </div>
-</div>
-
-
+  <footer>
+    <a href="https://pbedn.github.io/post/2020-ubuntu-wsl-python-mysql/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
 
   
-
 </div>
 
 </div>
@@ -359,4 +307,3 @@ $('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel
 
 </body>
 </html>
-
