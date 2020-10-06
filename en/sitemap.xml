@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/about/</loc>
+    <lastmod>2020-10-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2020-ubuntu-wsl-python-mysql/</loc>
     <lastmod>2020-09-30T00:00:00+00:00</lastmod>
   </url>
@@ -143,11 +148,6 @@
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/about/</loc>
-    <lastmod>2017-03-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://pbedn.github.io/tips/</loc>
     <lastmod>2017-03-12T00:00:00+00:00</lastmod>
   </url>
@@ -166,7 +166,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
