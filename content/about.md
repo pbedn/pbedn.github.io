@@ -13,4 +13,4 @@ For questions and comments, my email is *pbedn at outlook.com*.
 You can read something about me at [Linkedin profile][linkedin], or meet in person at Pykonik meeting (Krakow Python user group). 
 
 [Github]: https://github.com/pbedn/hugo-blog
-[linkedin]: www.linkedin.com/in/pbedn
+[linkedin]: https://linkedin.com/in/pbedn
