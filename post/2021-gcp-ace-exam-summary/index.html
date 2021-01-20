@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.34" />
 
-  <title>Guide: MySQL and Python (WSL2) &#43; Pycharm (Windows) &middot; Coding Notes</title>
+  <title>Google Associate Cloud Engineer exam summary &middot; Coding Notes</title>
 
   
   
@@ -216,7 +216,7 @@
 
 
 <div class="header">
-  <h2>Guide: MySQL and Python (WSL2) &#43; Pycharm (Windows)</h2>
+  <h2>Google Associate Cloud Engineer exam summary</h2>
   <h3></h3>
 </div>
 <div class="content">
@@ -225,9 +225,9 @@
 
   <div class="dark-color">
     <i class="fa fa-calendar fa-fw"></i>
-    <time>30 Sep 2020</time>
+    <time>19 Jan 2021</time>
 
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 2 min</i>
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 3 min</i>
   </div>
 
   
@@ -240,13 +240,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/ubuntu">ubuntu</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/google-cloud">google cloud</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/wsl">wsl</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/mysql">mysql</a>
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/gcp">gcp</a>
     
   </div>
   
@@ -254,86 +250,76 @@
 
 </div>
 
-  <p>Let&rsquo;s connect MySQL database installed in Ubuntu (WSL2) with Pycharm Professional on Windows.</p>
+  <p>A week ago I passed Google ACE exam, here I post a personal summary and some tips on how to pass it.</p>
 
 <p></p>
 
-<h4 id="windows-wsl-ubuntu">Windows: WSL + Ubuntu</h4>
+<h4 id="about-ace-certification">About ACE certification</h4>
 
-<p>WSL (Windows Subsystem for Linux) has two versions. The latest (version 2) is much improved and recommended,
-the only thing to remember is to have Windows version at least 2004 (check with <code>winver</code> command in the console).
-Microsoft has good guides <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">how to set up WSL</a>.
-I am using Ubuntu 20.04, which has Python 3.8 by default.</p>
+<p>An Associate Cloud Engineer according to <a href="https://cloud.google.com/certification/cloud-engineer">official site</a>, deploys applications, monitors operations, and manages enterprise solutions.</p>
 
-<h4 id="ubuntu-mysql-python-environment">Ubuntu: MySQL + Python environment</h4>
+<p>The exam takes two hours, consists of 50 multiple choice and multiple select questions, and can be taken remotely or at a test centre.</p>
 
-<p>Steps in order that MySQL could be accessed in Windows on 127.0.0.1:3307</p>
+<h4 id="personal-summary">Personal summary</h4>
 
-<ul>
-<li><p>Install MySQL database (<a href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database">step-by-step-guide</a>)</p></li>
+<p>I am working with Google Cloud, though with only a few services like AppEngine Standard, SQL and Bucket, for almost two years now. I signed to program through my company, that offered free access to learning course and materials, and in the end, a free voucher for an exam (125$). It took me about two months of ahead preparation. And still, I felt uncertain about the exam itself. I finished the exam 30 minutes before time and felt very confident about around 50% of the questions. For the rest I had to review them once again, choosing the best option that felt right.</p>
 
-<li><p>Set the default authentication method (for PyCharm to be able to connect)</p>
+<h4 id="learning-materials">Learning materials</h4>
 
-<pre><code>$ sudo mysql -u root -p
-mysql&gt; ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new-password';
-mysql&gt; exit
-</code></pre></li>
-
-<li><p>Add configuration to &lsquo;/etc/mysql/my.cnf&rsquo; so database can be seen:</p>
-
-<pre><code>[mysqld]
-port=3307 # choose free db port
-bind-address=0.0.0.0
-</code></pre></li>
-
-<li><p>Restart database</p>
-
-<pre><code>sudo service mysql restart
-</code></pre></li>
-
-<li><p>Install Python virtual environment in Home/.virtualenvs directory</p>
-
-<pre><code>cd &amp;&amp; mkdir .virtualenvs &amp;&amp; cd .virtualenvs
-sudo apt install python3-venv
-python3 -m venv .venv
-</code></pre></li>
-</ul>
-
-<h4 id="windows-pycharm">Windows: PyCharm</h4>
+<p>I went through required by my company <a href="https://www.qwiklabs.com/">Qwiklabs</a> courses:</p>
 
 <ul>
-<li><p>Add new Python interpreter -&gt; WSL, with settings</p>
-
-<pre><code>Linux Distribution: Ubuntu 20.04
-Python interpreter path: /home/&lt;your user&gt;/.virtualenvs/.venv/bin/python
-</code></pre></li>
-
-<li><p>Install missing Python packaging tools (it can be done from PyCharm directly with linux sudo password)</p></li>
-
-<li><p>Connect to MySQL database at localhost:3307 (I had to change server timezone to my local - Europe/Warsaw)</p></li>
+<li>Google Cloud Platform Fundamentals: Core Infrastructure</li>
+<li>Essential Google Cloud Infrastructure: Foundation</li>
+<li>Essential Google Cloud Infrastructure: Core Services</li>
+<li>Elastic Google Cloud Infrastructure: Scaling and Automation</li>
+<li>Preparing for the Google Cloud Associate Cloud Engineer Exam</li>
 </ul>
 
-<p>And that is it! Our application can be developed using an Ubuntu environment but Windows tools.
-I have git set up on Windows as well, and that is why I keep files here. But it is possible to store files in &lsquo;Ubuntu directory&rsquo;.
-From Windows, we can easily map a network drive to Ubuntu using path <code>\\wsl$\Ubuntu-20.04\</code>, and add it to Pycharm Project structure.</p>
+<p>And next time I would take more time for this, doing the labs slower, and watching the videos with more focus. Especially with the labs, you can play with the real GCP environment for free. The lab agreement says you can do only things from the description, however, small deviations from my observations are fine as well, as long you do not run multicluster CPU expensive machines with many GPUs ;)</p>
 
-<h4 id="summary">Summary</h4>
+<p>Humble Bundle had a nice offering, and I bought an &ldquo;Official Google Cloud Certified Associate Cloud Engineer Study Guide&rdquo; book by Dan Sulivan, that I read once. In addition to the book, you get ACE Study Guide Test Bank from <a href="https://www.efficientlearning.com">Willey Efficient Learning</a> that contains almost 500 sample questions, divided into book chapters, pre-assessment and two sample exams. I went through all of them and highly recommend. Instructions on how to use it are in the book.</p>
 
-<p>Windows as a machine for the developer has changed over the years, from &lsquo;evil monster corporate tool&rsquo; to &lsquo;powerful and elegant&rsquo;.
-Some years ago my setup option was to either dual boot or have Linux inside VirtualBox. Now it is much easier.
-And I do not have to restart the computer to fight another Cylon in Battlestar Galactica strategy game.. ;)</p>
+<p>My third source of learning was a concise <a href="https://acloudguru.com/course/kubernetes-deep-dive">Kubernetes Deep Dive</a> course by Nigel Poulton, as k8s were a new beast to me. Nigel has a specific funny way of teaching which I like.</p>
+
+<p>And finally, the fourth source was documentation and especially about Google best practices:</p>
+
+<ul>
+<li><a href="https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations">Best practices for enterprise organizations</a></li>
+<li><a href="https://cloud.google.com/solutions/best-practices-for-operating-containers">Best practices for operating containers</a></li>
+</ul>
+
+<h4 id="tips-on-exam">Tips on exam</h4>
+
+<p>I had only one multiple-choice question, though I read that other people had more. Most important topics for the exam are IAM (roles, permissions, hierarchy, inheritance), networks (VPC, subnets, firewall, VPN, on-premise), Kubernetes (basics, deployment). I had some questions about Compute, AppEngine, differences between databases and when to use them, a few about billing. Only one or two questions about choosing the correct gcloud SDK command.</p>
+
+<p>The hardest questions were about possible situations covering the migration of an application from client to GCP, how to set up a secure connection between client and GCP or deal with unexpected failures during an operation (logging, debugging). I think I would benefit from reading <a href="https://sre.google/books/">SRE books</a> and then answer these questions more easily, but I did not have time for that.</p>
+
+<hr />
+
+<p>Resources:</p>
+
+<ul>
+<li><a href="https://cloud.google.com/certification/cloud-engineer">ACE certification official site</a></li>
+<li><a href="https://www.qwiklabs.com/">Qwiklabs Hands-on training</a></li>
+<li><a href="https://www.efficientlearning.com">Willey Efficient Learning site</a></li>
+<li>[Kubernetes Deep Dive course ][cg-k8s</li>
+<li><a href="https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations">Best practices for enterprise organizations</a></li>
+<li><a href="https://cloud.google.com/solutions/best-practices-for-operating-containers">Best practices for operating containers</a></li>
+<li><a href="https://sre.google/books/">SRE books</a></li>
+</ul>
 
   
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://pbedn.github.io/post/2020-simple-game-menu-godot-python/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://pbedn.github.io/post/2020-ubuntu-wsl-python-mysql/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://pbedn.github.io/post/2020-simple-game-menu-godot-python/">Simple game menu in Python and Godot</a>
+      <a href="https://pbedn.github.io/post/2020-ubuntu-wsl-python-mysql/">Guide: MySQL and Python (WSL2) &#43; Pycharm (Windows)</a>
     </nav>
     
   </div>
@@ -342,14 +328,8 @@ And I do not have to restart the computer to fight another Cylon in Battlestar G
   </div>
   <div class="pure-u-10-24">
     
-    <nav class="next">
-      <a href="https://pbedn.github.io/post/2021-gcp-ace-exam-summary/">Google Associate Cloud Engineer exam summary</a>
-    </nav>
-    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://pbedn.github.io/post/2021-gcp-ace-exam-summary/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
