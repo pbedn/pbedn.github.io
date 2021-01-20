@@ -49,7 +49,7 @@ Resources:
 * [ACE certification official site][ace-official]
 * [Qwiklabs Hands-on training][qwik]
 * [Willey Efficient Learning site][test-bank]
-* [Kubernetes Deep Dive course ][cg-k8s
+* [Kubernetes Deep Dive course][cg-k8s]
 * [Best practices for enterprise organizations][bpeo]
 * [Best practices for operating containers][bpoc]
 * [SRE books][sre-books]
