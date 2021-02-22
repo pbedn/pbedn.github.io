@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/books/</loc>
+    <lastmod>2021-02-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2021-gcp-ace-exam-summary/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url>
@@ -148,11 +153,6 @@
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/tips/</loc>
-    <lastmod>2017-03-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://pbedn.github.io/about/</loc>
     <lastmod>2000-01-02T00:00:00+00:00</lastmod>
   </url>
@@ -171,7 +171,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2021-01-19T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
