@@ -63,11 +63,11 @@ weight = 1
     identifier = "links"
     url = "/links/"
   [[menu.main]]
-    name = "Tricks & Tips"
+    name = "Books"
     pre = "<i class='fa fa-question fa-fw'></i>"
     weight = 4
-    identifier = "tips"
-    url = "/tips/"
+    identifier = "books"
+    url = "/books/"
 
 [Languages.pl]
 title = "Notatki programisty"
