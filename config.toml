@@ -2,12 +2,10 @@ baseURL = "https://pbedn.github.io/"
 languageCode = "en-us"
 title = "Coding Notes"
 author = "Pawel Bednarz"
-license = "MIT"
-licenselink = "https://github.com/pbedn/blog/blob/master/LICENSE.md"
 tags = ["blog", "python", "programming"]
 features = ["blog", "python", "programming"]
 # Shown in the side menu
-copyright = "&#169; 2017 Pawel Bednarz"
+copyright = "&#169; 2021 Pawel Bednarz"
 canonifyurls = true
 paginate = 10
 disableKinds=["RSS"]
@@ -69,12 +67,12 @@ weight = 1
     identifier = "books"
     url = "/books/"
 
-[Languages.pl]
-title = "Notatki programisty"
-weight = 2
-[[Languages.pl.menu.main]]
-  name = "Główna"
-  pre = "<i class='fa fa-home fa-fw'></i>"
-  weight = 1
-  identifier = "home"
-  url = "/pl/"
+# [Languages.pl]
+# title = "Notatki programisty"
+# weight = 2
+# [[Languages.pl.menu.main]]
+#   name = "Główna"
+#   pre = "<i class='fa fa-home fa-fw'></i>"
+#   weight = 1
+#   identifier = "home"
+#   url = "/pl/"
