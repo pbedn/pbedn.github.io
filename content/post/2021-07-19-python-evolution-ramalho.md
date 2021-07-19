@@ -5,7 +5,7 @@ draft = false
 tags = ['python']
 +++
 
-In recent episodes on [Python podcast], Toby Macey was interviewing Luciano Ramalho. I especially have respect for this developer as for me it is one of the last true "Pythonista's" left in the world. In one hour he talks about his dev beginnings, writing "Fluent Python" book, and his view about new Python features. I recommend listening to the whole podcast, but here is a summary of his views about Python evolution and my take about it. 
+In one of the recent episode of [Python podcast][podcast], Toby Macey was interviewing Luciano Ramalho. I have a lot of respect for this developer as for me it is one of the last true "Pythonista's" left in the world. During one hour he talks about his Python beginnings, writing "Fluent Python" book, and his view about new Python features. I recommend listening to the whole podcast, but here is a summary of his opinions about Python evolution. 
 
 <!--more-->
 
@@ -26,7 +26,7 @@ In recent episodes on [Python podcast], Toby Macey was interviewing Luciano Rama
   * [PEP 3099][pep3099] - Things that will Not change in Python 3000 - this PEP says that the parser should not be more complex than LL(1).
   * Immediately after PEG is accepted, Python will have pattern matching.
 * Structural Pattern Matching (3.10) - such major change should be introduced very carefully and slowly, simplified first so it could be easily understood (and not by writing five PEPs, because in one it cannot be explained).
-* Assignment expressions, walrus operator (3.8) - it is a hard feature to explain for newcomers to programming and Python. Not worth introducing to Python.
+* Assignment expressions, walrus operator (3.8) - it is a hard feature to explain for newcomers to programming and Python. Not worth introducing.
 
 #### Other thoughts
 
@@ -45,7 +45,7 @@ Walrus operator - Guido decided to leave the BDFL role mainly because of communi
 
 I am a self-taught programmer. My first language was Python, and for many years I was devoted to this language (involved in the local community, listening to podcasts, reading PEPs and Python dev mailing lists). And I agree with Luciano that simplicity and ease of use was the strongest point that kept me. After years I think it was a good choice, however currently the trend I am seeing worries me the same as Luciano. 
 
-On my bookshelf, I have C# book because it is a language to go for video game programming. I have the Golang book because it is well thought, backward compatible, simple language for the concurrent web. And Python, it still brings me paycheck...
+On my bookshelf, I have C# book because it is a language to go for video game programming. I have the Golang book because it is well thought, backward compatible, simple language for the concurrent web. And Python, it still brings me the paycheck...
 
 ---
 
