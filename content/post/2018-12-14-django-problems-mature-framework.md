@@ -1,6 +1,6 @@
 +++
 title = "Django problems as a mature web framework"
-date = "2018-12-14T19:32:19+01:00"
+date = "2018-12-14"
 draft = false
 tags = ['django']
 +++
