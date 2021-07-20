@@ -31,7 +31,7 @@ WSGI interface has two sides: server and application. The server invokes callabl
 The application object is callable (has ```__call__``` method) that accepts two arguments: environ and start_response (name of arguments can be different). 
 
 ```python
-def simple_app(environ, start_response):
+def application(environ, start_response):
     status = "200 OK"
     response_headers = [("Content-type", "text/plain")]
     start_response(status, response_headers)
@@ -39,6 +39,8 @@ def simple_app(environ, start_response):
 ```
 
 * *environ* parameter is builtin Python dictionary object containing CGI-style environment variables (why CGI not regular HTTP, because servers have mature CGI functionality)
+* *start_response* is callable accepting HTTP status string and list of tuples describing HTTP response header
+
 ```python
 { # environ
     'REQUEST_METHOD': 'GET',
@@ -47,12 +49,11 @@ def simple_app(environ, start_response):
     ...
 }
 ```
-* *start_response* is callable accepting HTTP status string and list of tuples describing HTTP response header
-  
+
 A different example of WSGI compatible application with *view* function implemented.
 
 ```python
-def simple_app(environ, start_response):
+def application(environ, start_response):
     response = view(environ)
     status = "200 OK"
     response_headers = [("Content-type", "text/plain")]
@@ -104,7 +105,6 @@ with socket.socket() as s:
 
 And now update to have the server compatible with WSGI. Here we see the familiar function *application*.
 When called by the server the application must return an iterable yielding zero or more bytestrings.
-Function
 
 ```python
 with conn:
@@ -121,8 +121,7 @@ It is good to mention that the Python library contains a reference implementatio
 ```python
 from wsgiref.simple_server import make_server
 
-# as an application we can use our simple_app
-with make_server('', 8000, simple_app) as httpd:
+with make_server('', 8000, application) as httpd:
     print("Serving on port 8000...")
 
     # Serve until process is killed
