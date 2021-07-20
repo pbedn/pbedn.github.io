@@ -1,7 +1,6 @@
 +++
-date = "2000-01-02"
 title = "Paweł Bednarz"
-draft = false
+type = "about"
 +++
 
 I am writing these notes in free time when I find something worth documenting, notes are mostly technically oriented, except book mini-reviews.

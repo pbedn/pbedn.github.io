@@ -1,7 +1,6 @@
 +++
-date = "2021-02-01"
-title = "Selection of books I read with subjective micro reviews"
-draft = false
+title = "Books micro reviews"
+type = "books"
 +++
 
 #### Jordan Hudgens - Skill Up: A Software Developer's Guide to Life and Career: 65 steps to becoming a better developer (June 2021)

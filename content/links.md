@@ -1,7 +1,6 @@
 +++
-date = "2017-03-12"
 title = "Links"
-draft = false
+type = "links"
 +++
 
 
