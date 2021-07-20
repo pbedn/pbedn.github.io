@@ -7,24 +7,25 @@
 
 <div class="content">
 
-    <div>
-      <br>
-      {{ range .Site.Pages.GroupByDate "2006" }}
-      <h3>{{ .Key }}</h3>
-      <table class="pure-table">
-        <tbody>
-          {{ range (where .Pages "Type" "post") }}
-            {{ if .IsPage }}
-              <tr>
-                <td>{{ .Date | dateFormat "2006 Jan 02" }}</td>
-                <td> <a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></td>
-              </tr>
-            {{ end }}
+<div>
+  {{ range .Site.Pages.GroupByDate "2006" }}
+    {{ if ne .Key "0001" }}
+    <h3>{{ .Key }}</h3>
+    <table class="pure-table">
+      <tbody>
+        {{ range (where .Pages "Type" "post") }}
+          {{ if .IsPage }}
+            <tr>
+              <td>{{ .Date | dateFormat "2006 Jan 02" }}</td>
+              <td> <a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></td>
+            </tr>
           {{ end }}
-        </tbody>
-      </table>
-      {{ end }}
-    </div>
+        {{ end }}
+      </tbody>
+    </table>
+    {{ end }}
+  {{ end }}
+</div>
 
 </div>
 
