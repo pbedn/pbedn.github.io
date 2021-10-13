@@ -3,6 +3,13 @@ title = "Books micro reviews"
 type = "books"
 +++
 
+### James S.A. Corey - Leviathan Wakes (September 2021)
+
+* Science Fiction 
+
+The time has come, after years, finally got me into this book (audiobook like everything recently). I knew it will be good, and it was. Mechanical science fiction, without too much magic and set in a universe I could believe might really happen. For a book to get to the masses, authors need to provide a kind of soap (space) opera style, with a variety of heroes and villains, preferably all in a grey zone, or use a criminal/thriller template. When one of these two is put in the s-f universe, we get a story that will receive Hugo awards. Btw. another good detective/s-f is 'Altered Carbon'. The Expanse series just started for me, but I am so excited. And I am happy to start now when the last-tenth book will premiere soon, so I do not have to wait years for the series to finish (wink GGRM).
+Highly recommend - 5 asteroid rocks out of five.
+
 #### Jordan Hudgens - Skill Up: A Software Developer's Guide to Life and Career: 65 steps to becoming a better developer (June 2021)
 
 * Programming soft skills 
@@ -56,14 +63,14 @@ Ikigai is life's purpose. In general, one should do:
 * Self Help, Health, Philosophy
 * short story about Okinawa elders and few general tips on wellbeing
 
-I like the concept of Ikigai, but in this book, though "it started it all", Ikigai is barely mentioned. Most focus put on general tips. I read already other books about self-help, so nothing new. One thing to remember, if you like to live long then grow vegetables in your garden. 100 years of living guaranteed.
+I like the concept of Ikigai, but in this book, though "it started it all", Ikigai is barely mentioned. Most focus is put on general tips. I read already other books about self-help, so nothing new. One thing to remember, if you like to live long then grow vegetables in your garden. 100 years of living guaranteed.
 
 #### Naval - “Surviving Belize”, “You Snooze, You Lose”, “The Gulf” and “Camp Pozzi” (March 2021)
 
 * biography
 * a story of GROM soldier from recruitment, boot camp, training, military actions, deployments to Iraq
 
-I read, actually listened to, four books by Naval about his military adventures. And as for someone who was dreaming when young, about being a 'commando', these stories were interesting and inspiring. Books are short but immersive. Real action from a real soldier. And as a funny note, Naval was consulting on "Medal of Honor. Warfighter" game, which was very good as well (solid linear military fps).
+I read, actually listened to, four books by Naval about his military adventures. And as for someone who was dreaming when young, about being a 'commando', these stories were interesting and inspiring. Books are short but immersive. Real action from a real soldier. And as a funny note, Naval was consulting on the "Medal of Honor. Warfighter" game, which was very good as well (solid linear military fps).
 
 #### Kafir - “Contact. Polish intelligence forces in Afghanistan” (March 2021)
 
@@ -77,6 +84,6 @@ Honest and sometimes brutal truth about so-called stabilization mission, and war
 * science fiction
 * young cyber padawan on a road to get princess and half of the kingdom (actually quarter)
 
-Beginning a little boring, middle ok, ending better. Sometimes annoying and trivial, and how the heck the main hero just knows everything, and plays the guitar like a god.
-In general I enjoyed it, but I am not going to read second part - Ready Player Two and author's other book - Armada. too much of 80s in the first part for me ;)
+Beginning a little boring, middle ok, ending better. Sometimes annoying and trivial, and how the heck the main hero just knows everything and plays the guitar like a god.
+In general, I enjoyed it, but I am not going to read the second part - Ready Player Two and the author's other book - Armada too much of the 80s in the first part for me ;)
 As for the rating, I am giving three eggs out of five.
