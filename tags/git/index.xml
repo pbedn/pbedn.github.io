@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on Coding Notes</title>
+    <link>https://pbedn.github.io/tags/git/index.xml</link>
+    <description>Recent content in Git on Coding Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017. All rights reserved.</copyright>
+    <atom:link href="https://pbedn.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to make automatic deployment with git: fetch and checkout vs pull</title>
+      <link>https://pbedn.github.io/post/git-fetch-checkout-pull-playground/</link>
+      <pubDate>Wed, 21 Jun 2017 17:24:11 +0200</pubDate>
+      
+      <guid>https://pbedn.github.io/post/git-fetch-checkout-pull-playground/</guid>
+      <description>&lt;p&gt;Can git be used as automatic deploment tool? Some say that as for mvp it is enough. Others give quite good explanations how to do it, see &lt;a href=&#34;http://gitolite.com/deploy.html&#34;&gt;gitolite.com/deploy&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;My first naive solution was to use in deployment script for production, commands:
+&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout .
+$ git pull --ff-only
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It works if production repository is clean. But sometimes there are problems with merging, and unless you catch the error, remote deploy script will just give you the message &amp;ldquo;&lt;em&gt;fatal: Not possible to fast-forward, aborting.&lt;/em&gt;&amp;rdquo;, leaving the repository in bad shape.. So what is the proper solution?&lt;/p&gt;
+
+&lt;p&gt;Let say that in production environment &amp;ldquo;&lt;em&gt;git log &amp;ndash;oneline&lt;/em&gt;&amp;rdquo; gives me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;114dbc5 Some changes
+2fe6adb Some changes
+e38c033 Added broken file
+6f6ba61 Changed Readme
+ab6d78a Initial commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In development environment I did a &amp;ldquo;&lt;em&gt;git rebase -i 6f6ba&lt;/em&gt;&amp;rdquo;, squashing last two commits into one, and &amp;ldquo;&lt;em&gt;git push &amp;ndash;force&lt;/em&gt;&amp;rdquo; to repair my master branch. That will give me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;5e88aca Some changes
+e38c033 Added broken file
+6f6ba61 Changed Readme
+ab6d78a Initial commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My deployment script will run in production and produce output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git pull --ff-only
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/pbedn/git-playground
+ + 114dbc5...5e88aca master       -&amp;gt; origin/master  (forced update)
+ * [new tag]         after-rebase -&amp;gt; after-rebase
+fatal: Not possible to fast-forward, aborting.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That is a problem. Solution is to use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git fetch --all
+$ git checkout --force origin/master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Commits in the production are now correct!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git fetch --all
+Fetching origin
+
+$ git checkout --force origin/master
+Note: checking out &#39;origin/master&#39;.
+
+You are in &#39;detached HEAD&#39; state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b &amp;lt;new-branch-name&amp;gt;
+
+HEAD is now at 5e88aca... Some changes
+
+$ git log --oneline
+5e88aca Some changes
+e38c033 Added broken file
+6f6ba61 Changed Readme
+ab6d78a Initial commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;ndash;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Exercise&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;If you like to play with these exact examples you can follow the steps below (note that we are working with HEAD detached, but for the exercise purpose that is ok):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone https://github.com/pbedn/git-playground
+$ git checkout tags/duplicate
+$ git pull --ff-only origin master
+$ git checkout tags/after-rebase
+$ git fetch --all
+$ git checkout --force origin/master
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

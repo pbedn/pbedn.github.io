@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Coding Notes</title>
+    <link>https://pbedn.github.io/tags/hugo/index.xml</link>
+    <description>Recent content in Hugo on Coding Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017. All rights reserved.</copyright>
+    <atom:link href="https://pbedn.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Deploy Hugo to Github Pages using Wercker</title>
+      <link>https://pbedn.github.io/post/deploy_hugo_to_gh_using_wercker/</link>
+      <pubDate>Fri, 17 Mar 2017 08:25:40 +0100</pubDate>
+      
+      <guid>https://pbedn.github.io/post/deploy_hugo_to_gh_using_wercker/</guid>
+      <description>&lt;p&gt;The easiest solution how to publish with Hugo to Github Pages is to have two separate repositories, one with blog source files and second with html files. Simple.&lt;/p&gt;
+
+&lt;p&gt;We can push files from both repositories manually or can do better. Push just source content and leave the rest for automatic deployment.
+
+I did not know about Wercker until read &lt;a href=&#34;https://gohugo.io/tutorials/automated-deployments/&#34;&gt;automated deployment tutorial&lt;/a&gt; on Hugo site. And with hint from &lt;a href=&#34;http://skarlso.github.io/2016/02/10/hugo-autodeploy-with-wercker/&#34;&gt;Skarlso post&lt;/a&gt;, that process became so easy.&lt;/p&gt;
+
+&lt;p&gt;Steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create new application on Wercker with Hugo source repository. Leave the recommended settings.&lt;/li&gt;
+&lt;li&gt;In &lt;em&gt;Workflows&lt;/em&gt; add new &lt;em&gt;Pipeline&lt;/em&gt; with both names set to &lt;em&gt;deploy&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Create new &lt;em&gt;Personal access token&lt;/em&gt; on Github, and copy its value to Wercker &lt;em&gt;Environment&lt;/em&gt;, with key name: &lt;em&gt;GIT_TOKEN&lt;/em&gt;.&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Add &lt;em&gt;wercker.yml&lt;/em&gt; to your Hugo source repository. Just change your Github name.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;box: golang
+build:
+    steps:
+        - arjen/hugo-build:
+            version: &amp;quot;0.19&amp;quot;
+deploy:
+    steps:
+        - install-packages:
+            packages: git ssh-client
+        - leipert/git-push:
+            gh_oauth: $GIT_TOKEN
+            repo: &amp;lt;name&amp;gt;/&amp;lt;name&amp;gt;.github.io
+            branch: master
+            basedir: public
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Push and enjoy.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Note that in &lt;em&gt;arjen/hugo-build&lt;/em&gt; I do not use &lt;em&gt;theme&lt;/em&gt; option, I have all layouts and static files in my &lt;a href=&#34;https://github.com/pbedn/hugo-blog&#34;&gt;hugo-blog&lt;/a&gt;. For more info go to &lt;a href=&#34;https://github.com/ArjenSchwarz/wercker-step-hugo-build&#34;&gt;arjen docs&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hello World with Hugo</title>
+      <link>https://pbedn.github.io/post/start/</link>
+      <pubDate>Mon, 13 Mar 2017 11:50:42 +0100</pubDate>
+      
+      <guid>https://pbedn.github.io/post/start/</guid>
+      <description>&lt;p&gt;While trying to make this little space in the web finally working, I set up dozens of different static site generators (Jekyll, Pelican, Nikola, Lektor, Sculpin..). I was even thinking about writing my own for some time. I tried wordpress and blogspot. But finally arrived at &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and it make my day much better.
+&lt;/p&gt;
+
+&lt;p&gt;Why I like it:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nice working on Windows (one &amp;lsquo;.exe&amp;rsquo; file)&lt;/li&gt;
+&lt;li&gt;Good documentation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some things that could be better:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Better deployment to Github Pages&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;quick-tips&#34;&gt;Quick tips:&lt;/h3&gt;
+
+&lt;p&gt;After some fight to publish it nicely to Github Pages, I tried to use automate deployment (Wecker tutorial on Hugo website doesn&amp;rsquo;t work out of the box, and my knowledge on CI is not good yet). Finally I settled easiest solution - having two repositories.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;First repository is &amp;lsquo;User Page&amp;rsquo; - &amp;lsquo;pbedn.github.io&amp;rsquo;. Please refer to &lt;a href=&#34;https://help.github.com/articles/user-organization-and-project-pages/&#34;&gt;pages docs&lt;/a&gt; about more info.&lt;/li&gt;
+&lt;li&gt;Second is with source content of hugo - &amp;lsquo;hugo-blog&amp;rsquo;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;How to maintain pushing to two repositories? I use GitKraken, so it is just few clicks. Additonaly I am all the time inside &amp;lsquo;hugo-blog&amp;rsquo; directory.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;When I create new content I run command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;hugo serve -w -D
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;When I want to push to github, firstly I create html files&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;hugo -d ../pbedn.github.io
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And use GitKraken.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;what-if-after-running-hugo-serve-i-do-not-see-anytinng-in-the-public-directory&#34;&gt;What if after running hugo serve I do not see anytinng in the &lt;em&gt;public&lt;/em&gt; directory?&lt;/h4&gt;
+
+&lt;p&gt;Sometimes it helps to run hugo with &amp;lsquo;-v&amp;rsquo;, it shows more verbose output. My solution was to copy theme files inside my main folder (sometimes you just have to copy static files).&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

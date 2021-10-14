@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Notatki programisty</title>
+    <link>https://pbedn.github.io/pl/post/index.xml</link>
+    <description>Recent content in Posts on Notatki programisty</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017. All rights reserved.</copyright>
+    <lastBuildDate>Sat, 13 May 2017 20:49:33 +0200</lastBuildDate>
+    <atom:link href="https://pbedn.github.io/pl/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Najlepsze materiały do nauki programowania w Pythonie po polsku</title>
+      <link>https://pbedn.github.io/pl/post/najlepsze-materialy-do-nauki-pythona/</link>
+      <pubDate>Sat, 13 May 2017 20:49:33 +0200</pubDate>
+      
+      <guid>https://pbedn.github.io/pl/post/najlepsze-materialy-do-nauki-pythona/</guid>
+      <description>&lt;h2 id=&#34;koduj-z-klasą-python101-tekst&#34;&gt;Koduj z klasą - Python101 (tekst)&lt;/h2&gt;
+
+&lt;p&gt;Obecnie na start polecam wszystkim materiały z cyklu &lt;a href=&#34;http://python101.readthedocs.io/pl/latest/index.html&#34;&gt;Koduj z klasą czyli tzw. python101.&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Plusy:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dopracowane i ciekawe materiały&lt;/li&gt;
+&lt;li&gt;Start od zainstalowania systemu, edytora tekstu, potem praca ze strukturą projektu a następnie z wersją kontroli&lt;/li&gt;
+&lt;li&gt;Poznawanie języka poprzez ciekawe mini projekty&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Minusy:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Używana wersja języka to Python 2.7, ale dla początkujących to nie powinno miec większego znaczenia&lt;/li&gt;
+&lt;li&gt;Dla kompletnie zielonych czasami tempo moze byc za szybkie&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Czego się nauczymy:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Zwięzłe wprowadzenie do podstaw Pythona&lt;/li&gt;
+&lt;li&gt;Robienie wykresów w bibliotece matplotlib&lt;/li&gt;
+&lt;li&gt;Zaprogramujemy inteligentne roboty w RobotGame&lt;/li&gt;
+&lt;li&gt;Użyjemy biblioteki PyGame do napisania kilku małych gier (tutaj ciekawe porównanie wersji proceduralnej i obiektowej)&lt;/li&gt;
+&lt;li&gt;Poznamy bazy danych&lt;/li&gt;
+&lt;li&gt;Zbudujemy aplikację okienkową w Qt5&lt;/li&gt;
+&lt;li&gt;Małą aplikację internetową we Flasku&lt;/li&gt;
+&lt;li&gt;A na koniec pobawimy się z Minecraftem w Raspberry Pi&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Jednym słowem świetne wprowadzenie do programowania, do tego za darmo i po polsku. Generalnie język Python czyta się prawie jak pseudokod, więc nie trzeba tu marnowac czasu jak w innych językach na nudne przedstawianie składni. Można się od razu zabrać do tworzenia, co uważam za najlepsze podejscie.&lt;/p&gt;
+
+&lt;p&gt;Zakładam, ze osoba będzie się uczyc sama. Ale choc są to materiały kompletne, dośc szybko przechodzą do nastepnego zagadnienia, więc wtedy nie obejdzie się bez nauczyciela/instruktora lub skonsultowania samej pomocy wbudowanej w pythonie.&lt;/p&gt;
+
+&lt;h2 id=&#34;ukąś-pythona-video&#34;&gt;Ukąś Pythona (video)&lt;/h2&gt;
+
+&lt;p&gt;Jeśli lubimy byc prowadzeni przez instruktora i chcemy po prostu nauczyc się skladni jezyka to dobrą opcją jest zapoznanie się lekcjami na &lt;a href=&#34;https://www.youtube.com/playlist?list=PLFH8bHppdSGuX-nwHitkEE94vpQZ-1DXg&#34;&gt;kanale Dominika Kozaczko Ukąś Pythona&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Plusy&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Od zera do poziomu średniozaawansowanego, duza dawka wiedzy za darmo&lt;/li&gt;
+&lt;li&gt;Instruktor to programista - praktyk&lt;/li&gt;
+&lt;li&gt;Podane przykłady są ciekawe&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Minusy&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Poniewaz to cykl prowadzony na zywo, czasami pojawiają się pytania (słabo słyszalne z sali), które zaburzają przekaz i robi się chaotycznie&lt;/li&gt;
+&lt;li&gt;Jak dla mnie tempo tłumaczenia za wolne (w ustawieniach youtube jest opcja przyśpieszania filmików)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Czego się nauczymy&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Cykl składa się z 9 półtora godzinnych filmów video&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Spotkanie 0 - omówienie&lt;/li&gt;
+&lt;li&gt;Spotkanie 1 - podstawy, instrukcje warunkowe, pętle&lt;/li&gt;
+&lt;li&gt;Spotkanie 2 - listy, krotki, słowniki&lt;/li&gt;
+&lt;li&gt;Spotkanie 3 - funkcje, rekurencja&lt;/li&gt;
+&lt;li&gt;Spotkanie 4 - generatory, praca z plikami&lt;/li&gt;
+&lt;li&gt;Spotkanie 5 - c.d. pracy z plikami, wstęp do klas&lt;/li&gt;
+&lt;li&gt;Spotkanie 6 - programowanie obiektowe&lt;/li&gt;
+&lt;li&gt;Spotkanie 7 - c.d. programowania obiektowego, wyjątki&lt;/li&gt;
+&lt;li&gt;Spotkanie 8 - dekoratory&lt;/li&gt;
+&lt;li&gt;Spotkanie 9 - wyrazenia regularne, styl pisania kodu w Pythonie&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;inne&#34;&gt;Inne&lt;/h2&gt;
+
+&lt;p&gt;Gdy ja się uczyłem nie było powyzszych materiałow, korzystałem wtedy z ksiązki &amp;lsquo;How to think like computer scientist&amp;rsquo;, która jest wciąz za darmo dostepna po angielsku na stronie &lt;a href=&#34;http://greenteapress.com/wp/think-python-2e/&#34;&gt;greenteapress&lt;/a&gt;. Została równiez przetłumaczona &lt;a href=&#34;http://helion.pl/ksiazki/mysl-w-jezyku-python-nauka-programowania-wydanie-ii-allen-b-downey,myjep2.htm&#34;&gt;link do helion.pl&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Szkoda, ze ksiazka Zed Shaw&amp;rsquo;a nie jest po polsku, zawiera ciekawą metodę nauki, gdzie stawia nacisk na faktycznie przepisywanie kodu a nie kopiowanie (Ctrl-C, Ctrl-V). &lt;a href=&#34;https://learnpythonthehardway.org/book/&#34;&gt;Link do darmowej ksiazki po angielsku&lt;/a&gt;. Polecam.&lt;/p&gt;
+
+&lt;p&gt;Obecnie jest wciąz duzo dobrych materiałów do nauki, które uzywają Pythona w wersji 2. Jak wspominalem, na początku to nie ma większego znaczenia, więc bez sensu na siłę szukac czegokolwiek byleby w wersji 3. Gdy ja się przestawialem z 2 na 3 to najwiekszy problem był głownie z funkcją print() ;). Dopiero bardziej zaawansowany programista, zauwaza róznice w Unicode, czy dodatkowe funkcje tylko dostępne w nowszej niekompatybilnej wersji.&lt;/p&gt;
+
+&lt;p&gt;Osobiście uzywam Pythona w wersji 3 w pracy oraz prywatnych projektach i generalnie jestem jego zwolennikiem. Ale przeglądając polski internet w poszukiwaniu dobrych zródeł do samodzielnej nauki, muszę przestawic się na myślenie bardziej praktyczne.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Referencje&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://python101.readthedocs.io/pl/latest/index.html&#34;&gt;Koduj z klasą - python101.readthedocs.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/playlist?list=PLFH8bHppdSGuX-nwHitkEE94vpQZ-1DXg&#34;&gt;Dominik Kozaczko - Ukąś Pythona&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://greenteapress.com/wp/think-python-2e/&#34;&gt;[Angielski] - Think Python - GreenPress&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://helion.pl/ksiazki/mysl-w-jezyku-python-nauka-programowania-wydanie-ii-allen-b-downey,myjep2.htm&#34;&gt;Myśl w języku Python - Helion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://learnpythonthehardway.org/book/&#34;&gt;[Angielski] - Metoda nauki od Zed Shaw&amp;rsquo;a&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
