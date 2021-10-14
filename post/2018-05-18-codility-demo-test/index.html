@@ -1,384 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.34" />
-
-  <title>Codility Demo Test &middot; Coding Notes</title>
-
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css">
-
-  <link rel="stylesheet" href="https://pbedn.github.io/css/side-menu.css">
-
-  <link rel="stylesheet" href="https://pbedn.github.io/css/blackburn.css">
-
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-
-
- 
-  
-
-  
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <link rel="shortcut icon" href="https://pbedn.github.io/img/favicon.ico" type="image/x-icon" />
-
-  
-  
-
-</head>
-
-
-<body>
-<div id="layout">
-
-  
-<a href="#menu" id="menuLink" class="menu-link">
-  
-  <span></span>
-</a>
-<div id="menu">
-
-  
-  <a class="pure-menu-heading brand" href="https://pbedn.github.io/">PBedn</a>
-
-
-  <div class="pure-menu">
-    <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/archives/"><i class='fa fa-list fa-fw'></i>Archives</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/links/"><i class='fa fa-link fa-fw'></i>Links</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/books/"><i class='fa fa-question fa-fw'></i>Books</a>
-      
-        </li>
-      
-    </ul>
-  </div>
-
-  <div class="pure-menu social">
-  <ul class="pure-menu-list">
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://linkedin.com/in/pbedn" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
-    </li>
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/pbedn" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
-    </li>
-    
-
-  </ul>
-</div>
-
-
-  <div>
-  <div class="small-print">
-    <small>&#169; 2021 Pawel Bednarz</small>
-  </div>
-  <div class="small-print">
-    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
-    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
-  </div>
-</div>
-
-
-<div>
-  <input id="highlight" type="button" value="Highlight Code Dark" class="pure-button" style="
-  font-size: 65%; background: #999; text-align: center;" />
-</div>
-
-</div>
-
-
-  <div id="main">
-
-
-<div class="header">
-  <h2>Codility Demo Test</h2>
-  <h3></h3>
-</div>
-<div class="content">
-
-  <div class="post-meta">
-
-  <div class="dark-color">
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>18 May 2018</time>
-
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 3 min</i>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/codility">codility</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  <p>I have had a chance to solve <a href="https://app.codility.com/demo/take-sample-test/">Codility demo test</a>. It is available for free, and you can try it unlimited times. While I do not believe that such tests correlate to typical real-world programming tasks, they are often used as a first interview filter by some companies. Here I show a few Python variations for the solution.</p>
-
-<p></p>
-
-<p>It is fascinating that each programmer solves the same task differently. First two solutions are mine, third belongs to my girlfriend, and last I found on <a href="https://blog.nkbits.com/2015/07/14/codility-missing-integer/">nkbits blog</a>.</p>
-
-<hr />
-
-<h3 id="task-description">Task description</h3>
-
-<p>Write a function:</p>
-
-<p><em>def solution(A)</em></p>
-
-<p>that, given an array A of N integers, returns the smallest positive integer (greater than 0) that does not occur in A.</p>
-
-<p>For example, given A = [1, 3, 6, 4, 1, 2], the function should return 5.</p>
-
-<p>Given A = [1, 2, 3], the function should return 4.
-Given A = [−1, −3], the function should return 1.</p>
-
-<p>Assume that:</p>
-
-<p>N is an integer within the range [1..100,000];
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=generator content="Hugo 0.85.0"><title>Codility Demo Test &#183; Coding Notes</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css><link rel=stylesheet href=https://pbedn.github.io/css/side-menu.css><link rel=stylesheet href=https://pbedn.github.io/css/blackburn.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css><link href="https://fonts.googleapis.com/css?family=Raleway" rel=stylesheet type=text/css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><link rel="shortcut icon" href=https://pbedn.github.io/img/favicon.ico type=image/x-icon></head><body><div id=layout><a href=#menu id=menuLink class=menu-link><span></span></a><div id=menu><a class="pure-menu-heading brand" href=https://pbedn.github.io/>PBedn</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/><i class="fa fa-home fa-fw"></i>Home</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/archives/><i class="fa fa-list fa-fw"></i>Archives</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/about/><i class="fa fa-user fa-fw"></i>About</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/links/><i class="fa fa-link fa-fw"></i>Links</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/books/><i class="fa fa-question fa-fw"></i>Books</a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://linkedin.com/in/pbedn target=_blank><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/pbedn target=_blank><i class="fa fa-github-square fa-fw"></i>GitHub</a></li></ul></div><div><div class=small-print><small>&#169; 2021 Pawel Bednarz</small></div><div class=small-print><small>Built with&nbsp;<a href=https://gohugo.io/ target=_blank>Hugo</a></small>
+<small>Theme&nbsp;<a href=https://github.com/yoshiharuyamashita/blackburn target=_blank>Blackburn</a></small></div></div><div><input id=highlight type=button value="Highlight Code Dark" class=pure-button style=font-size:65%;background:#999;text-align:center></div></div><div id=main><div class=header><h2>Codility Demo Test</h2><h3></h3></div><div class=content><div class=post-meta><div class=dark-color><i class="fa fa-calendar fa-fw"></i>
+<time>18 May 2018</time>
+.. <i class="fa fa-clock-o" aria-hidden=true>3 min</i></div><div><i class="fa fa-tags fa-fw"></i>
+<a class=post-taxonomy-tag href=https://pbedn.github.io/tags/python>python</a>&nbsp;/
+<a class=post-taxonomy-tag href=https://pbedn.github.io/tags/codility>codility</a></div></div><p>I have had a chance to solve <a href=https://app.codility.com/demo/take-sample-test/>Codility demo test</a>. It is available for free, and you can try it unlimited times. While I do not believe that such tests correlate to typical real-world programming tasks, they are often used as a first interview filter by some companies. Here I show a few Python variations for the solution.</p><p>It is fascinating that each programmer solves the same task differently. First two solutions are mine, third belongs to my girlfriend, and last I found on <a href=https://blog.nkbits.com/2015/07/14/codility-missing-integer/>nkbits blog</a>.</p><hr><h3 id=task-description>Task description</h3><p>Write a function:</p><p><em>def solution(A)</em></p><p>that, given an array A of N integers, returns the smallest positive integer (greater than 0) that does not occur in A.</p><p>For example, given A = [1, 3, 6, 4, 1, 2], the function should return 5.</p><p>Given A = [1, 2, 3], the function should return 4.
+Given A = [−1, −3], the function should return 1.</p><p>Assume that:</p><p>N is an integer within the range [1..100,000];
 each element of array A is an integer within the range [−1,000,000..1,000,000].
-Complexity:</p>
+Complexity:</p><ul><li>expected worst-case time complexity is O(N);</li><li>expected worst-case space complexity is O(N) (not counting the storage required for input arguments).</li></ul><hr><h3 id=first-approach>First approach</h3><p>First naive implementation, I like to use sets everytime I can. In range I used m+2 in to prevent set being empty and throwing an error when using min function.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(A):
+    m <span style=color:#f92672>=</span> max(A)
+    <span style=color:#66d9ef>if</span> m <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>:
+        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>1</span>
+    possible <span style=color:#f92672>=</span> set(e <span style=color:#66d9ef>for</span> e <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, m<span style=color:#f92672>+</span><span style=color:#ae81ff>2</span>)) <span style=color:#f92672>-</span> set(A)
+    <span style=color:#66d9ef>return</span> min(possible)
+</code></pre></div><p>Results:</p><ul><li>Task score - 88%</li><li>Correctness - 100%</li><li>Performance - 75%</li></ul><p>I received TIMEOUT ERROR in medium performance tests (chaotic sequences length=10005 (with minus))</p><h3 id=second>Second</h3><p>Here I did better, first filtering for only positive numbers an returning 1 in case of an empty set. Then I use python built-in set symmetric difference.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(A):
+    s <span style=color:#f92672>=</span> {x <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> A <span style=color:#66d9ef>if</span> x <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>}
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> s:
+        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>1</span>
+    last <span style=color:#f92672>=</span> max(s)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
 
-<ul>
-<li>expected worst-case time complexity is O(N);</li>
-<li>expected worst-case space complexity is O(N) (not counting the storage required for input arguments).</li>
-</ul>
+    <span style=color:#75715e># Find elements present in either of the two sets, but not common to both the sets</span>
+    new_set <span style=color:#f92672>=</span> s<span style=color:#f92672>^</span>set(range(<span style=color:#ae81ff>1</span>, last))
 
-<hr />
-
-<h3 id="first-approach">First approach</h3>
-
-<p>First naive implementation, I like to use sets everytime I can. In range I used m+2 in to prevent set being empty and throwing an error when using min function.</p>
-
-<pre><code class="language-python">def solution(A):
-    m = max(A)
-    if m &lt;= 0:
-        return 1
-    possible = set(e for e in range(1, m+2)) - set(A)
-    return min(possible)
-</code></pre>
-
-<p>Results:</p>
-
-<ul>
-<li>Task score - 88%</li>
-<li>Correctness - 100%</li>
-<li>Performance - 75%</li>
-</ul>
-
-<p>I received TIMEOUT ERROR in medium performance tests (chaotic sequences length=10005 (with minus))</p>
-
-<h3 id="second">Second</h3>
-
-<p>Here I did better, first filtering for only positive numbers an returning 1 in case of an empty set. Then I use python built-in set symmetric difference.</p>
-
-<pre><code class="language-python">def solution(A):
-    s = {x for x in A if x &gt; 0}
-    if not s:
-        return 1
-    last = max(s)+1
-
-    # Find elements present in either of the two sets, but not common to both the sets
-    new_set = s^set(range(1, last))
-
-    if not new_set:
-        return last
-    return min(new_set)
-</code></pre>
-
-<p>Results:</p>
-
-<ul>
-<li>Task score - 100%</li>
-<li>Correctness - 100%</li>
-<li>Performance - 100%</li>
-</ul>
-
-<p>Detected time complexity: O(N) or O(N * log(N))</p>
-
-<h3 id="third">Third</h3>
-
-<p>My girlfriend approach results in time complexity worse than O(N), because of using <em>sorted</em>. Still, I find it interesting.</p>
-
-<pre><code class="language-python">def solution(A):
-    B = [x for x in A if x &gt; 0]
-    B = sorted(B)
-    if 1 not in B:
-        return 1
-    for i in range(0, len(B) - 1):
-        if B[i+1] - B[i] &gt; 1:
-            return B[i] + 1
-    return max(B) + 1
-</code></pre>
-
-<p>Results:</p>
-
-<ul>
-<li>Task score - 100%</li>
-<li>Correctness - 100%</li>
-<li>Performance - 100%</li>
-</ul>
-
-<p>Detected time complexity: O(N) or O(N * log(N))</p>
-
-<h3 id="fourth-try-how-to-make-o-n">Fourth try: How to make O(N) ?</h3>
-
-<p>Looking for the solution, the best answer from <a href="https://stackoverflow.com/questions/25002381/missing-integer-variation-on-solution-needed">stackoverflow</a> was to use <strong>pigeonhole principle</strong>. I found a ready answer on <a href="https://blog.nkbits.com/2015/07/14/codility-missing-integer/">nkbits blog</a> with that approach, and the author claims that solution should be O(N) in time and space complexity. When analyzing tha code it looks he is right, but after running demo test in codility, I still got O(N) or O(N * log(N))&hellip; Why? Is this Python language fault or Codility server error?</p>
-
-<pre><code class="language-python">def solution(A):
-    N = len(A)
-    count = [0]*(N + 1)
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> new_set:
+        <span style=color:#66d9ef>return</span> last
+    <span style=color:#66d9ef>return</span> min(new_set)
+</code></pre></div><p>Results:</p><ul><li>Task score - 100%</li><li>Correctness - 100%</li><li>Performance - 100%</li></ul><p>Detected time complexity: O(N) or O(N * log(N))</p><h3 id=third>Third</h3><p>My girlfriend approach results in time complexity worse than O(N), because of using <em>sorted</em>. Still, I find it interesting.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(A):
+    B <span style=color:#f92672>=</span> [x <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> A <span style=color:#66d9ef>if</span> x <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>]
+    B <span style=color:#f92672>=</span> sorted(B)
+    <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> B:
+        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>1</span>
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>0</span>, len(B) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>):
+        <span style=color:#66d9ef>if</span> B[i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>-</span> B[i] <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1</span>:
+            <span style=color:#66d9ef>return</span> B[i] <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+    <span style=color:#66d9ef>return</span> max(B) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+</code></pre></div><p>Results:</p><ul><li>Task score - 100%</li><li>Correctness - 100%</li><li>Performance - 100%</li></ul><p>Detected time complexity: O(N) or O(N * log(N))</p><h3 id=fourth-try-how-to-make-on->Fourth try: How to make O(N) ?</h3><p>Looking for the solution, the best answer from <a href=https://stackoverflow.com/questions/25002381/missing-integer-variation-on-solution-needed>stackoverflow</a> was to use <strong>pigeonhole principle</strong>. I found a ready answer on <a href=https://blog.nkbits.com/2015/07/14/codility-missing-integer/>nkbits blog</a> with that approach, and the author claims that solution should be O(N) in time and space complexity. When analyzing tha code it looks he is right, but after running demo test in codility, I still got O(N) or O(N * log(N))&mldr; Why? Is this Python language fault or Codility server error?</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(A):
+    N <span style=color:#f92672>=</span> len(A)
+    count <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>(N <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>)
     
-    # Counts all elements of A tha belongs to sequence {1, ..., N}
-    for k in range(N):
-        if N &gt;= A[k] &gt; 0:
-            count[A[k]] += 1
+    <span style=color:#75715e># Counts all elements of A tha belongs to sequence {1, ..., N}</span>
+    <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(N):
+        <span style=color:#66d9ef>if</span> N <span style=color:#f92672>&gt;=</span> A[k] <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+            count[A[k]] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
     
-    # Searches for the lesser integer that not belongs to A 
-    for k in range(1, N + 1):
-        if count[k] == 0:
-            return k
+    <span style=color:#75715e># Searches for the lesser integer that not belongs to A </span>
+    <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>):
+        <span style=color:#66d9ef>if</span> count[k] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+            <span style=color:#66d9ef>return</span> k
     
-    # If A has all elements from 1 to N, N + 1 is the minimal integer
-    return N + 1
-</code></pre>
-
-<p>Results:</p>
-
-<ul>
-<li>Task score - 100%</li>
-<li>Correctness - 100%</li>
-<li>Performance - 100%</li>
-</ul>
-
-<p>Detected time complexity: O(N) or O(N * log(N))</p>
-
-<p><a href="https://app.codility.com/demo/results/demo5GNVDV-2NB/">Link to results</a></p>
-
-  
-<div class="prev-next-post pure-g">
-  <div class="pure-u-1-24" style="text-align: left;">
-    
-    <a href="https://pbedn.github.io/post/2018-03-10-ubuntu-16.04-thinkpad-t470/"><i class="fa fa-chevron-left"></i></a>
-    
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="prev">
-      <a href="https://pbedn.github.io/post/2018-03-10-ubuntu-16.04-thinkpad-t470/">Ubuntu 16.04 on Thinkpad T470</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-2-24">
-    &nbsp;
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="next">
-      <a href="https://pbedn.github.io/post/2018-05-20-wargames-bandit/">Wargames Bandit</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://pbedn.github.io/post/2018-05-20-wargames-bandit/"><i class="fa fa-chevron-right"></i></a>
-    
-  </div>
-</div>
-
-
-
-</div>
-
-</div>
-</div>
-<script src="https://pbedn.github.io/js/ui.js"></script>
-<script src="https://pbedn.github.io/js/menus.js"></script>
-
-
-<script>
-  
-  if (window.location.hostname != "localhost") {
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-74192356-1', 'auto');
-    ga('send', 'pageview');
-  }
-</script>
-
-
-<script type="text/javascript">
-$("#highlight").click(function () {
-$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>');
-});
-</script>
- 
-
-</body>
-</html>
-
+    <span style=color:#75715e># If A has all elements from 1 to N, N + 1 is the minimal integer</span>
+    <span style=color:#66d9ef>return</span> N <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+</code></pre></div><p>Results:</p><ul><li>Task score - 100%</li><li>Correctness - 100%</li><li>Performance - 100%</li></ul><p>Detected time complexity: O(N) or O(N * log(N))</p><p><a href=https://app.codility.com/demo/results/demo5GNVDV-2NB/>Link to results</a></p><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://pbedn.github.io/post/2018-03-10-ubuntu-16.04-thinkpad-t470/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://pbedn.github.io/post/2018-03-10-ubuntu-16.04-thinkpad-t470/>Ubuntu 16.04 on Thinkpad T470</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24><nav class=next><a href=https://pbedn.github.io/post/2018-05-20-wargames-bandit/>Wargames Bandit</a></nav></div><div class=pure-u-1-24 style=text-align:right><a href=https://pbedn.github.io/post/2018-05-20-wargames-bandit/><i class="fa fa-chevron-right"></i></a></div></div></div></div></div><script src=https://pbedn.github.io/js/ui.js></script><script src=https://pbedn.github.io/js/menus.js></script><script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-74192356-1','auto'),ga('send','pageview'))</script><script type=text/javascript>$("#highlight").click(function(){$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>')})</script></body></html>

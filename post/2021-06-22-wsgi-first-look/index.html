@@ -1,379 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.34" />
-
-  <title>First look at WSGI and PEP 3333 &middot; Coding Notes</title>
-
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css">
-
-  <link rel="stylesheet" href="https://pbedn.github.io/css/side-menu.css">
-
-  <link rel="stylesheet" href="https://pbedn.github.io/css/blackburn.css">
-
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-
-
- 
-  
-
-  
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <link rel="shortcut icon" href="https://pbedn.github.io/img/favicon.ico" type="image/x-icon" />
-
-  
-  
-
-</head>
-
-
-<body>
-<div id="layout">
-
-  
-<a href="#menu" id="menuLink" class="menu-link">
-  
-  <span></span>
-</a>
-<div id="menu">
-
-  
-  <a class="pure-menu-heading brand" href="https://pbedn.github.io/">PBedn</a>
-
-
-  <div class="pure-menu">
-    <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/archives/"><i class='fa fa-list fa-fw'></i>Archives</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/links/"><i class='fa fa-link fa-fw'></i>Links</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/books/"><i class='fa fa-question fa-fw'></i>Books</a>
-      
-        </li>
-      
-    </ul>
-  </div>
-
-  <div class="pure-menu social">
-  <ul class="pure-menu-list">
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://linkedin.com/in/pbedn" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
-    </li>
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/pbedn" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
-    </li>
-    
-
-  </ul>
-</div>
-
-
-  <div>
-  <div class="small-print">
-    <small>&#169; 2021 Pawel Bednarz</small>
-  </div>
-  <div class="small-print">
-    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
-    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
-  </div>
-</div>
-
-
-<div>
-  <input id="highlight" type="button" value="Highlight Code Dark" class="pure-button" style="
-  font-size: 65%; background: #999; text-align: center;" />
-</div>
-
-</div>
-
-
-  <div id="main">
-
-
-<div class="header">
-  <h2>First look at WSGI and PEP 3333</h2>
-  <h3></h3>
-</div>
-<div class="content">
-
-  <div class="post-meta">
-
-  <div class="dark-color">
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>22 Jun 2021</time>
-
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 4 min</i>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  <p>WSGI - Web Server Gateway Interface. This is Python standard interface between web server software and web applications.
-The specification was created in 2003 and described in PEP 333, further updated in 2010 in PEP 3333, with backward compatibility to prepare for Python 3 changes.</p>
-
-<p></p>
-
-<h4 id="background">Background</h4>
-
-<p>Initially dynamic request from the client to the server was passed as a path to script in the cgi-bin directory, and the webserver was forking the script into a new process. In 1997 CGI (Common Gateway Interface) standard was created that set environment variable names and their purposes, for example:</p>
-
-<ul>
-<li>QUERY_STRING - the part of URL after <em>?</em> character</li>
-<li>REQUEST_METHOD - the name of the HTTP method</li>
-<li>SCRIPT_PATH - relative path to the program, like /cgi-bin/script.py</li>
-</ul>
-
-<p>While CGI programming was heavily used with languages like Perl or PHP. Starting a new script (forking) is slow, therefore it is better to have a separate web server and separate web application.
-In late 1990s <a href="https://grisha.org/blog/2013/10/25/mod-python-the-long-story/">mod_python</a> was created. As an interface to Apache server internals, it allowed having applications written in Python be used with the Apache server. It could be used as a tool for running a web development framework in production, though as the original author says, it is best for a scenario with high volume servers without a user interface (therefore no need for WSGI framework). When development slowed down, in 2003 Python community came up with the WSGI standard (<a href="https://www.python.org/dev/peps/pep-3333/">PEP3333</a>). The goal was to promote portability as it was better to have fewer web frameworks but better supported, that could operate with different servers, because of a universal interface between them.</p>
-
-<p>The road from Request to Python now could look like:</p>
-
-<p><em>HTTP</em> -&gt; Nginx -&gt; <em>HTTP</em> -&gt; Gunicorn -&gt; <em>WSGI</em> -&gt; Flask -&gt; <em>ROUTING</em> -&gt; Python</p>
-
-<p>WSGI interface has two sides: server and application. The server invokes callable object provided by the application side. It is possible to also create middleware components that must implement both the server and application sides.</p>
-
-<h4 id="application-side">Application side</h4>
-
-<p>The application object is callable (has <code>__call__</code> method) that accepts two arguments: environ and start_response (name of arguments can be different).</p>
-
-<pre><code class="language-python">def application(environ, start_response):
-    status = &quot;200 OK&quot;
-    response_headers = [(&quot;Content-type&quot;, &quot;text/plain&quot;)]
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=generator content="Hugo 0.85.0"><title>First look at WSGI and PEP 3333 &#183; Coding Notes</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css><link rel=stylesheet href=https://pbedn.github.io/css/side-menu.css><link rel=stylesheet href=https://pbedn.github.io/css/blackburn.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css><link href="https://fonts.googleapis.com/css?family=Raleway" rel=stylesheet type=text/css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><link rel="shortcut icon" href=https://pbedn.github.io/img/favicon.ico type=image/x-icon></head><body><div id=layout><a href=#menu id=menuLink class=menu-link><span></span></a><div id=menu><a class="pure-menu-heading brand" href=https://pbedn.github.io/>PBedn</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/><i class="fa fa-home fa-fw"></i>Home</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/archives/><i class="fa fa-list fa-fw"></i>Archives</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/about/><i class="fa fa-user fa-fw"></i>About</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/links/><i class="fa fa-link fa-fw"></i>Links</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/books/><i class="fa fa-question fa-fw"></i>Books</a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://linkedin.com/in/pbedn target=_blank><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/pbedn target=_blank><i class="fa fa-github-square fa-fw"></i>GitHub</a></li></ul></div><div><div class=small-print><small>&#169; 2021 Pawel Bednarz</small></div><div class=small-print><small>Built with&nbsp;<a href=https://gohugo.io/ target=_blank>Hugo</a></small>
+<small>Theme&nbsp;<a href=https://github.com/yoshiharuyamashita/blackburn target=_blank>Blackburn</a></small></div></div><div><input id=highlight type=button value="Highlight Code Dark" class=pure-button style=font-size:65%;background:#999;text-align:center></div></div><div id=main><div class=header><h2>First look at WSGI and PEP 3333</h2><h3></h3></div><div class=content><div class=post-meta><div class=dark-color><i class="fa fa-calendar fa-fw"></i>
+<time>22 Jun 2021</time>
+.. <i class="fa fa-clock-o" aria-hidden=true>4 min</i></div><div><i class="fa fa-tags fa-fw"></i>
+<a class=post-taxonomy-tag href=https://pbedn.github.io/tags/python>python</a></div></div><p>WSGI - Web Server Gateway Interface. This is Python standard interface between web server software and web applications.
+The specification was created in 2003 and described in PEP 333, further updated in 2010 in PEP 3333, with backward compatibility to prepare for Python 3 changes.</p><h4 id=background>Background</h4><p>Initially dynamic request from the client to the server was passed as a path to script in the cgi-bin directory, and the webserver was forking the script into a new process. In 1997 CGI (Common Gateway Interface) standard was created that set environment variable names and their purposes, for example:</p><ul><li>QUERY_STRING - the part of URL after <em>?</em> character</li><li>REQUEST_METHOD - the name of the HTTP method</li><li>SCRIPT_PATH - relative path to the program, like /cgi-bin/script.py</li></ul><p>While CGI programming was heavily used with languages like Perl or PHP. Starting a new script (forking) is slow, therefore it is better to have a separate web server and separate web application.
+In late 1990s <a href=https://grisha.org/blog/2013/10/25/mod-python-the-long-story/>mod_python</a> was created. As an interface to Apache server internals, it allowed having applications written in Python be used with the Apache server. It could be used as a tool for running a web development framework in production, though as the original author says, it is best for a scenario with high volume servers without a user interface (therefore no need for WSGI framework). When development slowed down, in 2003 Python community came up with the WSGI standard (<a href=https://www.python.org/dev/peps/pep-3333/>PEP3333</a>). The goal was to promote portability as it was better to have fewer web frameworks but better supported, that could operate with different servers, because of a universal interface between them.</p><p>The road from Request to Python now could look like:</p><p><em>HTTP</em> -> Nginx -> <em>HTTP</em> -> Gunicorn -> <em>WSGI</em> -> Flask -> <em>ROUTING</em> -> Python</p><p>WSGI interface has two sides: server and application. The server invokes callable object provided by the application side. It is possible to also create middleware components that must implement both the server and application sides.</p><h4 id=application-side>Application side</h4><p>The application object is callable (has <code>__call__</code> method) that accepts two arguments: environ and start_response (name of arguments can be different).</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>application</span>(environ, start_response):
+    status <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;200 OK&#34;</span>
+    response_headers <span style=color:#f92672>=</span> [(<span style=color:#e6db74>&#34;Content-type&#34;</span>, <span style=color:#e6db74>&#34;text/plain&#34;</span>)]
     start_response(status, response_headers)
-    return [b&quot;Hello World!&quot;]
-</code></pre>
-
-<ul>
-<li><em>environ</em> parameter is builtin Python dictionary object containing CGI-style environment variables (why CGI not regular HTTP, because servers have mature CGI functionality)</li>
-<li><em>start_response</em> is callable accepting HTTP status string and list of tuples describing HTTP response header</li>
-</ul>
-
-<pre><code class="language-python">{ # environ
-    'REQUEST_METHOD': 'GET',
-    'PATH_INFO': '/url/',
-    'SERVER_PROTOCOL': 'HTTP/1.1',
-    ...
+    <span style=color:#66d9ef>return</span> [<span style=color:#e6db74>b</span><span style=color:#e6db74>&#34;Hello World!&#34;</span>]
+</code></pre></div><ul><li><em>environ</em> parameter is builtin Python dictionary object containing CGI-style environment variables (why CGI not regular HTTP, because servers have mature CGI functionality)</li><li><em>start_response</em> is callable accepting HTTP status string and list of tuples describing HTTP response header</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>{ <span style=color:#75715e># environ</span>
+    <span style=color:#e6db74>&#39;REQUEST_METHOD&#39;</span>: <span style=color:#e6db74>&#39;GET&#39;</span>,
+    <span style=color:#e6db74>&#39;PATH_INFO&#39;</span>: <span style=color:#e6db74>&#39;/url/&#39;</span>,
+    <span style=color:#e6db74>&#39;SERVER_PROTOCOL&#39;</span>: <span style=color:#e6db74>&#39;HTTP/1.1&#39;</span>,
+    <span style=color:#f92672>...</span>
 }
-</code></pre>
-
-<p>A different example of WSGI compatible application with <em>view</em> function implemented.</p>
-
-<pre><code class="language-python">def application(environ, start_response):
-    response = view(environ)
-    status = &quot;200 OK&quot;
-    response_headers = [(&quot;Content-type&quot;, &quot;text/plain&quot;)]
+</code></pre></div><p>A different example of WSGI compatible application with <em>view</em> function implemented.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>application</span>(environ, start_response):
+    response <span style=color:#f92672>=</span> view(environ)
+    status <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;200 OK&#34;</span>
+    response_headers <span style=color:#f92672>=</span> [(<span style=color:#e6db74>&#34;Content-type&#34;</span>, <span style=color:#e6db74>&#34;text/plain&#34;</span>)]
     start_response(status, response_headers)
-    return [response]
+    <span style=color:#66d9ef>return</span> [response]
 
-def view(environ):
-    path = environ['PATH_INFO']
-    return f'Hello from {path}'
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>view</span>(environ):
+    path <span style=color:#f92672>=</span> environ[<span style=color:#e6db74>&#39;PATH_INFO&#39;</span>]
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;Hello from </span><span style=color:#e6db74>{</span>path<span style=color:#e6db74>}</span><span style=color:#e6db74>&#39;</span>
 
-</code></pre>
-
-<h4 id="server-side">Server side</h4>
-
-<p>Let&rsquo;s try to implement a simple server that prints requests. Basic request and response could look like:</p>
-
-<p><strong>Request</strong></p>
-
-<pre><code>GET / HTTP/1.1
+</code></pre></div><h4 id=server-side>Server side</h4><p>Let&rsquo;s try to implement a simple server that prints requests. Basic request and response could look like:</p><p><strong>Request</strong></p><pre><code>GET / HTTP/1.1
 Host: localhost:8000
 User-Agent: curl/7.54.0
 Accept: */*
-</code></pre>
-
-<p><strong>Response</strong></p>
-
-<pre><code>HTTP/1.1 200 OK
+</code></pre><p><strong>Response</strong></p><pre><code>HTTP/1.1 200 OK
 Content-Type: text/html
 Content-Length: 11
 
 Hello world
-</code></pre>
+</code></pre><p><strong>Simple server</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> socket
 
-<p><strong>Simple server</strong></p>
+<span style=color:#66d9ef>with</span> socket<span style=color:#f92672>.</span>socket() <span style=color:#66d9ef>as</span> s:
+    s<span style=color:#f92672>.</span>bind((<span style=color:#e6db74>&#39;localhost&#39;</span>, <span style=color:#ae81ff>8000</span>))
+    s<span style=color:#f92672>.</span>listen(<span style=color:#ae81ff>1</span>)
+    conn, addr <span style=color:#f92672>=</span> s<span style=color:#f92672>.</span>accept()
 
-<pre><code class="language-python">import socket
-
-with socket.socket() as s:
-    s.bind(('localhost', 8000))
-    s.listen(1)
-    conn, addr = s.accept()
-
-    while True:
-        with conn:
-            request = conn.recv(1024).decode('utf-8')
+    <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+        <span style=color:#66d9ef>with</span> conn:
+            request <span style=color:#f92672>=</span> conn<span style=color:#f92672>.</span>recv(<span style=color:#ae81ff>1024</span>)<span style=color:#f92672>.</span>decode(<span style=color:#e6db74>&#39;utf-8&#39;</span>)
             print(request)
-            conn.sendall('Hello world'.encode('utf-8'))
-</code></pre>
+            conn<span style=color:#f92672>.</span>sendall(<span style=color:#e6db74>&#39;Hello world&#39;</span><span style=color:#f92672>.</span>encode(<span style=color:#e6db74>&#39;utf-8&#39;</span>))
+</code></pre></div><p>And now update to have the server compatible with WSGI. Here we see the familiar function <em>application</em>.
+When called by the server the application must return an iterable yielding zero or more bytestrings.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>with</span> conn:
+    http_request <span style=color:#f92672>=</span> conn<span style=color:#f92672>.</span>recv(<span style=color:#ae81ff>1024</span>)<span style=color:#f92672>.</span>decode(<span style=color:#e6db74>&#39;utf-8&#39;</span>)
+    request <span style=color:#f92672>=</span> parse_http(request)
+    environ <span style=color:#f92672>=</span> to_environ(<span style=color:#f92672>*</span>request)
+    response <span style=color:#f92672>=</span> application(start_response, environ)
+    <span style=color:#66d9ef>for</span> data <span style=color:#f92672>in</span> response:
+      conn<span style=color:#f92672>.</span>sendall(data<span style=color:#f92672>.</span>encode(<span style=color:#e6db74>&#39;utf-8&#39;</span>))
+</code></pre></div><p>It is good to mention that the Python library contains a reference implementation of WSGI specification in module <em>wsgiref</em>. For example, there is a demo HTTP server for WSGI applications.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> wsgiref.simple_server <span style=color:#f92672>import</span> make_server
 
-<p>And now update to have the server compatible with WSGI. Here we see the familiar function <em>application</em>.
-When called by the server the application must return an iterable yielding zero or more bytestrings.</p>
+<span style=color:#66d9ef>with</span> make_server(<span style=color:#e6db74>&#39;&#39;</span>, <span style=color:#ae81ff>8000</span>, application) <span style=color:#66d9ef>as</span> httpd:
+    print(<span style=color:#e6db74>&#34;Serving on port 8000...&#34;</span>)
 
-<pre><code class="language-python">with conn:
-    http_request = conn.recv(1024).decode('utf-8')
-    request = parse_http(request)
-    environ = to_environ(*request)
-    response = application(start_response, environ)
-    for data in response:
-      conn.sendall(data.encode('utf-8'))
-</code></pre>
-
-<p>It is good to mention that the Python library contains a reference implementation of WSGI specification in module <em>wsgiref</em>. For example, there is a demo HTTP server for WSGI applications.</p>
-
-<pre><code class="language-python">from wsgiref.simple_server import make_server
-
-with make_server('', 8000, application) as httpd:
-    print(&quot;Serving on port 8000...&quot;)
-
-    # Serve until process is killed
-    httpd.serve_forever()
-</code></pre>
-
-<h4 id="middleware">Middleware</h4>
-
-<p>Middleware could play both roles, depending on the situation. Sometimes a middleware may be wrapped in another component, and that will create a &ldquo;middleware stack&rdquo;. For the most part, middleware must conform to both server and application sides of WSGI.</p>
-
-<p>And that&rsquo;s it.</p>
-
-<hr />
-
-<p>Resources:</p>
-
-<ul>
-<li><a href="https://grisha.org/blog/2013/10/25/mod-python-the-long-story/">Mod_python: The Long Story - Gregory Trubetskoy blog</a></li>
-<li><a href="https://www.python.org/dev/peps/pep-3333/">PEP 3333 &ndash; Python Web Server Gateway Interface v1.0.1</a></li>
-<li><a href="https://www.youtube.com/watch?v=WqrCnVAkLIo">WSGI for Web Developers (Ryan Wilson-Perkin) - PyCon Canada - Talk</a></li>
-<li><a href="https://docs.python.org/3.8/library/wsgiref.html">wsgiref — WSGI Utilities and Reference Implementation</a></li>
-</ul>
-
-  
-<div class="prev-next-post pure-g">
-  <div class="pure-u-1-24" style="text-align: left;">
-    
-    <a href="https://pbedn.github.io/post/2021-04-15-playing-with-python-boolean/"><i class="fa fa-chevron-left"></i></a>
-    
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="prev">
-      <a href="https://pbedn.github.io/post/2021-04-15-playing-with-python-boolean/">Playing with Python: Boolean of empty containers</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-2-24">
-    &nbsp;
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="next">
-      <a href="https://pbedn.github.io/post/2021-07-19-python-evolution-ramalho/">Python evolution with Luciano Ramalho - summary of podcast</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://pbedn.github.io/post/2021-07-19-python-evolution-ramalho/"><i class="fa fa-chevron-right"></i></a>
-    
-  </div>
-</div>
-
-
-
-</div>
-
-</div>
-</div>
-<script src="https://pbedn.github.io/js/ui.js"></script>
-<script src="https://pbedn.github.io/js/menus.js"></script>
-
-
-<script>
-  
-  if (window.location.hostname != "localhost") {
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-74192356-1', 'auto');
-    ga('send', 'pageview');
-  }
-</script>
-
-
-<script type="text/javascript">
-$("#highlight").click(function () {
-$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>');
-});
-</script>
- 
-
-</body>
-</html>
-
+    <span style=color:#75715e># Serve until process is killed</span>
+    httpd<span style=color:#f92672>.</span>serve_forever()
+</code></pre></div><h4 id=middleware>Middleware</h4><p>Middleware could play both roles, depending on the situation. Sometimes a middleware may be wrapped in another component, and that will create a &ldquo;middleware stack&rdquo;. For the most part, middleware must conform to both server and application sides of WSGI.</p><p>And that&rsquo;s it.</p><hr><p>Resources:</p><ul><li><a href=https://grisha.org/blog/2013/10/25/mod-python-the-long-story/>Mod_python: The Long Story - Gregory Trubetskoy blog</a></li><li><a href=https://www.python.org/dev/peps/pep-3333/>PEP 3333 &ndash; Python Web Server Gateway Interface v1.0.1</a></li><li><a href="https://www.youtube.com/watch?v=WqrCnVAkLIo">WSGI for Web Developers (Ryan Wilson-Perkin) - PyCon Canada - Talk</a></li><li><a href=https://docs.python.org/3.8/library/wsgiref.html>wsgiref — WSGI Utilities and Reference Implementation</a></li></ul><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://pbedn.github.io/post/2021-04-15-playing-with-python-boolean/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://pbedn.github.io/post/2021-04-15-playing-with-python-boolean/>Playing with Python: Boolean of empty containers</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24><nav class=next><a href=https://pbedn.github.io/post/2021-07-19-python-evolution-ramalho/>Python evolution with Luciano Ramalho - summary of podcast</a></nav></div><div class=pure-u-1-24 style=text-align:right><a href=https://pbedn.github.io/post/2021-07-19-python-evolution-ramalho/><i class="fa fa-chevron-right"></i></a></div></div></div></div></div><script src=https://pbedn.github.io/js/ui.js></script><script src=https://pbedn.github.io/js/menus.js></script><script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-74192356-1','auto'),ga('send','pageview'))</script><script type=text/javascript>$("#highlight").click(function(){$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>')})</script></body></html>

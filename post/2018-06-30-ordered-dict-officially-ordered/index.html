@@ -1,452 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.34" />
-
-  <title>Python dictionary is now officially ordered! &middot; Coding Notes</title>
-
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css">
-
-  <link rel="stylesheet" href="https://pbedn.github.io/css/side-menu.css">
-
-  <link rel="stylesheet" href="https://pbedn.github.io/css/blackburn.css">
-
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-
-
- 
-  
-
-  
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <link rel="shortcut icon" href="https://pbedn.github.io/img/favicon.ico" type="image/x-icon" />
-
-  
-  
-
-</head>
-
-
-<body>
-<div id="layout">
-
-  
-<a href="#menu" id="menuLink" class="menu-link">
-  
-  <span></span>
-</a>
-<div id="menu">
-
-  
-  <a class="pure-menu-heading brand" href="https://pbedn.github.io/">PBedn</a>
-
-
-  <div class="pure-menu">
-    <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/archives/"><i class='fa fa-list fa-fw'></i>Archives</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/links/"><i class='fa fa-link fa-fw'></i>Links</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/books/"><i class='fa fa-question fa-fw'></i>Books</a>
-      
-        </li>
-      
-    </ul>
-  </div>
-
-  <div class="pure-menu social">
-  <ul class="pure-menu-list">
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://linkedin.com/in/pbedn" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
-    </li>
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/pbedn" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
-    </li>
-    
-
-  </ul>
-</div>
-
-
-  <div>
-  <div class="small-print">
-    <small>&#169; 2021 Pawel Bednarz</small>
-  </div>
-  <div class="small-print">
-    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
-    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
-  </div>
-</div>
-
-
-<div>
-  <input id="highlight" type="button" value="Highlight Code Dark" class="pure-button" style="
-  font-size: 65%; background: #999; text-align: center;" />
-</div>
-
-</div>
-
-
-  <div id="main">
-
-
-<div class="header">
-  <h2>Python dictionary is now officially ordered!</h2>
-  <h3></h3>
-</div>
-<div class="content">
-
-  <div class="post-meta">
-
-  <div class="dark-color">
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>30 Jun 2018</time>
-
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 6 min</i>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  <p>Python 3.5 brought us 4-100 times faster <em>OrderedDict</em> thanks to its implementation in C, before was written in Python. Python 3.6 improved a standard library dictionary, by making it use more compact representation. Now dictionary could use 20% to 25% less memory compared to Python 3.5, and the order of items was kept but as suggested it was only an implementation detail and should not be used officially (backwards compatibility). Well, in Python 3.7 it has been approved.</p>
-
-<p>Which one should we use now? Standard dict or OrderedDict ?</p>
-
-<p></p>
-
-<hr />
-
-<p>Let&rsquo;s dive a bit into the history of dictionaries innovation in Python 3 over the years (source: Python official documentation).</p>
-
-<p><strong>Python 3.0</strong></p>
-
-<ul>
-<li>Dict methods <em>dict.keys()</em>, <em>dict.items()</em> and <em>dict.values()</em> now return <em>views</em> instead of lists. Views shows what is inside the dictionary without making a copy.</li>
-</ul>
-
-<pre><code class="language-python">&gt;&gt;&gt; d = dict(a=10, b=20, c=30, d=40)
-&gt;&gt;&gt; d
-&gt;&gt;&gt; {'b': 20, 'c': 30, 'a': 10, 'd': 40}
-&gt;&gt;&gt; d.keys()
-&gt;&gt;&gt; dict_keys(['b', 'c', 'a', 'd'])
-&gt;&gt;&gt; d.items()
-&gt;&gt;&gt; dict_items([('b', 20), ('c', 30), ('a', 10), ('d', 40)])
-</code></pre>
-
-<ul>
-<li>The <em>dict.iterkeys()</em>, <em>dict.iteritems()</em> and <em>dict.itervalues()</em> methods are no longer supported.</li>
-</ul>
-
-<pre><code class="language-python">&gt;&gt;&gt; d.iterkeys()
-&gt;&gt;&gt; ...
-    AttributeError: 'dict' object has no attribute 'iterkeys'
-</code></pre>
-
-<p><strong>Python 3.1</strong></p>
-
-<ul>
-<li>PEP 372: Adding an ordered dictionary to collections</li>
-</ul>
-
-<pre><code class="language-python">&gt;&gt;&gt; from collections import OrderedDict
-&gt;&gt;&gt; OrderedDict(a=10, b=20, c=30, d=40)
-&gt;&gt;&gt; d['a'] = 10
-&gt;&gt;&gt; d['b'] = 20
-&gt;&gt;&gt; d.items()
-[('a', 10), ('b', 20)]
-</code></pre>
-
-<p><strong>Python 3.2</strong></p>
-
-<ul>
-<li>New method move_to_end() in collections.OrderedDict class. It takes an existing key and moves it to either the first or last position in the ordered sequence.</li>
-</ul>
-
-<pre><code class="language-python">&gt;&gt;&gt; d = OrderedDict.fromkeys(['a', 'b', 'X', 'd', 'e'])
-&gt;&gt;&gt; list(d)
-['a', 'b', 'X', 'd', 'e']
-&gt;&gt;&gt; d.move_to_end('X')
-&gt;&gt;&gt; list(d)
-['a', 'b', 'd', 'e', 'X']
-</code></pre>
-
-<ul>
-<li>Set and dict can now hold more than 2**32 entries on builds with 64-bit pointers (previously, they could grow to that size, but their performance degraded catastrophically).</li>
-</ul>
-
-<p><strong>Python 3.3</strong></p>
-
-<ul>
-<li><p>PEP 412 - Key-Sharing Dictionary.</p>
-
-<p>Dictionaries used as attribute dictionaries (with <code>__dict___</code> attribute) are implemented in a split-table form. It means they can share keys with other attribute dictionaries of instances of the same class.</p></li>
-</ul>
-
-<pre><code class="language-python">&gt;&gt;&gt; import sys
-
-&gt;&gt;&gt; d = dict(a=10, b=20)
-&gt;&gt;&gt; sys.getsizeof(d)
-&gt;&gt;&gt; 136
-
-&gt;&gt;&gt; class D():
-&gt;&gt;&gt;     def __init__(self, a, b):
-&gt;&gt;&gt;         self.a = a
-&gt;&gt;&gt;         self.b = b
-&gt;&gt;&gt; d = D(10, 20)
-&gt;&gt;&gt; sys.getsizeof(d)
-&gt;&gt;&gt; 32
-</code></pre>
-
-<p><strong>Python 3.4</strong></p>
-
-<ul>
-<li>PEP 456: Secure and Interchangeable Hash Algorithm (SipHash is now default string and bytes hash algorithm).</li>
-</ul>
-
-<p><strong>Python 3.5</strong></p>
-
-<ul>
-<li>Improvement in collections.OrderedDict, now implemented in C, which makes it 4 to 100 times faster.</li>
-</ul>
-
-<p><strong>Python 3.6</strong></p>
-
-<ul>
-<li>The dict type has been reimplemented to use a more compact representation based on a proposal by Raymond Hettinger and similar to the PyPy dict implementation. This resulted in dictionaries using 20% to 25% less memory when compared to Python 3.5.</li>
-</ul>
-
-<p><strong>Python 3.7</strong></p>
-
-<ul>
-<li>The insertion-order preservation nature of dict objects has been declared to be an official part of the Python language spec.</li>
-</ul>
-
-<pre><code class="language-python">&gt;&gt;&gt; dict(a=10, b=20, c=30, d=40)
-&gt;&gt;&gt; {'a': 10, 'b': 20, 'c': 30, 'd': 40}
-
-&gt;&gt;&gt; a = dict(a=10,b=20)
-&gt;&gt;&gt; b = dict(b=20,a=10)
-&gt;&gt;&gt; a
-{'a': 10, 'b': 20}
-&gt;&gt;&gt; b
-{'b': 20, 'a': 10}
-&gt;&gt;&gt; a == b
-True
-&gt;&gt;&gt; a is b
-False
-</code></pre>
-
-<hr />
-
-<p>Now some simplified theory about dictionaries (source: Python official documentation, Brandon Rhodes and Raymond Hettinger talks).</p>
-
-<ul>
-<li><p><strong>dictionary</strong> - <em>mapping</em> object that maps <em>hashable</em> values to arbitrary objects</p></li>
-
-<li><p><strong>mapping</strong> - container object that supports arbitrary key lookups (dict and collections: defaultdict, OrderedDict, Counter)</p></li>
-
-<li><p><strong>hashable</strong> - object is hashable if it has a hash value which never changes during its lifetime (<code>__hash__</code> method) and can be compared to other objects (<code>__eq__</code> method)</p></li>
-</ul>
-
-<p>Dictionary is a hash table that maps key to values. Python dictionary <em>key</em> in comparison to list can be any value. Therefore, to save it in RAM we need to convert (hash) key to integer (index in list is already an integer) and compute index.</p>
-
-<p>Under the hood, Python dictionary is in the beginning an 8 element list.</p>
-
-<pre><code>[Index, Hash, Key, Value]
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=generator content="Hugo 0.85.0"><title>Python dictionary is now officially ordered! &#183; Coding Notes</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css><link rel=stylesheet href=https://pbedn.github.io/css/side-menu.css><link rel=stylesheet href=https://pbedn.github.io/css/blackburn.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css><link href="https://fonts.googleapis.com/css?family=Raleway" rel=stylesheet type=text/css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><link rel="shortcut icon" href=https://pbedn.github.io/img/favicon.ico type=image/x-icon></head><body><div id=layout><a href=#menu id=menuLink class=menu-link><span></span></a><div id=menu><a class="pure-menu-heading brand" href=https://pbedn.github.io/>PBedn</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/><i class="fa fa-home fa-fw"></i>Home</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/archives/><i class="fa fa-list fa-fw"></i>Archives</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/about/><i class="fa fa-user fa-fw"></i>About</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/links/><i class="fa fa-link fa-fw"></i>Links</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/books/><i class="fa fa-question fa-fw"></i>Books</a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://linkedin.com/in/pbedn target=_blank><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/pbedn target=_blank><i class="fa fa-github-square fa-fw"></i>GitHub</a></li></ul></div><div><div class=small-print><small>&#169; 2021 Pawel Bednarz</small></div><div class=small-print><small>Built with&nbsp;<a href=https://gohugo.io/ target=_blank>Hugo</a></small>
+<small>Theme&nbsp;<a href=https://github.com/yoshiharuyamashita/blackburn target=_blank>Blackburn</a></small></div></div><div><input id=highlight type=button value="Highlight Code Dark" class=pure-button style=font-size:65%;background:#999;text-align:center></div></div><div id=main><div class=header><h2>Python dictionary is now officially ordered!</h2><h3></h3></div><div class=content><div class=post-meta><div class=dark-color><i class="fa fa-calendar fa-fw"></i>
+<time>30 Jun 2018</time>
+.. <i class="fa fa-clock-o" aria-hidden=true>6 min</i></div><div><i class="fa fa-tags fa-fw"></i>
+<a class=post-taxonomy-tag href=https://pbedn.github.io/tags/python>python</a></div></div><p>Python 3.5 brought us 4-100 times faster <em>OrderedDict</em> thanks to its implementation in C, before was written in Python. Python 3.6 improved a standard library dictionary, by making it use more compact representation. Now dictionary could use 20% to 25% less memory compared to Python 3.5, and the order of items was kept but as suggested it was only an implementation detail and should not be used officially (backwards compatibility). Well, in Python 3.7 it has been approved.</p><p>Which one should we use now? Standard dict or OrderedDict ?</p><hr><p>Let&rsquo;s dive a bit into the history of dictionaries innovation in Python 3 over the years (source: Python official documentation).</p><p><strong>Python 3.0</strong></p><ul><li>Dict methods <em>dict.keys()</em>, <em>dict.items()</em> and <em>dict.values()</em> now return <em>views</em> instead of lists. Views shows what is inside the dictionary without making a copy.</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> d <span style=color:#f92672>=</span> dict(a<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>, b<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>, c<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span>, d<span style=color:#f92672>=</span><span style=color:#ae81ff>40</span>)
+<span style=color:#f92672>&gt;&gt;&gt;</span> d
+<span style=color:#f92672>&gt;&gt;&gt;</span> {<span style=color:#e6db74>&#39;b&#39;</span>: <span style=color:#ae81ff>20</span>, <span style=color:#e6db74>&#39;c&#39;</span>: <span style=color:#ae81ff>30</span>, <span style=color:#e6db74>&#39;a&#39;</span>: <span style=color:#ae81ff>10</span>, <span style=color:#e6db74>&#39;d&#39;</span>: <span style=color:#ae81ff>40</span>}
+<span style=color:#f92672>&gt;&gt;&gt;</span> d<span style=color:#f92672>.</span>keys()
+<span style=color:#f92672>&gt;&gt;&gt;</span> dict_keys([<span style=color:#e6db74>&#39;b&#39;</span>, <span style=color:#e6db74>&#39;c&#39;</span>, <span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#e6db74>&#39;d&#39;</span>])
+<span style=color:#f92672>&gt;&gt;&gt;</span> d<span style=color:#f92672>.</span>items()
+<span style=color:#f92672>&gt;&gt;&gt;</span> dict_items([(<span style=color:#e6db74>&#39;b&#39;</span>, <span style=color:#ae81ff>20</span>), (<span style=color:#e6db74>&#39;c&#39;</span>, <span style=color:#ae81ff>30</span>), (<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#ae81ff>10</span>), (<span style=color:#e6db74>&#39;d&#39;</span>, <span style=color:#ae81ff>40</span>)])
+</code></pre></div><ul><li>The <em>dict.iterkeys()</em>, <em>dict.iteritems()</em> and <em>dict.itervalues()</em> methods are no longer supported.</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> d<span style=color:#f92672>.</span>iterkeys()
+<span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#f92672>...</span>
+    <span style=color:#a6e22e>AttributeError</span>: <span style=color:#e6db74>&#39;dict&#39;</span> object has no attribute <span style=color:#e6db74>&#39;iterkeys&#39;</span>
+</code></pre></div><p><strong>Python 3.1</strong></p><ul><li>PEP 372: Adding an ordered dictionary to collections</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> OrderedDict
+<span style=color:#f92672>&gt;&gt;&gt;</span> OrderedDict(a<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>, b<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>, c<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span>, d<span style=color:#f92672>=</span><span style=color:#ae81ff>40</span>)
+<span style=color:#f92672>&gt;&gt;&gt;</span> d[<span style=color:#e6db74>&#39;a&#39;</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> d[<span style=color:#e6db74>&#39;b&#39;</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> d<span style=color:#f92672>.</span>items()
+[(<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#ae81ff>10</span>), (<span style=color:#e6db74>&#39;b&#39;</span>, <span style=color:#ae81ff>20</span>)]
+</code></pre></div><p><strong>Python 3.2</strong></p><ul><li>New method move_to_end() in collections.OrderedDict class. It takes an existing key and moves it to either the first or last position in the ordered sequence.</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> d <span style=color:#f92672>=</span> OrderedDict<span style=color:#f92672>.</span>fromkeys([<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#e6db74>&#39;b&#39;</span>, <span style=color:#e6db74>&#39;X&#39;</span>, <span style=color:#e6db74>&#39;d&#39;</span>, <span style=color:#e6db74>&#39;e&#39;</span>])
+<span style=color:#f92672>&gt;&gt;&gt;</span> list(d)
+[<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#e6db74>&#39;b&#39;</span>, <span style=color:#e6db74>&#39;X&#39;</span>, <span style=color:#e6db74>&#39;d&#39;</span>, <span style=color:#e6db74>&#39;e&#39;</span>]
+<span style=color:#f92672>&gt;&gt;&gt;</span> d<span style=color:#f92672>.</span>move_to_end(<span style=color:#e6db74>&#39;X&#39;</span>)
+<span style=color:#f92672>&gt;&gt;&gt;</span> list(d)
+[<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#e6db74>&#39;b&#39;</span>, <span style=color:#e6db74>&#39;d&#39;</span>, <span style=color:#e6db74>&#39;e&#39;</span>, <span style=color:#e6db74>&#39;X&#39;</span>]
+</code></pre></div><ul><li>Set and dict can now hold more than 2**32 entries on builds with 64-bit pointers (previously, they could grow to that size, but their performance degraded catastrophically).</li></ul><p><strong>Python 3.3</strong></p><ul><li><p>PEP 412 - Key-Sharing Dictionary.</p><p>Dictionaries used as attribute dictionaries (with <code>__dict___</code> attribute) are implemented in a split-table form. It means they can share keys with other attribute dictionaries of instances of the same class.</p></li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#f92672>import</span> sys
+
+<span style=color:#f92672>&gt;&gt;&gt;</span> d <span style=color:#f92672>=</span> dict(a<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>, b<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>)
+<span style=color:#f92672>&gt;&gt;&gt;</span> sys<span style=color:#f92672>.</span>getsizeof(d)
+<span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#ae81ff>136</span>
+
+<span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>D</span>():
+<span style=color:#f92672>&gt;&gt;&gt;</span>     <span style=color:#66d9ef>def</span> __init__(self, a, b):
+<span style=color:#f92672>&gt;&gt;&gt;</span>         self<span style=color:#f92672>.</span>a <span style=color:#f92672>=</span> a
+<span style=color:#f92672>&gt;&gt;&gt;</span>         self<span style=color:#f92672>.</span>b <span style=color:#f92672>=</span> b
+<span style=color:#f92672>&gt;&gt;&gt;</span> d <span style=color:#f92672>=</span> D(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>20</span>)
+<span style=color:#f92672>&gt;&gt;&gt;</span> sys<span style=color:#f92672>.</span>getsizeof(d)
+<span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#ae81ff>32</span>
+</code></pre></div><p><strong>Python 3.4</strong></p><ul><li>PEP 456: Secure and Interchangeable Hash Algorithm (SipHash is now default string and bytes hash algorithm).</li></ul><p><strong>Python 3.5</strong></p><ul><li>Improvement in collections.OrderedDict, now implemented in C, which makes it 4 to 100 times faster.</li></ul><p><strong>Python 3.6</strong></p><ul><li>The dict type has been reimplemented to use a more compact representation based on a proposal by Raymond Hettinger and similar to the PyPy dict implementation. This resulted in dictionaries using 20% to 25% less memory when compared to Python 3.5.</li></ul><p><strong>Python 3.7</strong></p><ul><li>The insertion-order preservation nature of dict objects has been declared to be an official part of the Python language spec.</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> dict(a<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>, b<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>, c<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span>, d<span style=color:#f92672>=</span><span style=color:#ae81ff>40</span>)
+<span style=color:#f92672>&gt;&gt;&gt;</span> {<span style=color:#e6db74>&#39;a&#39;</span>: <span style=color:#ae81ff>10</span>, <span style=color:#e6db74>&#39;b&#39;</span>: <span style=color:#ae81ff>20</span>, <span style=color:#e6db74>&#39;c&#39;</span>: <span style=color:#ae81ff>30</span>, <span style=color:#e6db74>&#39;d&#39;</span>: <span style=color:#ae81ff>40</span>}
+
+<span style=color:#f92672>&gt;&gt;&gt;</span> a <span style=color:#f92672>=</span> dict(a<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,b<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>)
+<span style=color:#f92672>&gt;&gt;&gt;</span> b <span style=color:#f92672>=</span> dict(b<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>,a<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>)
+<span style=color:#f92672>&gt;&gt;&gt;</span> a
+{<span style=color:#e6db74>&#39;a&#39;</span>: <span style=color:#ae81ff>10</span>, <span style=color:#e6db74>&#39;b&#39;</span>: <span style=color:#ae81ff>20</span>}
+<span style=color:#f92672>&gt;&gt;&gt;</span> b
+{<span style=color:#e6db74>&#39;b&#39;</span>: <span style=color:#ae81ff>20</span>, <span style=color:#e6db74>&#39;a&#39;</span>: <span style=color:#ae81ff>10</span>}
+<span style=color:#f92672>&gt;&gt;&gt;</span> a <span style=color:#f92672>==</span> b
+<span style=color:#66d9ef>True</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> a <span style=color:#f92672>is</span> b
+<span style=color:#66d9ef>False</span>
+</code></pre></div><hr><p>Now some simplified theory about dictionaries (source: Python official documentation, Brandon Rhodes and Raymond Hettinger talks).</p><ul><li><p><strong>dictionary</strong> - <em>mapping</em> object that maps <em>hashable</em> values to arbitrary objects</p></li><li><p><strong>mapping</strong> - container object that supports arbitrary key lookups (dict and collections: defaultdict, OrderedDict, Counter)</p></li><li><p><strong>hashable</strong> - object is hashable if it has a hash value which never changes during its lifetime (<code>__hash__</code> method) and can be compared to other objects (<code>__eq__</code> method)</p></li></ul><p>Dictionary is a hash table that maps key to values. Python dictionary <em>key</em> in comparison to list can be any value. Therefore, to save it in RAM we need to convert (hash) key to integer (index in list is already an integer) and compute index.</p><p>Under the hood, Python dictionary is in the beginning an 8 element list.</p><pre><code>[Index, Hash, Key, Value]
 [000  , ... , ...,  ... ]
 [001  , ... , ...,  ... ]
 ...
 [111  , ... , ...,  ... ]
-</code></pre>
+</code></pre><p>Python currently uses SipHash cryptographic algorithm for hashing (details on why can be found watching <a href="https://www.youtube.com/watch?v=66P5FMkWoVU">Brandon Rhodes PyCon 2017 talk</a>). Previously it was multiplication and later randomized multiplication. Hashing function always produces the same hash. However, sometimes we get the same hash return on different hashed key. Also, when two keys want the same index slot, we get a collision. Python is using <em>open addressing technique</em> to solve that problem. It tries to find the next free address in the hash table, using special probing technique (iterates over slots to find free one; python doesn&rsquo;t do it in a linear way). When a key was deleted from the dictionary, it did not leave the slot empty but put there special constant telling that it was just deleted.</p><p>The first conclusion of that process is the fact that dictionaries were not ordered. At least this was the case in all Pythons &lt; 3.5. The second was time complexity. Amortized Worst Case is O(n), but usually dictionaries behave better, having average case O(1) and that is for get, set and delete item; O(n) for iteration and copy. Why amortized worst case is O(n)? Because of collisions.</p><hr><p>Let&rsquo;s play with both dictionaries implementation and choose the winner.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>Python <span style=color:#ae81ff>3.6.5</span> (v3<span style=color:#ae81ff>.6.5</span>:f59c0932b4, Mar <span style=color:#ae81ff>28</span> <span style=color:#ae81ff>2018</span>, <span style=color:#ae81ff>16</span>:<span style=color:#ae81ff>07</span>:<span style=color:#ae81ff>46</span>) [MSC v<span style=color:#ae81ff>.1900</span> <span style=color:#ae81ff>32</span> bit (Intel)]
+IPython <span style=color:#ae81ff>6.4.0</span> <span style=color:#f92672>--</span> An enhanced Interactive Python<span style=color:#f92672>.</span> Type <span style=color:#e6db74>&#39;?&#39;</span> <span style=color:#66d9ef>for</span> help<span style=color:#f92672>.</span>
 
-<p>Python currently uses SipHash cryptographic algorithm for hashing (details on why can be found watching <a href="https://www.youtube.com/watch?v=66P5FMkWoVU">Brandon Rhodes PyCon 2017 talk</a>). Previously it was multiplication and later randomized multiplication. Hashing function always produces the same hash. However, sometimes we get the same hash return on different hashed key. Also, when two keys want the same index slot, we get a collision. Python is using <em>open addressing technique</em> to solve that problem. It tries to find the next free address in the hash table, using special probing technique (iterates over slots to find free one; python doesn&rsquo;t do it in a linear way). When a key was deleted from the dictionary, it did not leave the slot empty but put there special constant telling that it was just deleted.</p>
+<span style=color:#75715e># dict comprehension</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> std_dict <span style=color:#f92672>=</span> {a: a<span style=color:#f92672>*</span>a <span style=color:#66d9ef>for</span> a <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1000000</span>)}
+<span style=color:#75715e># generator comprehension</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> ord_dict <span style=color:#f92672>=</span> OrderedDict(((a, a<span style=color:#f92672>*</span>a) <span style=color:#66d9ef>for</span> a <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1000000</span>)))
 
-<p>The first conclusion of that process is the fact that dictionaries were not ordered. At least this was the case in all Pythons &lt; 3.5. The second was time complexity. Amortized Worst Case is O(n), but usually dictionaries behave better, having average case O(1) and that is for get, set and delete item; O(n) for iteration and copy. Why amortized worst case is O(n)? Because of collisions.</p>
-
-<hr />
-
-<p>Let&rsquo;s play with both dictionaries implementation and choose the winner.</p>
-
-<pre><code class="language-python">Python 3.6.5 (v3.6.5:f59c0932b4, Mar 28 2018, 16:07:46) [MSC v.1900 32 bit (Intel)]
-IPython 6.4.0 -- An enhanced Interactive Python. Type '?' for help.
-
-# dict comprehension
-&gt;&gt;&gt; std_dict = {a: a*a for a in range(1000000)}
-# generator comprehension
-&gt;&gt;&gt; ord_dict = OrderedDict(((a, a*a) for a in range(1000000)))
-
-# type object
-&gt;&gt;&gt; type(std_dict)
+<span style=color:#75715e># type object</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> type(std_dict)
 dict
-&gt;&gt;&gt; type(ord_dict)
-collections.OrderedDict
+<span style=color:#f92672>&gt;&gt;&gt;</span> type(ord_dict)
+collections<span style=color:#f92672>.</span>OrderedDict
 
-# size of an object in bytes
-&gt;&gt;&gt; sys.getsizeof(std_dict)
-25165888
-&gt;&gt;&gt; sys.getsizeof(ord_dict)
-49554528
+<span style=color:#75715e># size of an object in bytes</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> sys<span style=color:#f92672>.</span>getsizeof(std_dict)
+<span style=color:#ae81ff>25165888</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> sys<span style=color:#f92672>.</span>getsizeof(ord_dict)
+<span style=color:#ae81ff>49554528</span>
 
-# equality
-&gt;&gt;&gt; std_dict is ord_dict
-False
-&gt;&gt;&gt; std_dict == ord_dict
-True
-
-
-&gt;&gt;&gt; %timeit del std_dict[10000]; std_dict[10000] = 10000
-185 ns ± 17.4 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
-
-&gt;&gt;&gt; %timeit del ord_dict[10000]; ord_dict[10000] = 10000
-249 ns ± 23.3 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
-
-&gt;&gt;&gt; %timeit i = randint(1, 100000); del std_dict[i]; std_dict[i] = i
-2.88 µs ± 11.9 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
-
-&gt;&gt;&gt; %timeit i = randint(1, 100000); del ord_dict[i]; ord_dict[i] = i
-3.21 µs ± 194 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
-</code></pre>
-
-<p>The conclusion is interesting. Standard dictionary is smaller in size and is a bit faster on deleting and adding a single key.</p>
-
-<p>Ps. OrderedDict has nice additional <em>method move_to_end(key, last=True)</em> - it moves an existing key to either end of an ordered dictionary.</p>
-
-<hr />
-
-<p>Resources:</p>
-
-<ul>
-<li><a href="https://docs.python.org/3/library/stdtypes.html#mapping-types-dict">Python official documentation</a></li>
-<li><a href="https://www.youtube.com/watch?v=oMyy4Sm0uBs">Brandon Rhodes PyCon 2010 talk</a></li>
-<li><a href="https://www.youtube.com/watch?v=66P5FMkWoVU">Brandon Rhodes PyCon 2017 talk</a></li>
-</ul>
-
-  
-<div class="prev-next-post pure-g">
-  <div class="pure-u-1-24" style="text-align: left;">
-    
-    <a href="https://pbedn.github.io/post/2018-05-20-wargames-bandit/"><i class="fa fa-chevron-left"></i></a>
-    
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="prev">
-      <a href="https://pbedn.github.io/post/2018-05-20-wargames-bandit/">Wargames Bandit</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-2-24">
-    &nbsp;
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="next">
-      <a href="https://pbedn.github.io/post/2018-08-20-politically-incorrect-cv-summary/">Politically (In)correct Resume/Linkedin Summary</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://pbedn.github.io/post/2018-08-20-politically-incorrect-cv-summary/"><i class="fa fa-chevron-right"></i></a>
-    
-  </div>
-</div>
+<span style=color:#75715e># equality</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> std_dict <span style=color:#f92672>is</span> ord_dict
+<span style=color:#66d9ef>False</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> std_dict <span style=color:#f92672>==</span> ord_dict
+<span style=color:#66d9ef>True</span>
 
 
+<span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#f92672>%</span>timeit <span style=color:#66d9ef>del</span> std_dict[<span style=color:#ae81ff>10000</span>]; std_dict[<span style=color:#ae81ff>10000</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>
+<span style=color:#ae81ff>185</span> ns <span style=color:#960050;background-color:#1e0010>±</span> <span style=color:#ae81ff>17.4</span> ns per loop (mean <span style=color:#960050;background-color:#1e0010>±</span> std<span style=color:#f92672>.</span> dev<span style=color:#f92672>.</span> of <span style=color:#ae81ff>7</span> runs, <span style=color:#ae81ff>1000000</span> loops each)
 
-</div>
+<span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#f92672>%</span>timeit <span style=color:#66d9ef>del</span> ord_dict[<span style=color:#ae81ff>10000</span>]; ord_dict[<span style=color:#ae81ff>10000</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>
+<span style=color:#ae81ff>249</span> ns <span style=color:#960050;background-color:#1e0010>±</span> <span style=color:#ae81ff>23.3</span> ns per loop (mean <span style=color:#960050;background-color:#1e0010>±</span> std<span style=color:#f92672>.</span> dev<span style=color:#f92672>.</span> of <span style=color:#ae81ff>7</span> runs, <span style=color:#ae81ff>1000000</span> loops each)
 
-</div>
-</div>
-<script src="https://pbedn.github.io/js/ui.js"></script>
-<script src="https://pbedn.github.io/js/menus.js"></script>
+<span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#f92672>%</span>timeit i <span style=color:#f92672>=</span> randint(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>100000</span>); <span style=color:#66d9ef>del</span> std_dict[i]; std_dict[i] <span style=color:#f92672>=</span> i
+<span style=color:#ae81ff>2.88</span> µs <span style=color:#960050;background-color:#1e0010>±</span> <span style=color:#ae81ff>11.9</span> ns per loop (mean <span style=color:#960050;background-color:#1e0010>±</span> std<span style=color:#f92672>.</span> dev<span style=color:#f92672>.</span> of <span style=color:#ae81ff>7</span> runs, <span style=color:#ae81ff>100000</span> loops each)
 
-
-<script>
-  
-  if (window.location.hostname != "localhost") {
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-74192356-1', 'auto');
-    ga('send', 'pageview');
-  }
-</script>
-
-
-<script type="text/javascript">
-$("#highlight").click(function () {
-$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>');
-});
-</script>
- 
-
-</body>
-</html>
-
+<span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#f92672>%</span>timeit i <span style=color:#f92672>=</span> randint(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>100000</span>); <span style=color:#66d9ef>del</span> ord_dict[i]; ord_dict[i] <span style=color:#f92672>=</span> i
+<span style=color:#ae81ff>3.21</span> µs <span style=color:#960050;background-color:#1e0010>±</span> <span style=color:#ae81ff>194</span> ns per loop (mean <span style=color:#960050;background-color:#1e0010>±</span> std<span style=color:#f92672>.</span> dev<span style=color:#f92672>.</span> of <span style=color:#ae81ff>7</span> runs, <span style=color:#ae81ff>100000</span> loops each)
+</code></pre></div><p>The conclusion is interesting. Standard dictionary is smaller in size and is a bit faster on deleting and adding a single key.</p><p>Ps. OrderedDict has nice additional <em>method move_to_end(key, last=True)</em> - it moves an existing key to either end of an ordered dictionary.</p><hr><p>Resources:</p><ul><li><a href=https://docs.python.org/3/library/stdtypes.html#mapping-types-dict>Python official documentation</a></li><li><a href="https://www.youtube.com/watch?v=oMyy4Sm0uBs">Brandon Rhodes PyCon 2010 talk</a></li><li><a href="https://www.youtube.com/watch?v=66P5FMkWoVU">Brandon Rhodes PyCon 2017 talk</a></li></ul><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://pbedn.github.io/post/2018-05-20-wargames-bandit/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://pbedn.github.io/post/2018-05-20-wargames-bandit/>Wargames Bandit</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24><nav class=next><a href=https://pbedn.github.io/post/2018-08-20-politically-incorrect-cv-summary/>Politically (In)correct Resume/Linkedin Summary</a></nav></div><div class=pure-u-1-24 style=text-align:right><a href=https://pbedn.github.io/post/2018-08-20-politically-incorrect-cv-summary/><i class="fa fa-chevron-right"></i></a></div></div></div></div></div><script src=https://pbedn.github.io/js/ui.js></script><script src=https://pbedn.github.io/js/menus.js></script><script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-74192356-1','auto'),ga('send','pageview'))</script><script type=text/javascript>$("#highlight").click(function(){$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>')})</script></body></html>
