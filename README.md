@@ -1,4 +1,7 @@
-[![wercker status](https://app.wercker.com/status/4a1a2ede9e7e1031a42f00c45490049e/s/master "wercker status")](https://app.wercker.com/project/byKey/4a1a2ede9e7e1031a42f00c45490049e)
+[![GitHub Actions](https://github.com/pbedn/pbedn.github.io/actions/workflows/actions.yml/badge.svg)](https://github.com/pbedn/pbedn.github.io/actions/workflows/actions.yml)
+
+Source files for my blog. 
+Static site generator - Hugo. 
 
 New post default markdown content: https://raw.githubusercontent.com/pbedn/hugo-blog/master/archetypes/default.md
 
