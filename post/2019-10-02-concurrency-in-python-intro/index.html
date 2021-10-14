@@ -1,19 +1,326 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=generator content="Hugo 0.85.0"><title>Concurrency in Python - intro &#183; Coding Notes</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css><link rel=stylesheet href=https://pbedn.github.io/css/side-menu.css><link rel=stylesheet href=https://pbedn.github.io/css/blackburn.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css><link href="https://fonts.googleapis.com/css?family=Raleway" rel=stylesheet type=text/css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><link rel="shortcut icon" href=https://pbedn.github.io/img/favicon.ico type=image/x-icon></head><body><div id=layout><a href=#menu id=menuLink class=menu-link><span></span></a><div id=menu><a class="pure-menu-heading brand" href=https://pbedn.github.io/>PBedn</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/><i class="fa fa-home fa-fw"></i>Home</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/archives/><i class="fa fa-list fa-fw"></i>Archives</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/about/><i class="fa fa-user fa-fw"></i>About</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/links/><i class="fa fa-link fa-fw"></i>Links</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/books/><i class="fa fa-question fa-fw"></i>Books</a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://linkedin.com/in/pbedn target=_blank><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/pbedn target=_blank><i class="fa fa-github-square fa-fw"></i>GitHub</a></li></ul></div><div><div class=small-print><small>&#169; 2021 Pawel Bednarz</small></div><div class=small-print><small>Built with&nbsp;<a href=https://gohugo.io/ target=_blank>Hugo</a></small>
-<small>Theme&nbsp;<a href=https://github.com/yoshiharuyamashita/blackburn target=_blank>Blackburn</a></small></div></div><div><input id=highlight type=button value="Highlight Code Dark" class=pure-button style=font-size:65%;background:#999;text-align:center></div></div><div id=main><div class=header><h2>Concurrency in Python - intro</h2><h3></h3></div><div class=content><div class=post-meta><div class=dark-color><i class="fa fa-calendar fa-fw"></i>
-<time>02 Oct 2019</time>
-.. <i class="fa fa-clock-o" aria-hidden=true>2 min</i></div><div><i class="fa fa-tags fa-fw"></i>
-<a class=post-taxonomy-tag href=https://pbedn.github.io/tags/python>python</a>&nbsp;/
-<a class=post-taxonomy-tag href=https://pbedn.github.io/tags/concurrency>concurrency</a></div></div><p>The first paragraph from Python documentation about concurrency titled &ldquo;Concurrent Execution&rdquo; mentions a few phrases like,
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.34" />
+
+  <title>Concurrency in Python - intro &middot; Coding Notes</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css">
+
+  <link rel="stylesheet" href="https://pbedn.github.io/css/side-menu.css">
+
+  <link rel="stylesheet" href="https://pbedn.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link rel="shortcut icon" href="https://pbedn.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://pbedn.github.io/">PBedn</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/archives/"><i class='fa fa-list fa-fw'></i>Archives</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/links/"><i class='fa fa-link fa-fw'></i>Links</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/books/"><i class='fa fa-question fa-fw'></i>Books</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/pbedn" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/pbedn" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&#169; 2021 Pawel Bednarz</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+
+<div>
+  <input id="highlight" type="button" value="Highlight Code Dark" class="pure-button" style="
+  font-size: 65%; background: #999; text-align: center;" />
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h2>Concurrency in Python - intro</h2>
+  <h3></h3>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div class="dark-color">
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>02 Oct 2019</time>
+
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 3 min</i>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/concurrency">concurrency</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>The first paragraph from Python documentation about concurrency titled &ldquo;Concurrent Execution&rdquo; mentions a few phrases like,
 CPU bound, IO bound, event-driven cooperative multitasking or preemptive multitasking.
-In this intro post to concurrency, let&rsquo;s clarify these definitions.</p><h4 id=cpu-bound-vs-io-bound>CPU bound vs IO bound</h4><p>In the simplest form, CPU bound program, have time-consuming, high usage computation task, that is heavy on
-CPU - central processing unit. This is our bottleneck, and by upgrading the computer speed, we can improve the execution of our program.</p><p>On the other hand, IO (I/O - input/output) bound means that we are waiting for some subsystem to deliver the data.
+In this intro post to concurrency, let&rsquo;s clarify these definitions.</p>
+
+<p></p>
+
+<h4 id="cpu-bound-vs-io-bound">CPU bound vs IO bound</h4>
+
+<p>In the simplest form, CPU bound program, have time-consuming, high usage computation task, that is heavy on
+CPU - central processing unit. This is our bottleneck, and by upgrading the computer speed, we can improve the execution of our program.</p>
+
+<p>On the other hand, IO (I/O - input/output) bound means that we are waiting for some subsystem to deliver the data.
 For example, hard disk, network, database, or another kind of communication device, process some data, and our program
-is waiting for the result. The best way to optimize the improve is to optimize our program.</p><p>There are other bottlenecks visible sometimes in the software world, for example, memory bound or cache bound, however
-these are special variants of general I/O bound definition.</p><h4 id=preemptive-multitasking>Preemptive multitasking</h4><p>Going into something more difficult. Preemption is &ldquo;act of temporarily interrupting a task being carried out by
-a computer system.. with the intention of resuming the task at a later time&rdquo; (<a href=https://en.wikipedia.org/wiki/Preemption_(computing)>Preemptive in Wikipedia</a>).
+is waiting for the result. The best way to optimize the improve is to optimize our program.</p>
+
+<p>There are other bottlenecks visible sometimes in the software world, for example, memory bound or cache bound, however
+these are special variants of general I/O bound definition.</p>
+
+<h4 id="preemptive-multitasking">Preemptive multitasking</h4>
+
+<p>Going into something more difficult. Preemption is &ldquo;act of temporarily interrupting a task being carried out by
+a computer system.. with the intention of resuming the task at a later time&rdquo; (<a href="https://en.wikipedia.org/wiki/Preemption_(computing)">Preemptive in Wikipedia</a>).
 That means that at any time operating system (OS) can stop our program and switch context to another task.
 Allowing OS to manage threads is the easiest way, however with a disadvantage of interrupting in the wrong moment.
-In Python, the threading module uses this technique.</p><h4 id=event-driven-cooperative-multitasking>Event-driven cooperative multitasking</h4><p>Cooperative multitasking, on the other hand, never initiates a context switch. Instead, the program must yield control
-(<a href=https://en.wikipedia.org/wiki/Cooperative_multitasking>Cooperative in Wikipedia</a>). Advantage of that is that we always know when the task will be stopped and context switched. However, our program must be modified for that. In Python, asyncio module use this technique.</p><h4 id=multiprocessing>Multiprocessing</h4><p>Both techniques described above use a single CPU for the program. If we would like to employ the rest of the cores,
+In Python, the threading module uses this technique.</p>
+
+<h4 id="event-driven-cooperative-multitasking">Event-driven cooperative multitasking</h4>
+
+<p>Cooperative multitasking, on the other hand, never initiates a context switch. Instead, the program must yield control
+(<a href="https://en.wikipedia.org/wiki/Cooperative_multitasking">Cooperative in Wikipedia</a>). Advantage of that is that we always know when the task will be stopped and context switched. However, our program must be modified for that. In Python, asyncio module use this technique.</p>
+
+<h4 id="multiprocessing">Multiprocessing</h4>
+
+<p>Both techniques described above use a single CPU for the program. If we would like to employ the rest of the cores,
 then the multiprocessing module in Python allows for that. That way, we can achieve true parallelism, as each program
-is run in the separate core.</p><h4 id=summary>Summary</h4><p>To summarize all three concurrency types, let&rsquo;s look at a table below (source: <a href=https://realpython.com/python-concurrency>Concurrency in Real Python</a>):</p><hr><p>References:</p><ul><li><a href=https://en.wikipedia.org/wiki/Preemption_(computing)>Preemptive multitasking - Wikipedia</a></li><li><a href=https://en.wikipedia.org/wiki/Cooperative_multitasking>Cooperative multitasking - Wikipedia</a></li><li><a href=https://realpython.com/python-concurrency>Concurrency - Real Python</a></li></ul><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://pbedn.github.io/post/2019-08-21-parametrize-pytest/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://pbedn.github.io/post/2019-08-21-parametrize-pytest/>Parametrizing tests with pytest</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24><nav class=next><a href=https://pbedn.github.io/post/2020-01-02-design-patterns-1/>Singleton Design Pattern in Python</a></nav></div><div class=pure-u-1-24 style=text-align:right><a href=https://pbedn.github.io/post/2020-01-02-design-patterns-1/><i class="fa fa-chevron-right"></i></a></div></div></div></div></div><script src=https://pbedn.github.io/js/ui.js></script><script src=https://pbedn.github.io/js/menus.js></script><script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-74192356-1','auto'),ga('send','pageview'))</script><script type=text/javascript>$("#highlight").click(function(){$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>')})</script></body></html>
+is run in the separate core.</p>
+
+<h4 id="summary">Summary</h4>
+
+<p>To summarize all three concurrency types, let&rsquo;s look at a table below (source: <a href="https://realpython.com/python-concurrency">Concurrency in Real Python</a>):</p>
+
+<!--  Unfortunately manual table, as markdown one does not work well-->
+
+<!--  https://www.tablesgenerator.com/html_tables -->
+
+<p><style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-weight:normal;padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-header{font-weight:bold;color:#191818;border-color:#9b9b9b;text-align:left;vertical-align:top}
+.tg .tg-row{border-color:#c0c0c0;color:#191818;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-header">Concurrency Type</th>
+    <th class="tg-header">Switching Decision</th>
+    <th class="tg-header">Number of Processors</th>
+  </tr>
+  <tr>
+    <td class="tg-row">Pre-emptive multitasking (threading)</td>
+    <td class="tg-row">OS decides when to switch tasks</td>
+    <td class="tg-row">1</td>
+  </tr>
+  <tr>
+    <td class="tg-row">Cooperative multitasking (asyncio)</td>
+    <td class="tg-row">Program decides when to give up control</td>
+    <td class="tg-row">1</td>
+  </tr>
+  <tr>
+    <td class="tg-row">Multiprocessing (multiprocessing)</td>
+    <td class="tg-row">Processes run at the same time on different cores</td>
+    <td class="tg-row">Many</td>
+  </tr>
+</table></p>
+
+<hr />
+
+<p>References:</p>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Preemption_(computing)">Preemptive multitasking - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Cooperative_multitasking">Cooperative multitasking - Wikipedia</a></li>
+<li><a href="https://realpython.com/python-concurrency">Concurrency - Real Python</a></li>
+</ul>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://pbedn.github.io/post/2019-08-21-parametrize-pytest/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://pbedn.github.io/post/2019-08-21-parametrize-pytest/">Parametrizing tests with pytest</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="https://pbedn.github.io/post/2020-01-02-design-patterns-1/">Singleton Design Pattern in Python</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="https://pbedn.github.io/post/2020-01-02-design-patterns-1/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+</div>
+
+</div>
+</div>
+<script src="https://pbedn.github.io/js/ui.js"></script>
+<script src="https://pbedn.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-74192356-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+<script type="text/javascript">
+$("#highlight").click(function () {
+$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>');
+});
+</script>
+ 
+
+</body>
+</html>
+

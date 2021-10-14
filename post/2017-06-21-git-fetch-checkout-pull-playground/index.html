@@ -1,41 +1,239 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=generator content="Hugo 0.85.0"><title>How to make automatic deployment with git: 'fetch and checkout' vs 'pull --ff-only' &#183; Coding Notes</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css><link rel=stylesheet href=https://pbedn.github.io/css/side-menu.css><link rel=stylesheet href=https://pbedn.github.io/css/blackburn.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css><link href="https://fonts.googleapis.com/css?family=Raleway" rel=stylesheet type=text/css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><link rel="shortcut icon" href=https://pbedn.github.io/img/favicon.ico type=image/x-icon></head><body><div id=layout><a href=#menu id=menuLink class=menu-link><span></span></a><div id=menu><a class="pure-menu-heading brand" href=https://pbedn.github.io/>PBedn</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/><i class="fa fa-home fa-fw"></i>Home</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/archives/><i class="fa fa-list fa-fw"></i>Archives</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/about/><i class="fa fa-user fa-fw"></i>About</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/links/><i class="fa fa-link fa-fw"></i>Links</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/books/><i class="fa fa-question fa-fw"></i>Books</a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://linkedin.com/in/pbedn target=_blank><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/pbedn target=_blank><i class="fa fa-github-square fa-fw"></i>GitHub</a></li></ul></div><div><div class=small-print><small>&#169; 2021 Pawel Bednarz</small></div><div class=small-print><small>Built with&nbsp;<a href=https://gohugo.io/ target=_blank>Hugo</a></small>
-<small>Theme&nbsp;<a href=https://github.com/yoshiharuyamashita/blackburn target=_blank>Blackburn</a></small></div></div><div><input id=highlight type=button value="Highlight Code Dark" class=pure-button style=font-size:65%;background:#999;text-align:center></div></div><div id=main><div class=header><h2>How to make automatic deployment with git: 'fetch and checkout' vs 'pull --ff-only'</h2><h3></h3></div><div class=content><div class=post-meta><div class=dark-color><i class="fa fa-calendar fa-fw"></i>
-<time>21 Jun 2017</time>
-.. <i class="fa fa-clock-o" aria-hidden=true>2 min</i></div><div><i class="fa fa-tags fa-fw"></i>
-<a class=post-taxonomy-tag href=https://pbedn.github.io/tags/git>git</a></div></div><p>Can git be used as automatic deploment tool? Some say that as for mvp it is enough. Others give quite good explanations how to do it, see <a href=http://gitolite.com/deploy.html>gitolite.com/deploy</a>.</p><p>My first naive solution was to use in deployment script for production, commands:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ git checkout .
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.34" />
+
+  <title>How to make automatic deployment with git: &#39;fetch and checkout&#39; vs &#39;pull --ff-only&#39; &middot; Coding Notes</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css">
+
+  <link rel="stylesheet" href="https://pbedn.github.io/css/side-menu.css">
+
+  <link rel="stylesheet" href="https://pbedn.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link rel="shortcut icon" href="https://pbedn.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://pbedn.github.io/">PBedn</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/archives/"><i class='fa fa-list fa-fw'></i>Archives</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/links/"><i class='fa fa-link fa-fw'></i>Links</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/books/"><i class='fa fa-question fa-fw'></i>Books</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/pbedn" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/pbedn" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&#169; 2021 Pawel Bednarz</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+
+<div>
+  <input id="highlight" type="button" value="Highlight Code Dark" class="pure-button" style="
+  font-size: 65%; background: #999; text-align: center;" />
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h2>How to make automatic deployment with git: &#39;fetch and checkout&#39; vs &#39;pull --ff-only&#39;</h2>
+  <h3></h3>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div class="dark-color">
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>21 Jun 2017</time>
+
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 2 min</i>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/git">git</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>Can git be used as automatic deploment tool? Some say that as for mvp it is enough. Others give quite good explanations how to do it, see <a href="http://gitolite.com/deploy.html">gitolite.com/deploy</a>.</p>
+
+<p></p>
+
+<p>My first naive solution was to use in deployment script for production, commands:</p>
+
+<pre><code class="language-bash">$ git checkout .
 $ git pull --ff-only
-</code></pre></div><p>It works if production repository is clean. But sometimes there are problems with merging, and unless you catch the error, remote deploy script will just give you the message &ldquo;<em>fatal: Not possible to fast-forward, aborting.</em>&rdquo;, leaving the repository in bad shape.. So what is the proper solution?</p><p>Let say that in production environment &ldquo;<em>git log &ndash;oneline</em>&rdquo; gives me:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>114dbc5 Some changes
+</code></pre>
+
+<p>It works if production repository is clean. But sometimes there are problems with merging, and unless you catch the error, remote deploy script will just give you the message &ldquo;<em>fatal: Not possible to fast-forward, aborting.</em>&rdquo;, leaving the repository in bad shape.. So what is the proper solution?</p>
+
+<p>Let say that in production environment &ldquo;<em>git log &ndash;oneline</em>&rdquo; gives me:</p>
+
+<pre><code class="language-bash">114dbc5 Some changes
 2fe6adb Some changes
 e38c033 Added broken file
 6f6ba61 Changed Readme
 ab6d78a Initial commit
-</code></pre></div><p>In development environment I did a &ldquo;<em>git rebase -i 6f6ba</em>&rdquo;, squashing last two commits into one, and &ldquo;<em>git push &ndash;force</em>&rdquo; to repair my master branch. That will give me:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>5e88aca Some changes
+</code></pre>
+
+<p>In development environment I did a &ldquo;<em>git rebase -i 6f6ba</em>&rdquo;, squashing last two commits into one, and &ldquo;<em>git push &ndash;force</em>&rdquo; to repair my master branch. That will give me:</p>
+
+<pre><code class="language-bash">5e88aca Some changes
 e38c033 Added broken file
 6f6ba61 Changed Readme
 ab6d78a Initial commit
-</code></pre></div><p>My deployment script will run in production and produce output:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ git pull --ff-only
-remote: Counting objects: 3, <span style=color:#66d9ef>done</span>.
-remote: Compressing objects: 100% <span style=color:#f92672>(</span>3/3<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
-remote: Total <span style=color:#ae81ff>3</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, reused <span style=color:#ae81ff>3</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, pack-reused <span style=color:#ae81ff>0</span>
-Unpacking objects: 100% <span style=color:#f92672>(</span>3/3<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+</code></pre>
+
+<p>My deployment script will run in production and produce output:</p>
+
+<pre><code class="language-bash">$ git pull --ff-only
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
 From https://github.com/pbedn/git-playground
- + 114dbc5...5e88aca master       -&gt; origin/master  <span style=color:#f92672>(</span>forced update<span style=color:#f92672>)</span>
- * <span style=color:#f92672>[</span>new tag<span style=color:#f92672>]</span>         after-rebase -&gt; after-rebase
+ + 114dbc5...5e88aca master       -&gt; origin/master  (forced update)
+ * [new tag]         after-rebase -&gt; after-rebase
 fatal: Not possible to fast-forward, aborting.
-</code></pre></div><p>That is a problem. Solution is to use:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ git fetch --all
+</code></pre>
+
+<p>That is a problem. Solution is to use:</p>
+
+<pre><code class="language-bash">$ git fetch --all
 $ git checkout --force origin/master
-</code></pre></div><p>Commits in the production are now correct!</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ git fetch --all
+</code></pre>
+
+<p>Commits in the production are now correct!</p>
+
+<pre><code class="language-bash">$ git fetch --all
 Fetching origin
 
 $ git checkout --force origin/master
-Note: checking out <span style=color:#e6db74>&#39;origin/master&#39;</span>.
+Note: checking out 'origin/master'.
 
-You are in <span style=color:#e6db74>&#39;detached HEAD&#39;</span> state. You can look around, make experimental
+You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
 state without impacting any branches by performing another checkout.
 
 If you want to create a new branch to retain commits you create, you may
-<span style=color:#66d9ef>do</span> so <span style=color:#f92672>(</span>now or later<span style=color:#f92672>)</span> by using -b with the checkout command again. Example:
+do so (now or later) by using -b with the checkout command again. Example:
 
   git checkout -b &lt;new-branch-name&gt;
 
@@ -46,10 +244,84 @@ $ git log --oneline
 e38c033 Added broken file
 6f6ba61 Changed Readme
 ab6d78a Initial commit
-</code></pre></div><p>&ndash;</p><p><em>Exercise</em></p><p>If you like to play with these exact examples you can follow the steps below (note that we are working with HEAD detached, but for the exercise purpose that is ok):</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ git clone https://github.com/pbedn/git-playground
+</code></pre>
+
+<p>&ndash;</p>
+
+<p><em>Exercise</em></p>
+
+<p>If you like to play with these exact examples you can follow the steps below (note that we are working with HEAD detached, but for the exercise purpose that is ok):</p>
+
+<pre><code class="language-bash">$ git clone https://github.com/pbedn/git-playground
 $ git checkout tags/duplicate
 $ git pull --ff-only origin master
 $ git checkout tags/after-rebase
 $ git fetch --all
 $ git checkout --force origin/master
-</code></pre></div><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://pbedn.github.io/post/2017-05-15-python-postgresql-and-circleci/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://pbedn.github.io/post/2017-05-15-python-postgresql-and-circleci/>Python and PostgreSQL deployment to CircleCI</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24><nav class=next><a href=https://pbedn.github.io/post/2017-09-22-best-python-ide/>Best Python IDE: Sublime Text vs PyCharm vs Wing IDE</a></nav></div><div class=pure-u-1-24 style=text-align:right><a href=https://pbedn.github.io/post/2017-09-22-best-python-ide/><i class="fa fa-chevron-right"></i></a></div></div></div></div></div><script src=https://pbedn.github.io/js/ui.js></script><script src=https://pbedn.github.io/js/menus.js></script><script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-74192356-1','auto'),ga('send','pageview'))</script><script type=text/javascript>$("#highlight").click(function(){$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>')})</script></body></html>
+</code></pre>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://pbedn.github.io/post/2017-05-15-python-postgresql-and-circleci/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://pbedn.github.io/post/2017-05-15-python-postgresql-and-circleci/">Python and PostgreSQL deployment to CircleCI</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="https://pbedn.github.io/post/2017-09-22-best-python-ide/">Best Python IDE: Sublime Text vs PyCharm vs Wing IDE</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="https://pbedn.github.io/post/2017-09-22-best-python-ide/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+</div>
+
+</div>
+</div>
+<script src="https://pbedn.github.io/js/ui.js"></script>
+<script src="https://pbedn.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-74192356-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+<script type="text/javascript">
+$("#highlight").click(function () {
+$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>');
+});
+</script>
+ 
+
+</body>
+</html>
+

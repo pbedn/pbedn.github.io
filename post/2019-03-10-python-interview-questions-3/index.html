@@ -1,63 +1,324 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=generator content="Hugo 0.85.0"><title>Series: Python Interview Questions #3 &#183; Coding Notes</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css><link rel=stylesheet href=https://pbedn.github.io/css/side-menu.css><link rel=stylesheet href=https://pbedn.github.io/css/blackburn.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css><link href="https://fonts.googleapis.com/css?family=Raleway" rel=stylesheet type=text/css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><link rel="shortcut icon" href=https://pbedn.github.io/img/favicon.ico type=image/x-icon></head><body><div id=layout><a href=#menu id=menuLink class=menu-link><span></span></a><div id=menu><a class="pure-menu-heading brand" href=https://pbedn.github.io/>PBedn</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/><i class="fa fa-home fa-fw"></i>Home</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/archives/><i class="fa fa-list fa-fw"></i>Archives</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/about/><i class="fa fa-user fa-fw"></i>About</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/links/><i class="fa fa-link fa-fw"></i>Links</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/books/><i class="fa fa-question fa-fw"></i>Books</a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://linkedin.com/in/pbedn target=_blank><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/pbedn target=_blank><i class="fa fa-github-square fa-fw"></i>GitHub</a></li></ul></div><div><div class=small-print><small>&#169; 2021 Pawel Bednarz</small></div><div class=small-print><small>Built with&nbsp;<a href=https://gohugo.io/ target=_blank>Hugo</a></small>
-<small>Theme&nbsp;<a href=https://github.com/yoshiharuyamashita/blackburn target=_blank>Blackburn</a></small></div></div><div><input id=highlight type=button value="Highlight Code Dark" class=pure-button style=font-size:65%;background:#999;text-align:center></div></div><div id=main><div class=header><h2>Series: Python Interview Questions #3</h2><h3></h3></div><div class=content><div class=post-meta><div class=dark-color><i class="fa fa-calendar fa-fw"></i>
-<time>10 Mar 2019</time>
-.. <i class="fa fa-clock-o" aria-hidden=true>2 min</i></div><div><i class="fa fa-tags fa-fw"></i>
-<a class=post-taxonomy-tag href=https://pbedn.github.io/tags/python>python</a>&nbsp;/
-<a class=post-taxonomy-tag href=https://pbedn.github.io/tags/interview>interview</a></div></div><p>Task: Define the function that takes two parameters (dictionaries as default). Without modifying original dictionaries return the new one that includes all key and value pairs
-however, if key repeats itself, then add values</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>a <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#39;a&#39;</span>: <span style=color:#ae81ff>5</span>, <span style=color:#e6db74>&#39;b&#39;</span>: <span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;c&#39;</span>: <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;d&#39;</span>: <span style=color:#ae81ff>1</span>}
-b <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#39;a&#39;</span>: <span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;b&#39;</span>: <span style=color:#ae81ff>5</span>, <span style=color:#e6db74>&#39;c&#39;</span>: <span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;e&#39;</span>: <span style=color:#ae81ff>1</span>}
-solution <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#39;a&#39;</span>: <span style=color:#ae81ff>6</span>, <span style=color:#e6db74>&#39;b&#39;</span>: <span style=color:#ae81ff>6</span>, <span style=color:#e6db74>&#39;c&#39;</span>: <span style=color:#ae81ff>0</span>, <span style=color:#e6db74>&#39;d&#39;</span>: <span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;e&#39;</span>: <span style=color:#ae81ff>1</span>}
-</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># 1. Copy and check for existing key</span>
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution1</span>(a, b):
-    result <span style=color:#f92672>=</span> dict(a)
-    <span style=color:#66d9ef>for</span> k, v <span style=color:#f92672>in</span> b<span style=color:#f92672>.</span>items():
-        <span style=color:#66d9ef>if</span> result<span style=color:#f92672>.</span>get(k):
-            result[k] <span style=color:#f92672>+=</span> v
-        <span style=color:#66d9ef>else</span>:
-            result[k] <span style=color:#f92672>=</span> v
-    <span style=color:#66d9ef>return</span> result
+<!DOCTYPE html>
+<html lang="en">
 
-<span style=color:#75715e># 2. We could use try-except clause instead</span>
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution2</span>(a, b):
-    result <span style=color:#f92672>=</span> dict(a)
-    <span style=color:#66d9ef>for</span> k, v <span style=color:#f92672>in</span> b<span style=color:#f92672>.</span>items():
-        <span style=color:#66d9ef>try</span>:
-            result[k] <span style=color:#f92672>+=</span> v
-        <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>KeyError</span>:
-            result[k] <span style=color:#f92672>=</span> v
-    <span style=color:#66d9ef>return</span> result
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.34" />
+
+  <title>Series: Python Interview Questions #3 &middot; Coding Notes</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css">
+
+  <link rel="stylesheet" href="https://pbedn.github.io/css/side-menu.css">
+
+  <link rel="stylesheet" href="https://pbedn.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link rel="shortcut icon" href="https://pbedn.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://pbedn.github.io/">PBedn</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/archives/"><i class='fa fa-list fa-fw'></i>Archives</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/links/"><i class='fa fa-link fa-fw'></i>Links</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/books/"><i class='fa fa-question fa-fw'></i>Books</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
     
-<span style=color:#75715e># 3. If values would be ONLY POSITIVE, we could use Counter</span>
-<span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> Counter
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution3</span>(a, b):
-    <span style=color:#66d9ef>return</span> Counter(a) <span style=color:#f92672>+</span> Counter(b)
-
-<span style=color:#75715e># 4. For Python 3.5+ there is dictionary unpacking</span>
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution4</span>(a, b):
-    intersection <span style=color:#f92672>=</span> set(a) <span style=color:#f92672>&amp;</span> set(b)
-    c <span style=color:#f92672>=</span> {k: a[k] <span style=color:#f92672>+</span> b[k] <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> intersection}
-    <span style=color:#66d9ef>return</span> {<span style=color:#f92672>**</span>a, <span style=color:#f92672>**</span>b, <span style=color:#f92672>**</span>c}
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/pbedn" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
     
 
-<span style=color:#75715e># 5. Or even shorter</span>
-solution5 <span style=color:#f92672>=</span> <span style=color:#66d9ef>lambda</span> a, b: {<span style=color:#f92672>**</span>a, <span style=color:#f92672>**</span>b, <span style=color:#f92672>**</span>{k: a[k] <span style=color:#f92672>+</span> b[k] <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> a<span style=color:#f92672>.</span>keys() <span style=color:#f92672>&amp;</span> b}}
-</code></pre></div><p>I like solution three, but it could be used only for individual cases, and solution 4, because of
-sets, unpacking dictionaries and being very clear for reading. A nice trick is in solution five. We do not have to make parameter b as set explicitly, it is enough to take keys from parameter a (<a href=https://docs.python.org/release/3.3.0/library/stdtypes.html#dict-views>dictionary view objects</a>) and use intersection with parameter b.</p><hr><p>Also, traditionally I would like to see which solution is the fastest (solution three excluded):</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>µs <span style=color:#f92672>-</span> microseconds
-ns <span style=color:#f92672>-</span> nanoseconds
+    
 
-<span style=color:#f92672>%</span>timeit <span style=color:#f92672>-</span>n <span style=color:#ae81ff>100000</span> solution1(a, b)
-<span style=color:#ae81ff>1.56</span> µs <span style=color:#960050;background-color:#1e0010>±</span> <span style=color:#ae81ff>80.1</span> ns per loop (mean <span style=color:#960050;background-color:#1e0010>±</span> std<span style=color:#f92672>.</span> dev<span style=color:#f92672>.</span> of <span style=color:#ae81ff>7</span> runs, <span style=color:#ae81ff>100000</span> loops each)
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/pbedn" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
 
-<span style=color:#f92672>%</span>timeit <span style=color:#f92672>-</span>n <span style=color:#ae81ff>100000</span> solution2(a, b)
-<span style=color:#ae81ff>1.61</span> µs <span style=color:#960050;background-color:#1e0010>±</span> <span style=color:#ae81ff>106</span> ns per loop (mean <span style=color:#960050;background-color:#1e0010>±</span> std<span style=color:#f92672>.</span> dev<span style=color:#f92672>.</span> of <span style=color:#ae81ff>7</span> runs, <span style=color:#ae81ff>100000</span> loops each)
+  </ul>
+</div>
 
-<span style=color:#f92672>%</span>timeit <span style=color:#f92672>-</span>n <span style=color:#ae81ff>100000</span> solution3(a, b)
-<span style=color:#ae81ff>11</span> µs <span style=color:#960050;background-color:#1e0010>±</span> <span style=color:#ae81ff>216</span> ns per loop (mean <span style=color:#960050;background-color:#1e0010>±</span> std<span style=color:#f92672>.</span> dev<span style=color:#f92672>.</span> of <span style=color:#ae81ff>7</span> runs, <span style=color:#ae81ff>100000</span> loops each)
 
-<span style=color:#f92672>%</span>timeit <span style=color:#f92672>-</span>n <span style=color:#ae81ff>100000</span> solution4(a, b)
-<span style=color:#ae81ff>2.01</span> µs <span style=color:#960050;background-color:#1e0010>±</span> <span style=color:#ae81ff>64.8</span> ns per loop (mean <span style=color:#960050;background-color:#1e0010>±</span> std<span style=color:#f92672>.</span> dev<span style=color:#f92672>.</span> of <span style=color:#ae81ff>7</span> runs, <span style=color:#ae81ff>100000</span> loops each)
+  <div>
+  <div class="small-print">
+    <small>&#169; 2021 Pawel Bednarz</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
 
-<span style=color:#f92672>%</span>timeit <span style=color:#f92672>-</span>n <span style=color:#ae81ff>100000</span> solution5(a, b)
-<span style=color:#ae81ff>2.08</span> µs <span style=color:#960050;background-color:#1e0010>±</span> <span style=color:#ae81ff>122</span> ns per loop (mean <span style=color:#960050;background-color:#1e0010>±</span> std<span style=color:#f92672>.</span> dev<span style=color:#f92672>.</span> of <span style=color:#ae81ff>7</span> runs, <span style=color:#ae81ff>100000</span> loops each)
-</code></pre></div><p>I have have been using <a href=https://github.com/pbedn/hugo-blog/blob/master/src/combine_two_dicts_and_add_values_if_repeating.ipynb>Jupyter notebook</a> for calculations</p><hr><p>References:</p><ul><li><a href="https://stackoverflow.com/questions/11011756/is-there-any-pythonic-way-to-combine-two-dicts-adding-values-for-keys-that-appe/11011846?fbclid=IwAR0TDEIuWeCkmHJw3UyBrsLdnrymq-AXyel9ox1oOaxFK6xe9m7gS3008qI">Stack Overflow thread: combining two dicts</a></li></ul><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://pbedn.github.io/post/2019-02-28-python-interview-questions-2/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://pbedn.github.io/post/2019-02-28-python-interview-questions-2/>Series: Python Interview Questions #2</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24><nav class=next><a href=https://pbedn.github.io/post/2019-04-02-method-overloading-in-python/>Method overloading in Python with example from Java</a></nav></div><div class=pure-u-1-24 style=text-align:right><a href=https://pbedn.github.io/post/2019-04-02-method-overloading-in-python/><i class="fa fa-chevron-right"></i></a></div></div></div></div></div><script src=https://pbedn.github.io/js/ui.js></script><script src=https://pbedn.github.io/js/menus.js></script><script>window.location.hostname!="localhost"&&(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-74192356-1','auto'),ga('send','pageview'))</script><script type=text/javascript>$("#highlight").click(function(){$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>')})</script></body></html>
+
+<div>
+  <input id="highlight" type="button" value="Highlight Code Dark" class="pure-button" style="
+  font-size: 65%; background: #999; text-align: center;" />
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h2>Series: Python Interview Questions #3</h2>
+  <h3></h3>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div class="dark-color">
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>10 Mar 2019</time>
+
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 2 min</i>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/interview">interview</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>Task: Define the function that takes two parameters (dictionaries as default). Without modifying original dictionaries return the new one that includes all key and value pairs
+however, if key repeats itself, then add values</p>
+
+<pre><code class="language-python">a = {'a': 5, 'b': 1, 'c': -1, 'd': 1}
+b = {'a': 1, 'b': 5, 'c': 1, 'e': 1}
+solution = {'a': 6, 'b': 6, 'c': 0, 'd': 1, 'e': 1}
+</code></pre>
+
+<p></p>
+
+<pre><code class="language-python"># 1. Copy and check for existing key
+def solution1(a, b):
+    result = dict(a)
+    for k, v in b.items():
+        if result.get(k):
+            result[k] += v
+        else:
+            result[k] = v
+    return result
+
+# 2. We could use try-except clause instead
+def solution2(a, b):
+    result = dict(a)
+    for k, v in b.items():
+        try:
+            result[k] += v
+        except KeyError:
+            result[k] = v
+    return result
+    
+# 3. If values would be ONLY POSITIVE, we could use Counter
+from collections import Counter
+
+def solution3(a, b):
+    return Counter(a) + Counter(b)
+
+# 4. For Python 3.5+ there is dictionary unpacking
+def solution4(a, b):
+    intersection = set(a) &amp; set(b)
+    c = {k: a[k] + b[k] for k in intersection}
+    return {**a, **b, **c}
+    
+
+# 5. Or even shorter
+solution5 = lambda a, b: {**a, **b, **{k: a[k] + b[k] for k in a.keys() &amp; b}}
+</code></pre>
+
+<p>I like solution three, but it could be used only for individual cases, and solution 4, because of
+sets, unpacking dictionaries and being very clear for reading. A nice trick is in solution five. We do not have to make parameter b as set explicitly, it is enough to take keys from parameter a (<a href="https://docs.python.org/release/3.3.0/library/stdtypes.html#dict-views">dictionary view objects</a>) and use intersection with parameter b.</p>
+
+<hr />
+
+<p>Also, traditionally I would like to see which solution is the fastest (solution three excluded):</p>
+
+<pre><code class="language-python">µs - microseconds
+ns - nanoseconds
+
+%timeit -n 100000 solution1(a, b)
+1.56 µs ± 80.1 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+%timeit -n 100000 solution2(a, b)
+1.61 µs ± 106 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+%timeit -n 100000 solution3(a, b)
+11 µs ± 216 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+%timeit -n 100000 solution4(a, b)
+2.01 µs ± 64.8 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+%timeit -n 100000 solution5(a, b)
+2.08 µs ± 122 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+</code></pre>
+
+<p>I have have been using <a href="https://github.com/pbedn/hugo-blog/blob/master/src/combine_two_dicts_and_add_values_if_repeating.ipynb">Jupyter notebook</a> for calculations</p>
+
+<hr />
+
+<p>References:</p>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/11011756/is-there-any-pythonic-way-to-combine-two-dicts-adding-values-for-keys-that-appe/11011846?fbclid=IwAR0TDEIuWeCkmHJw3UyBrsLdnrymq-AXyel9ox1oOaxFK6xe9m7gS3008qI">Stack Overflow thread: combining two dicts</a></li>
+</ul>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://pbedn.github.io/post/2019-02-28-python-interview-questions-2/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://pbedn.github.io/post/2019-02-28-python-interview-questions-2/">Series: Python Interview Questions #2</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="https://pbedn.github.io/post/2019-04-02-method-overloading-in-python/">Method overloading in Python with example from Java</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="https://pbedn.github.io/post/2019-04-02-method-overloading-in-python/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+</div>
+
+</div>
+</div>
+<script src="https://pbedn.github.io/js/ui.js"></script>
+<script src="https://pbedn.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-74192356-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+<script type="text/javascript">
+$("#highlight").click(function () {
+$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>');
+});
+</script>
+ 
+
+</body>
+</html>
+
