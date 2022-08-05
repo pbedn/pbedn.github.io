@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/2022-08-05-small-advice-to-fellow-engineers/</loc>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2021-07-19-python-evolution-ramalho/</loc>
     <lastmod>2021-07-19T00:00:00+00:00</lastmod>
   </url>
@@ -179,7 +184,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2021-07-19T00:00:00+00:00</lastmod>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -278,6 +283,12 @@
   </url>
   
   <url>
+    <loc>https://pbedn.github.io/tags/other/</loc>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/about/</loc>
   </url>
   
@@ -289,7 +300,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2021-07-19T00:00:00+00:00</lastmod>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -314,6 +325,12 @@
   <url>
     <loc>https://pbedn.github.io/tags/python-3.8&#43;/</loc>
     <lastmod>2019-07-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://pbedn.github.io/tags/ramblings/</loc>
+    <lastmod>2022-08-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
