@@ -3,6 +3,15 @@ title = "Books micro reviews"
 type = "books"
 +++
 
+Not every book I read exist in English, so here are selected micro reviews.
+
+### James S.A. Corey - The Expanse series (finished in February 2022)
+
+* Science Fiction
+* an epic space opera
+
+A journey that finished too soon. Overall very good, and I hope they will continue with the cycle as TV show (for now they cut story in half). Though I still think Battlestar Galactica series was better, the Expanse is second contender for my favourite s-f opera. Binge read/watch worthy.
+
 ### James S.A. Corey - Leviathan Wakes (September 2021)
 
 * Science Fiction 
@@ -87,3 +96,7 @@ Honest and sometimes brutal truth about so-called stabilization mission, and war
 Beginning a little boring, middle ok, ending better. Sometimes annoying and trivial, and how the heck the main hero just knows everything and plays the guitar like a god.
 In general, I enjoyed it, but I am not going to read the second part - Ready Player Two and the author's other book - Armada too much of the 80s in the first part for me ;)
 As for the rating, I am giving three eggs out of five.
+
+
+[goodreads]: https://www.goodreads.com/review/list/125472532-pawel?ref=nav_mybooks&view=covers
+[lubimyczytac]: https://lubimyczytac.pl/profil/2209778/Pawe%C5%82

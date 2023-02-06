@@ -61,14 +61,14 @@ weight = 1
     identifier = "about"
     url = "/about/"
   [[menu.main]]
-    name = "Links"
-    pre = "<i class='fa fa-link fa-fw'></i>"
-    weight = 4
-    identifier = "links"
-    url = "/links/"
-  [[menu.main]]
     name = "Books"
-    pre = "<i class='fa fa-question fa-fw'></i>"
-    weight = 5
+    pre = "<i class='fa fa-book fa-fw'></i>"
+    weight = 4
     identifier = "books"
     url = "/books/"
+  [[menu.main]]
+    name = "Links"
+    pre = "<i class='fa fa-link fa-fw'></i>"
+    weight = 5
+    identifier = "links"
+    url = "/links/"
