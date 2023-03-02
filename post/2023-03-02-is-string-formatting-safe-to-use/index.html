@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.34" />
+
+  <title>Is string formatting in Python safe to use or not? &middot; Coding Notes</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css">
+
+  <link rel="stylesheet" href="https://pbedn.github.io/css/side-menu.css">
+
+  <link rel="stylesheet" href="https://pbedn.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link rel="shortcut icon" href="https://pbedn.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://pbedn.github.io/">PBedn</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/archives/"><i class='fa fa-list fa-fw'></i>Archives</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/books/"><i class='fa fa-book fa-fw'></i>Books</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://pbedn.github.io/links/"><i class='fa fa-link fa-fw'></i>Links</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/pbedn" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/pbedn" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&#169; 2021 Pawel Bednarz</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+
+<div>
+  <input id="highlight" type="button" value="Highlight Code Dark" class="pure-button" style="
+  font-size: 65%; background: #999; text-align: center;" />
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h2>Is string formatting in Python safe to use or not?</h2>
+  <h3></h3>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div class="dark-color">
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>02 Mar 2023</time>
+
+    .. <i class="fa fa-clock-o" aria-hidden="true"> 3 min</i>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>The mighty and powerful f-strings. Well, they are only a sugar syntax on string.format, but whatever. Here I will look at one of the usage scenarios that you should not commit - taking format string from the user. Well, I had to do it in my project, so&hellip;</p>
+
+<p></p>
+
+<h4 id="easy-what-is-an-f-string">Easy, what is an f-string?</h4>
+
+<p>Literal string prefixed with <em>f</em> with expression inside curly braces.</p>
+
+<pre><code class="language-python">name = 'Pawel'
+print(f&quot;My name is {name}&quot;)
+</code></pre>
+
+<h4 id="next-level-f-strings">Next level, f-strings:</h4>
+
+<ul>
+<li>are evaluated at runtime</li>
+<li>are parsed into literal strings and expressions</li>
+<li>use the same format specifier mini-language as <em>str.format</em></li>
+<li>has full access to local and global variables</li>
+<li>can run any valid Python expression, including function and method calls (ast.parse etc.)</li>
+<li>can use lambdas.. game over.</li>
+</ul>
+
+<h4 id="security-issues">Security issues?</h4>
+
+<p>Some prominent Python community personalities-celebrities observed that The F&rsquo;s could be misused. That is a fact. There are a few ways to do it:
+* denial of service attack by a large string size
+* using F&rsquo;s in logging in wrong way (<a href="https://github.com/python/cpython/issues/90358">read me</a>)
+* accessing attributes within an object, especially if it holds some kind of secrets (web dev)
+* in general, user-supplied format string could inject unwanted code</p>
+
+<p>Try that in your interpreter:</p>
+
+<pre><code class="language-python">f&quot;Goodbye! {exit()}&quot;
+$ BOOM
+
+# on the other hand this will not work when using string.format
+
+&quot;{exit()}&quot;.format(exit()=1) # SyntaxError
+&quot;{exit()}&quot;.format(exit=1) # KeyError
+&quot;{exit()}&quot;.format(foo=&quot;bar&quot;) # KeyError
+</code></pre>
+
+<p>So is this a problem?</p>
+
+<p>Yes and no. Depends on the context and place where it is executed.</p>
+
+<pre><code class="language-python">In [35]: f&quot;{self.__init__}&quot;
+NameError: name 'self' is not defined
+
+In [36]: &quot;{self.__init__}&quot;.format()
+KeyError: 'self'
+</code></pre>
+
+<h4 id="my-application">My application</h4>
+
+<p>I had a service that would read configuration files created by another team, and the clue was that they could put an array in yaml in such a form: *key: <em>&rdquo;{value}&rdquo;</em>, where <em>{value}</em> would be used later for dynamic lookup in some data. Thanks to that I would not have to know the keys and values beforehand in my code.</p>
+
+<pre><code class="language-bash"># conf.yaml
+some-data:
+ - key: &quot;{value}&quot;
+ - foo: &quot;{another} {self.secret} {exit()} {locals()}&quot;
+</code></pre>
+
+<pre><code class="language-python">#app.py
+from string import Formatter
+
+formatter = Formatter()
+
+resolved_fields_dict = dict()
+external_data_source = dict(foo=1)
+
+user_format_string = &quot;{foo} {bar}&quot; # This comes from conf.yaml
+
+# Extract field from format string
+fields = [field for _, field, _, _ in formatter.parse(user_format_string) if field]
+
+# In: fields
+# Out: ['foo', 'bar']
+
+# Update my dict from external data if exists, otherwise use the default
+for field in fields:
+    resolved_fields_dict[field] = external_data_source.get(field, &quot;Not Found&quot;)
+
+# In: resolved_fields_dict
+# Out: {'foo': 1, 'bar': 'Not Found'}
+
+# Finally return
+return user_format_string.format(**resolved_fields_dict)
+# Out: '1 Not Found'
+</code></pre>
+
+<p>And while I am not afraid the other team would want to hack me, they could inject by mistake some bad input and make my Python throw various errors.</p>
+
+<h4 id="solution">Solution</h4>
+
+<p>I used a customised string.Formatter in yaml config parser with overrided <em>get_field</em> method. This is based on an example found in <a href="https://stackoverflow.com/questions/15356649/can-pythons-string-format-be-made-safe-for-untrusted-format-strings">stackoverflow</a>:</p>
+
+<pre><code class="language-python">from string import Formatter
+
+class SafeFormatter(Formatter):
+
+    def get_field(self, field_name, args, kwargs):
+        if '.' in field_name or '[' in field_name:
+            raise InsecureStringFormatError('Invalid format string.')
+        return super().get_field(field_name,args,kwargs)
+
+formatter = SafeFormatter()
+try:
+    formatter.format(&quot;{sys.exit()&quot;}, num=1, id='hello')
+except InsecureStringFormatError:
+    print(&quot;Hack the world&quot;)
+</code></pre>
+
+<p>Now we can catch and handle bad input early.</p>
+
+<h4 id="conclusions">Conclusions</h4>
+
+<ul>
+<li>Do not take format string from the user, and if you have to then do not use f-strings</li>
+<li>string.Formatter could be used to create custom validations</li>
+</ul>
+
+<hr />
+
+<p>Resources:</p>
+
+<ul>
+<li><a href="https://peps.python.org/pep-0498/">PEP 498 – Literal String Interpolation</a></li>
+<li><a href="https://github.com/python/cpython/issues/90358">Discourage logging f-strings due to security considerations</a></li>
+<li><a href="https://stackoverflow.com/questions/15356649/can-pythons-string-format-be-made-safe-for-untrusted-format-strings">[SO] Can Python&rsquo;s string .format() be made safe for untrusted format strings</a></li>
+</ul>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://pbedn.github.io/post/2023-01-30-pytest-parametrizing-scope/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://pbedn.github.io/post/2023-01-30-pytest-parametrizing-scope/">Using scopes in Pytest fixtures</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+</div>
+
+</div>
+</div>
+<script src="https://pbedn.github.io/js/ui.js"></script>
+<script src="https://pbedn.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-74192356-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+<script type="text/javascript">
+$("#highlight").click(function () {
+$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>');
+});
+</script>
+ 
+
+</body>
+</html>
+

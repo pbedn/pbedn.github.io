@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/2023-03-02-is-string-formatting-safe-to-use/</loc>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2023-01-30-pytest-parametrizing-scope/</loc>
     <lastmod>2023-01-30T00:00:00+00:00</lastmod>
   </url>
@@ -189,7 +194,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2023-01-30T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -305,7 +310,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2023-01-30T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -323,7 +328,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/python/</loc>
-    <lastmod>2023-01-30T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
