@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.34" />
 
-  <title>Thinkpad &middot; Coding Notes</title>
+  <title>Ubuntu Mate 22.04 on Thinkpad T470 &middot; Coding Notes</title>
 
   
   
@@ -27,8 +27,6 @@
 
 
  
-  
-  <link rel="alternate" type="application/rss+xml" title="Coding Notes" href="https://pbedn.github.io/tags/thinkpad/index.xml" />
   
 
   
@@ -142,16 +140,12 @@
 
 
 <div class="header">
-  <h1>Thinkpad</h1>
+  <h2>Ubuntu Mate 22.04 on Thinkpad T470</h2>
+  <h3></h3>
 </div>
-
 <div class="content">
-  
-    <article>
-  <header>
-    <h2><a href="https://pbedn.github.io/post/2023-04-20-ubuntu-mate-on-thinkpad-t470-in-2023/">Ubuntu Mate 22.04 on Thinkpad T470</a></h2>
 
-    <div class="post-meta">
+  <div class="post-meta">
 
   <div class="dark-color">
     <i class="fa fa-calendar fa-fw"></i>
@@ -182,128 +176,88 @@
 
 </div>
 
-  </header>
-
-  <p>
   <p>Time to celebrate, today Ubuntu 23.04 is officially available, so time for a blog entry. For Ubuntu Mate users, not much news, except for some cosmetics and AI-generated wallpapers. I am writing this while using Ubuntu Mate 22.04.
 Some issues I had on my Thinkpad T470 with dual-boot with Windows 10.
 In the end, some complaints about Linux in general.</p>
 
 <p></p>
-  </p>
+
+<h3 id="ubuntu-mate-22-04-on-thinkpad-t470-issues">Ubuntu Mate 22.04 on Thinkpad T470 issues</h3>
+
+<p><strong>Annoying clicking sound from speakers</strong></p>
+
+<pre><code>Verify the sound card's power_save parameter:
+$ cat /sys/module/snd_hda_intel/parameters/power_save
+
+If it returns 1 persist that configuration:
+$ echo &quot;options snd_hda_intel power_save=0&quot; | sudo tee -a /etc/modprobe.d/audio_disable_powersave.conf
+
+</code></pre>
+
+<ul>
+<li>Original solution - <a href="https://askubuntu.com/questions/1230833/annoying-click-popping-sound-on-ubuntu-20-04">StackOverflow</a></li>
+</ul>
+
+<p><strong>Annoying error with Marco package</strong></p>
+
+<p>On startup message shows: Sorry Ubuntu 22.04 has experienced an internal error.</p>
+
+<p>Nothing can do about it, but wait for packages to be updated.</p>
+
+<p><strong>Wrong time display in when LC_TIME is not en_EN.UTF-8</strong></p>
+
+<p>That is an issue with Ayatana Date Time indicator and has been raised, and apparently fixed. However, when I tried to build the newest version locally I got some dependency issues. So nothing we can do, but wait for an official fix in distribution.</p>
+
+<ul>
+<li>Link to <a href="https://github.com/AyatanaIndicators/ayatana-indicator-datetime/issues/28">Github Issue</a></li>
+<li>Link to <a href="https://bugs.launchpad.net/ubuntu/+source/ayatana-indicator-datetime/+bug/1906238">Launchapd tracker</a></li>
+</ul>
+
+<p><strong>Problem with Bluetooth not finding Creative Jam v1 headphones</strong></p>
+
+<p>I had this initially because I did install Ubuntu without extra codecs and with a &ldquo;minimal&rdquo; set of applications.. wrong. I see now that unfortunately, the best is to install everything that comes with the distro, together with all extra non-free gnu stuff. And magic, the headphones are working fine.</p>
+
+<hr />
+
+<h3 id="linux-community">Linux Community</h3>
+
+<p>What about me? I really tried to use Linux, and for the last 15 years, I was switching back and forth. Mostly I had just Windows with Ubuntu on VirtualBox, more recently I tried WSL. Sometimes I had dual-boot with some Ubuntu flavour, and this is my current setup. I wanted Linux but did not have the motivation to fight over many technical issues, with battery, power, keyboard, sound, etc. Additionally, gaming on Linux is still almost nonexistent, though recent years opened some great possibilities thanks to Valve &amp; Proton. And I am a heavy gamer from time to time. With Ubuntu 23.04 systemd is coming to WSL, so maybe it will become really capable now. So that is one side, technical.</p>
+
+<p>Another thing, is I have a love-hate feeling about the Linux community. I would see more projects-distros-desktops come together, align somehow and merge. Only through the numbers, the Linux might grow and Linux Desktop be visible as a true partner to hardware and application developers. Serwer side this already happened, and that is great. But the rest is a pain. Of course the common answer to &ldquo;Why there are so many Linux distributions, and people are diverging even more, forking, disagreeing, creating new?&rdquo; Because they can&hellip; And that is the reason, MacOS has the second share in the market, not a penguin.</p>
+
+<p>What if all &ldquo;deb&rdquo; communities would merge? Old Debian father would say goodbye. Ubuntu child would separate from Canonical and be under Linux Foundation. The rest would come back to Ubuntu. There would be one desktop environment for older computers (merge of lxde, lxqt, xfce, mate), and one for newer (merge of gnome, kde, cinnamon, budgie etc.). How do merge? Stop current feature development, all groups meet as many times as necessary, create a new project by taking all that is good from many, and while still providing only basic maintenance to old projects, work united on one future. And the such dream will never be possible.</p>
+
+<p>One of the most iconic cars in history - the Ford Model T. Quote: &ldquo;You can have Ford in any colour as long as it is black&rdquo;.</p>
+
+<p>One Windows, most people dislike it, everybody is using it. End of rambling.</p>
 
   
-  <footer>
-    <a href="https://pbedn.github.io/post/2023-04-20-ubuntu-mate-on-thinkpad-t470-in-2023/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://pbedn.github.io/post/2018-03-10-ubuntu-16.04-thinkpad-t470/">Ubuntu 16.04 on Thinkpad T470</a></h2>
-
-    <div class="post-meta">
-
-  <div class="dark-color">
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>10 Mar 2018</time>
-
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 1 min</i>
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://pbedn.github.io/post/2023-03-02-is-string-formatting-safe-to-use/"><i class="fa fa-chevron-left"></i></a>
+    
   </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
+  <div class="pure-u-10-24">
     
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/ubuntu">ubuntu</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/thinkpad">thinkpad</a>
+    <nav class="prev">
+      <a href="https://pbedn.github.io/post/2023-03-02-is-string-formatting-safe-to-use/">Is string formatting in Python safe to use or not?</a>
+    </nav>
     
   </div>
-  
-  
-
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
 </div>
 
-  </header>
 
-  <p>
-  <p>One month of fighting with Mate I returned to &ldquo;classic Ubuntu&rdquo; with Unity desktop. And it just works. That&rsquo;s it.</p>
 
-<p>Update (December 2018):
-Ubuntu 18.04 is running fine as well. Even my bluetooth headphones ;)</p>
-
-<p></p>
-  </p>
-
-  
-  <footer>
-    <a href="https://pbedn.github.io/post/2018-03-10-ubuntu-16.04-thinkpad-t470/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://pbedn.github.io/post/2018-02-01-ubuntu-mate-on-thinkpad-t470/">Ubuntu Mate on Thinkpad T470</a></h2>
-
-    <div class="post-meta">
-
-  <div class="dark-color">
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>01 Feb 2018</time>
-
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 3 min</i>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/ubuntu">ubuntu</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/thinkpad">thinkpad</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>Update:
-After recent update laptop freezes at boot!</p>
-
-<p>I was looking for a new laptop for some time now, and specifically, I wanted to try ThinkPad series, based on sound reviews. Electronic equipment in Poland has a higher price compared to for example the USA, but I bought on a sale a T470 without Windows preinstalled for 1140$ (3800 PLN on 26 Jan 2018). The usual price for this model was around 5000 PLN. Anyway, I was going to install Ubuntu, with choices between Lubuntu (my long-time favourite on all virtual machines) and Ubuntu Mate (more pretty but not so heavy as default Unity or currently Gnome 3).</p>
-
-<p></p>
-  </p>
-
-  
-  <footer>
-    <a href="https://pbedn.github.io/post/2018-02-01-ubuntu-mate-on-thinkpad-t470/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
 </div>
 
 </div>
@@ -335,3 +289,4 @@ $('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel
 
 </body>
 </html>
+

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/2023-04-20-ubuntu-mate-on-thinkpad-t470-in-2023/</loc>
+    <lastmod>2023-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2023-03-02-is-string-formatting-safe-to-use/</loc>
     <lastmod>2023-03-02T00:00:00+00:00</lastmod>
   </url>
@@ -194,7 +199,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
+    <lastmod>2023-04-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -310,7 +315,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
+    <lastmod>2023-04-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -339,6 +344,12 @@
   </url>
   
   <url>
+    <loc>https://pbedn.github.io/tags/rambling/</loc>
+    <lastmod>2023-04-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/tags/ramblings/</loc>
     <lastmod>2022-08-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -352,7 +363,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/thinkpad/</loc>
-    <lastmod>2018-03-10T00:00:00+00:00</lastmod>
+    <lastmod>2023-04-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -369,7 +380,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/ubuntu/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
+    <lastmod>2023-04-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
