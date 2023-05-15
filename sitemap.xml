@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/2023-05-15-journey-around-ubuntu-2023/</loc>
+    <lastmod>2023-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2023-04-20-ubuntu-mate-on-thinkpad-t470-in-2023/</loc>
     <lastmod>2023-04-20T00:00:00+00:00</lastmod>
   </url>
@@ -199,7 +204,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2023-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -315,7 +320,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2023-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -363,13 +368,13 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/thinkpad/</loc>
-    <lastmod>2023-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://pbedn.github.io/tags/thoughts/</loc>
-    <lastmod>2018-08-20T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -380,7 +385,7 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/ubuntu/</loc>
-    <lastmod>2023-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2023-05-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
