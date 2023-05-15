@@ -1,5 +1,5 @@
 +++
-title = "Journey around Ubuntu distributions in 2023."
+title = "Journey around Ubuntu distributions in 2023"
 date = "2023-05-15"
 draft = false
 tags =  ["ubuntu", "thinkpad", "thoughts"]
@@ -51,7 +51,6 @@ Thoughts about distributions I tested:
 #### Thinkpad: Ubuntu 22.04
 
 * Gnome version - 42 (https://release.gnome.org/42/)
-
 * Everything is great, looks simple.
 * There is no Light/Dark theme swither in the menu, and existing Gnome extensions do not play nicely with modified Ubuntu Gnome. I spent some hours reading forums, checking code and even thought about writing something by myself, and then I found Gnome 43.
 
