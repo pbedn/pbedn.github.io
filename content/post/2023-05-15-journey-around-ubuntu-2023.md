@@ -1,6 +1,6 @@
 +++
 title = "Journey around Ubuntu distributions in 2023."
-date = "2023-04515"
+date = "2023-05-15"
 draft = false
 tags =  ["ubuntu", "thinkpad", "thoughts"]
 +++
