@@ -28,6 +28,7 @@ print(f"My name is {name}")
 #### Security issues?
 
 Some prominent Python community personalities-celebrities observed that The F's could be misused. That is a fact. There are a few ways to do it:
+
 * denial of service attack by a large string size
 * using F's in logging in wrong way ([read me][floggin])
 * accessing attributes within an object, especially if it holds some kind of secrets (web dev)
@@ -42,24 +43,18 @@ $ BOOM
 
 "{exit()}".format(exit()=1) # SyntaxError
 "{exit()}".format(exit=1) # KeyError
-"{exit()}".format(foo="bar") # KeyError
+"{exit()}".format() # KeyError
+
+"{}".format(exit) # This will but is a different case than we talk about in this post
 ```
 
-So is this a problem? 
-
+So is this a problem?
 Yes and no. Depends on the context and place where it is executed.
 
-```python
-In [35]: f"{self.__init__}"
-NameError: name 'self' is not defined
-
-In [36]: "{self.__init__}".format()
-KeyError: 'self'
-```
 
 #### My application
 
-I had a service that would read configuration files created by another team, and the clue was that they could put an array in yaml in such a form: *key: *"{value}"*, where *{value}* would be used later for dynamic lookup in some data. Thanks to that I would not have to know the keys and values beforehand in my code.
+I had a service that would read configuration files created by another team, and the clue was that they could put an array in yaml in such a form: *key: *"{value}"*, where *{value}* would be used later for dynamic lookup in some data. Thanks to that I would not have to know the keys and values beforehand in my code. But what if user consciously or not will give me a bad input like one showed below in *conf.yaml*? 
 
 ```bash
 # conf.yaml
