@@ -10,6 +10,7 @@ Example of Azure Pipeline yaml file to configure pytest with code coverage and N
 <!--more-->
 
 Additional yaml file features:
+
 * trigger CI on merge to master, or each tag
 * pip download folder caching
 * freeze requirements and add marker for selected platform as recommended in Nexux docs
@@ -17,11 +18,13 @@ Additional yaml file features:
 * publish code coverage report using Cobertura tool
 
 Notes:
+
 * overall time save is neglible compared to regular *pip install* for small requirements file
 * azure pipeline file grows quickly, so if using similar in multiple repositories it is worth to implement pipeline templates
 * Sonar and Nexus are configured to run only on merge to master
 
 Azure Devops configuration for SonarQube and Sonata Nexus:
+
 * [Link to docs: Azure - SonarQube](https://docs.sonarsource.com/sonarqube/latest/devops-platform-integration/azure-devops-integration/)
 * [Link to docs: Azure - Nexus IQ](https://help.sonatype.com/iqserver/integrations/plugins-for-continuous-integration-platforms/nexus-iq-for-azure-devops)
 
@@ -57,7 +60,7 @@ resources:
       name: <put-here-name-of-repository>
 
 variables:
-  pythonVersion: '3.11
+  pythonVersion: '3.11'
   pipDownloadDir: $(Pipeline.Workspace)/.pip
 
 jobs:
