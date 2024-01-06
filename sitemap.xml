@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pbedn.github.io/post/2024-01-05-azure-ci-scanners/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/post/2023-05-15-journey-around-ubuntu-2023/</loc>
     <lastmod>2023-05-15T00:00:00+00:00</lastmod>
   </url>
@@ -187,6 +192,12 @@
   </url>
   
   <url>
+    <loc>https://pbedn.github.io/tags/azure/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/books/</loc>
   </url>
   
@@ -204,7 +215,7 @@
   
   <url>
     <loc>https://pbedn.github.io/</loc>
-    <lastmod>2023-05-15T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -303,6 +314,12 @@
   </url>
   
   <url>
+    <loc>https://pbedn.github.io/tags/nexusiq/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/tags/other/</loc>
     <lastmod>2022-08-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -320,7 +337,7 @@
   
   <url>
     <loc>https://pbedn.github.io/post/</loc>
-    <lastmod>2023-05-15T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -332,13 +349,13 @@
   
   <url>
     <loc>https://pbedn.github.io/tags/pytest/</loc>
-    <lastmod>2023-01-30T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://pbedn.github.io/tags/python/</loc>
-    <lastmod>2023-03-02T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -361,8 +378,14 @@
   </url>
   
   <url>
+    <loc>https://pbedn.github.io/tags/sonarqube/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://pbedn.github.io/tags/</loc>
-    <lastmod>2017-05-15T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
