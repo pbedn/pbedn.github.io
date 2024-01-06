@@ -184,21 +184,30 @@
 
 <p></p>
 
-<p>Additional yaml file features:
-* trigger CI on merge to master, or each tag
-* pip download folder caching
-* freeze requirements and add marker for selected platform as recommended in Nexux docs
-* publish test result
-* publish code coverage report using Cobertura tool</p>
+<p>Additional yaml file features:</p>
 
-<p>Notes:
-* overall time save is neglible compared to regular <em>pip install</em> for small requirements file
-* azure pipeline file grows quickly, so if using similar in multiple repositories it is worth to implement pipeline templates
-* Sonar and Nexus are configured to run only on merge to master</p>
+<ul>
+<li>trigger CI on merge to master, or each tag</li>
+<li>pip download folder caching</li>
+<li>freeze requirements and add marker for selected platform as recommended in Nexux docs</li>
+<li>publish test result</li>
+<li>publish code coverage report using Cobertura tool</li>
+</ul>
 
-<p>Azure Devops configuration for SonarQube and Sonata Nexus:
-* <a href="https://docs.sonarsource.com/sonarqube/latest/devops-platform-integration/azure-devops-integration/">Link to docs: Azure - SonarQube</a>
-* <a href="https://help.sonatype.com/iqserver/integrations/plugins-for-continuous-integration-platforms/nexus-iq-for-azure-devops">Link to docs: Azure - Nexus IQ</a></p>
+<p>Notes:</p>
+
+<ul>
+<li>overall time save is neglible compared to regular <em>pip install</em> for small requirements file</li>
+<li>azure pipeline file grows quickly, so if using similar in multiple repositories it is worth to implement pipeline templates</li>
+<li>Sonar and Nexus are configured to run only on merge to master</li>
+</ul>
+
+<p>Azure Devops configuration for SonarQube and Sonata Nexus:</p>
+
+<ul>
+<li><a href="https://docs.sonarsource.com/sonarqube/latest/devops-platform-integration/azure-devops-integration/">Link to docs: Azure - SonarQube</a></li>
+<li><a href="https://help.sonatype.com/iqserver/integrations/plugins-for-continuous-integration-platforms/nexus-iq-for-azure-devops">Link to docs: Azure - Nexus IQ</a></li>
+</ul>
 
 <p>Example app structure:</p>
 
@@ -232,7 +241,7 @@ resources:
       name: &lt;put-here-name-of-repository&gt;
 
 variables:
-  pythonVersion: '3.11
+  pythonVersion: '3.11'
   pipDownloadDir: $(Pipeline.Workspace)/.pip
 
 jobs:
