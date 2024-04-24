@@ -298,10 +298,6 @@
   </url>
   
   <url>
-    <loc>https://pbedn.github.io/links/</loc>
-  </url>
-  
-  <url>
     <loc>https://pbedn.github.io/tags/linux/</loc>
     <lastmod>2018-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -339,6 +335,10 @@
     <loc>https://pbedn.github.io/post/</loc>
     <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://pbedn.github.io/projects/</loc>
   </url>
   
   <url>
