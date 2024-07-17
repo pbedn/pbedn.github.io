@@ -20,21 +20,14 @@ DefaultContentLanguage = "en"
 [params]
   # Shown in the home page
   brand = "PBedn"
-  googleAnalytics = "UA-74192356-1"
-  # disqus = "pbedn"
   # CSS name for highlight.js
   highlightjs = "github"
-
   dateFormat = "02 Jan 2006"
-  # Include any custom CSS and/or JS files
-  # (relative to /static folder)
-  # custom_css = ["css/my.css"]
-  # custom_js = ["js/my.js"]
+  googleAnalytics = "G-JVR0TPVEEJ"
 
 [social]
   linkedin = "pbedn"
   github = "pbedn"
-#  stackoverflow = "4877932"
 
 [Languages]
 [Languages.en]
@@ -72,9 +65,3 @@ weight = 1
     weight = 5
     identifier = "books"
     url = "/books/"
-  [[menu.main]]
-    name = "Links"
-    pre = "<i class='fa fa-external-link fa-fw'></i>"
-    weight = 6
-    identifier = "links"
-    url = "/links/"
