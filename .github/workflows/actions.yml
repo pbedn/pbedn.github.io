@@ -6,7 +6,6 @@ on:
       - master  # Set a branch name to trigger deployment
   pull_request:
 
-on: [push]
 jobs:
   deploy:
     runs-on: ubuntu-22-04
