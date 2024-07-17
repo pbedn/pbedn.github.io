@@ -1,377 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.34" />
-
-  <title>Using scopes in Pytest fixtures &middot; Coding Notes</title>
-
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css">
-
-  <link rel="stylesheet" href="https://pbedn.github.io/css/side-menu.css">
-
-  <link rel="stylesheet" href="https://pbedn.github.io/css/blackburn.css">
-
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-
-
- 
-  
-
-  
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <link rel="shortcut icon" href="https://pbedn.github.io/img/favicon.ico" type="image/x-icon" />
-
-  
-  
-
-</head>
-
-
-<body>
-<div id="layout">
-
-  
-<a href="#menu" id="menuLink" class="menu-link">
-  
-  <span></span>
-</a>
-<div id="menu">
-
-  
-  <a class="pure-menu-heading brand" href="https://pbedn.github.io/">PBedn</a>
-
-
-  <div class="pure-menu">
-    <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/archives/"><i class='fa fa-list fa-fw'></i>Archives</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/projects/"><i class='fa fa-cog fa-fw'></i>Projects</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/books/"><i class='fa fa-book fa-fw'></i>Books</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://pbedn.github.io/links/"><i class='fa fa-external-link fa-fw'></i>Links</a>
-      
-        </li>
-      
-    </ul>
-  </div>
-
-  <div class="pure-menu social">
-  <ul class="pure-menu-list">
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://linkedin.com/in/pbedn" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
-    </li>
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/pbedn" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
-    </li>
-    
-
-  </ul>
-</div>
-
-
-  <div>
-  <div class="small-print">
-    <small>&#169; 2021 Pawel Bednarz</small>
-  </div>
-  <div class="small-print">
-    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
-    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
-  </div>
-</div>
-
-
-<div>
-  <input id="highlight" type="button" value="Highlight Code Dark" class="pure-button" style="
-  font-size: 65%; background: #999; text-align: center;" />
-</div>
-
-</div>
-
-
-  <div id="main">
-
-
-<div class="header">
-  <h2>Using scopes in Pytest fixtures</h2>
-  <h3></h3>
-</div>
-<div class="content">
-
-  <div class="post-meta">
-
-  <div class="dark-color">
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>30 Jan 2023</time>
-
-    .. <i class="fa fa-clock-o" aria-hidden="true"> 3 min</i>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/python">python</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://pbedn.github.io/tags/pytest">pytest</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  <p>When we have time-expensive functionality in our fixtures, it is good to know when they are invoked and run.
-Although this should be intuitive, let&rsquo;s test on a simple example.</p>
-
-<p></p>
-
-<p>From pytest documentation:</p>
-
-<blockquote>
-<p>Fixtures are created when first requested by a test, and are destroyed based on their scope:</p>
-
-<ul>
-<li>function: the default scope, the fixture is destroyed at the end of the test.</li>
-<li>class: the fixture is destroyed during teardown of the last test in the class.</li>
-<li>module: the fixture is destroyed during teardown of the last test in the module.</li>
-<li>package: the fixture is destroyed during teardown of the last test in the package.</li>
-<li>session: the fixture is destroyed at the end of the test session.</li>
-</ul>
-</blockquote>
-
-<p>Our naive fixtures have will print random integers from the range 1 to 10e6, not because this is expensive, but just to see different outputs. Let&rsquo;s test three of them most commonly used: function, class and module. Side note - we do not have to explicitly write <em>scope=&ldquo;function&rdquo;</em>, as this is the default, and can be left empty.</p>
-
-<pre><code class="language-python">
-from random import randint
-import pytest
-
-# Creating new expensive objects (calls to db, network, business rules calculation etc.)
-@pytest.fixture
-def function_fixture():
-    print(f'Object: {randint(1, 10e6)}')
-
-@pytest.fixture(scope='class')
-def class_fixture():
-    print(f'Object: {randint(1, 10e6)}')
-
-@pytest.fixture(scope='module')
-def module_fixture():
-    print(f'Object: {randint(1, 10e6)}')
-
-
-class TestApp:
-
-    # FUNCTION FIXTURE
-    @pytest.mark.parametrize('option', ['first', 'second'])
-    def test_function(self, option, function_fixture):
-        print(&quot;test_function&quot;)
-
-    # CLASS FIXTURE
-    @pytest.mark.parametrize('option', ['first', 'second'])
-    def test_class(self, option, class_fixture):
-        print(f&quot;test_class {id(class_fixture)}&quot;)
-
-    # CLASS FIXTURE - Second call
-    @pytest.mark.parametrize('option', ['first', 'second'])
-    def test_class_other(self, option, class_fixture):
-        print(&quot;test_class_other&quot;)
-
-    # MODULE FIXTURE
-    @pytest.mark.parametrize('option', ['first', 'second'])
-    def test_module(self, option, module_fixture):
-        print(&quot;test_module&quot;)
-
-    # MODULE FIXTURE - Second call
-    @pytest.mark.parametrize('option', ['first', 'second'])
-    def test_module_other(self, option, module_fixture):
-        print(&quot;test_module_other&quot;)
-
-
-class TestAppSecondTime:
-
-    # CLASS FIXTURE
-    @pytest.mark.parametrize('option', ['first', 'second'])
-    def test_app_class(self, option, class_fixture):
-        print(&quot;test_app_class&quot;)
-
-    # MODULE FIXTURE
-    @pytest.mark.parametrize('option', ['first', 'second'])
-    def test_app_module(self, option, module_fixture):
-        print(&quot;test_app_module&quot;)
-
-</code></pre>
-
-<p>Result</p>
-
-<pre><code class="language-bash">$ pytest -sv
-
-test_app.py::TestApp::test_function[first] Object: 2781723
-test_app.py::TestApp::test_function[second] Object: 9731772
-
-test_app.py::TestApp::test_class[first] Object: 3011073
-test_app.py::TestApp::test_class[second] PASSED
-test_app.py::TestApp::test_class_other[first] PASSED
-test_app.py::TestApp::test_class_other[second] PASSED
-
-test_app.py::TestApp::test_module[first] Object: 9155138
-test_app.py::TestApp::test_module[second] PASSED
-test_app.py::TestApp::test_module_other[first] PASSED
-test_app.py::TestApp::test_module_other[second] PASSED
-
-test_app.py::TestAppSecondTime::test_app_class[first] Object: 8088427
-test_app.py::TestAppSecondTime::test_app_class[second] PASSED
-test_app.py::TestAppSecondTime::test_app_module[first] PASSED
-test_app.py::TestAppSecondTime::test_app_module[second] PASSED
-
-</code></pre>
-
-<p>As we can see class fixture, though called each two times for TestApp, was initialised only once, thus saving us an expensive run. Similarly, the module fixture was initialized only once per two classes.</p>
-
-<p>Conclusions:</p>
-
-<ul>
-<li>Fixture with Function Scope is initialized each time we call it.</li>
-<li>Fixture with Class Scope is initialized once per class.</li>
-<li>Fixture with Module Scope is initialized only once.</li>
-</ul>
-
-<p>That was the easy part. What is worth remembering, is that:</p>
-
-<ul>
-<li>Fixtures can be requested more than once per test - return values are cached.</li>
-<li>The parametrization of test functions happens at collection time.</li>
-</ul>
-
-<hr />
-
-<p>Resources:</p>
-
-<ul>
-<li><a href="https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#scope-sharing-fixtures-across-classes-modules-packages-or-session">Pytest reference - Scope</a></li>
-</ul>
-
-  
-<div class="prev-next-post pure-g">
-  <div class="pure-u-1-24" style="text-align: left;">
-    
-    <a href="https://pbedn.github.io/post/2022-08-05-small-advice-to-fellow-engineers/"><i class="fa fa-chevron-left"></i></a>
-    
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="prev">
-      <a href="https://pbedn.github.io/post/2022-08-05-small-advice-to-fellow-engineers/">Small advice to fellow engineers</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-2-24">
-    &nbsp;
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="next">
-      <a href="https://pbedn.github.io/post/2023-03-02-is-string-formatting-safe-to-use/">Is string formatting in Python safe to use or not?</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://pbedn.github.io/post/2023-03-02-is-string-formatting-safe-to-use/"><i class="fa fa-chevron-right"></i></a>
-    
-  </div>
-</div>
-
-
-
-</div>
-
-</div>
-</div>
-<script src="https://pbedn.github.io/js/ui.js"></script>
-<script src="https://pbedn.github.io/js/menus.js"></script>
-
-
-<script>
-  
-  if (window.location.hostname != "localhost") {
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-74192356-1', 'auto');
-    ga('send', 'pageview');
-  }
-</script>
-
-
-<script type="text/javascript">
-$("#highlight").click(function () {
-$('head').append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>');
-});
-</script>
- 
-
-</body>
-</html>
-
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=generator content="Hugo 0.128.0"><title>Using scopes in Pytest fixtures &#183; Coding Notes</title>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/pure-min.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.6/grids-responsive-min.css><link rel=stylesheet href=https://pbedn.github.io/css/side-menu.css><link rel=stylesheet href=https://pbedn.github.io/css/blackburn.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css><link href="https://fonts.googleapis.com/css?family=Raleway" rel=stylesheet type=text/css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><link rel="shortcut icon" href=https://pbedn.github.io/img/favicon.ico type=image/x-icon><script async src="https://www.googletagmanager.com/gtag/js?id=G-JVR0TPVEEJ"></script><script>if(window.location.hostname!="localhost"){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-JVR0TPVEEJ")}</script></head><body><div id=layout><a href=#menu id=menuLink class=menu-link><span></span></a><div id=menu><a class="pure-menu-heading brand" href=https://pbedn.github.io/>PBedn</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/><i class='fa fa-home fa-fw'></i>Home</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/archives/><i class='fa fa-list fa-fw'></i>Archives</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/about/><i class='fa fa-user fa-fw'></i>About</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/projects/><i class='fa fa-cog fa-fw'></i>Projects</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://pbedn.github.io/books/><i class='fa fa-book fa-fw'></i>Books</a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://linkedin.com/in/pbedn target=_blank><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/pbedn target=_blank><i class="fa fa-github-square fa-fw"></i>GitHub</a></li></ul></div><div><div class=small-print><small>&#169; 2021 Pawel Bednarz</small></div><div class=small-print><small>Built with&nbsp;<a href=https://gohugo.io/ target=_blank>Hugo</a></small>
+<small>Theme&nbsp;<a href=https://github.com/yoshiharuyamashita/blackburn target=_blank>Blackburn</a></small></div></div><div><input id=highlight type=button value="Highlight Code Dark" class=pure-button style=font-size:65%;background:#999;text-align:center></div></div><div id=main><main><div class=header><h2>Using scopes in Pytest fixtures</h2><h3></h3></div><div class=content><div class=post-meta><div class=dark-color><i class="fa fa-calendar fa-fw"></i>
+<time>30 Jan 2023</time>
+.. <i class="fa fa-clock-o" aria-hidden=true>3 min</i></div><div><i class="fa fa-tags fa-fw"></i>
+<a class=post-taxonomy-tag href=https://pbedn.github.io/tags/python>python</a>&nbsp;/
+<a class=post-taxonomy-tag href=https://pbedn.github.io/tags/pytest>pytest</a></div></div><p>When we have time-expensive functionality in our fixtures, it is good to know when they are invoked and run.
+Although this should be intuitive, let&rsquo;s test on a simple example.</p><p>From pytest documentation:</p><blockquote><p>Fixtures are created when first requested by a test, and are destroyed based on their scope:</p><ul><li>function: the default scope, the fixture is destroyed at the end of the test.</li><li>class: the fixture is destroyed during teardown of the last test in the class.</li><li>module: the fixture is destroyed during teardown of the last test in the module.</li><li>package: the fixture is destroyed during teardown of the last test in the package.</li><li>session: the fixture is destroyed at the end of the test session.</li></ul></blockquote><p>Our naive fixtures have will print random integers from the range 1 to 10e6, not because this is expensive, but just to see different outputs. Let&rsquo;s test three of them most commonly used: function, class and module. Side note - we do not have to explicitly write <em>scope=&ldquo;function&rdquo;</em>, as this is the default, and can be left empty.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> random <span style=color:#f92672>import</span> randint
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> pytest
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Creating new expensive objects (calls to db, network, business rules calculation etc.)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@pytest.fixture</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>function_fixture</span>():
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;Object: </span><span style=color:#e6db74>{</span>randint(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>10e6</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@pytest.fixture</span>(scope<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;class&#39;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>class_fixture</span>():
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;Object: </span><span style=color:#e6db74>{</span>randint(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>10e6</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@pytest.fixture</span>(scope<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;module&#39;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>module_fixture</span>():
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;Object: </span><span style=color:#e6db74>{</span>randint(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>10e6</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestApp</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># FUNCTION FIXTURE</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@pytest.mark.parametrize</span>(<span style=color:#e6db74>&#39;option&#39;</span>, [<span style=color:#e6db74>&#39;first&#39;</span>, <span style=color:#e6db74>&#39;second&#39;</span>])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_function</span>(self, option, function_fixture):
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;test_function&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># CLASS FIXTURE</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@pytest.mark.parametrize</span>(<span style=color:#e6db74>&#39;option&#39;</span>, [<span style=color:#e6db74>&#39;first&#39;</span>, <span style=color:#e6db74>&#39;second&#39;</span>])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_class</span>(self, option, class_fixture):
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;test_class </span><span style=color:#e6db74>{</span>id(class_fixture)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># CLASS FIXTURE - Second call</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@pytest.mark.parametrize</span>(<span style=color:#e6db74>&#39;option&#39;</span>, [<span style=color:#e6db74>&#39;first&#39;</span>, <span style=color:#e6db74>&#39;second&#39;</span>])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_class_other</span>(self, option, class_fixture):
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;test_class_other&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># MODULE FIXTURE</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@pytest.mark.parametrize</span>(<span style=color:#e6db74>&#39;option&#39;</span>, [<span style=color:#e6db74>&#39;first&#39;</span>, <span style=color:#e6db74>&#39;second&#39;</span>])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_module</span>(self, option, module_fixture):
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;test_module&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># MODULE FIXTURE - Second call</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@pytest.mark.parametrize</span>(<span style=color:#e6db74>&#39;option&#39;</span>, [<span style=color:#e6db74>&#39;first&#39;</span>, <span style=color:#e6db74>&#39;second&#39;</span>])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_module_other</span>(self, option, module_fixture):
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;test_module_other&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestAppSecondTime</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># CLASS FIXTURE</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@pytest.mark.parametrize</span>(<span style=color:#e6db74>&#39;option&#39;</span>, [<span style=color:#e6db74>&#39;first&#39;</span>, <span style=color:#e6db74>&#39;second&#39;</span>])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_app_class</span>(self, option, class_fixture):
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;test_app_class&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># MODULE FIXTURE</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@pytest.mark.parametrize</span>(<span style=color:#e6db74>&#39;option&#39;</span>, [<span style=color:#e6db74>&#39;first&#39;</span>, <span style=color:#e6db74>&#39;second&#39;</span>])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_app_module</span>(self, option, module_fixture):
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;test_app_module&#34;</span>)
+</span></span></code></pre></div><p>Result</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ pytest -sv
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>test_app.py::TestApp::test_function<span style=color:#f92672>[</span>first<span style=color:#f92672>]</span> Object: <span style=color:#ae81ff>2781723</span>
+</span></span><span style=display:flex><span>test_app.py::TestApp::test_function<span style=color:#f92672>[</span>second<span style=color:#f92672>]</span> Object: <span style=color:#ae81ff>9731772</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>test_app.py::TestApp::test_class<span style=color:#f92672>[</span>first<span style=color:#f92672>]</span> Object: <span style=color:#ae81ff>3011073</span>
+</span></span><span style=display:flex><span>test_app.py::TestApp::test_class<span style=color:#f92672>[</span>second<span style=color:#f92672>]</span> PASSED
+</span></span><span style=display:flex><span>test_app.py::TestApp::test_class_other<span style=color:#f92672>[</span>first<span style=color:#f92672>]</span> PASSED
+</span></span><span style=display:flex><span>test_app.py::TestApp::test_class_other<span style=color:#f92672>[</span>second<span style=color:#f92672>]</span> PASSED
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>test_app.py::TestApp::test_module<span style=color:#f92672>[</span>first<span style=color:#f92672>]</span> Object: <span style=color:#ae81ff>9155138</span>
+</span></span><span style=display:flex><span>test_app.py::TestApp::test_module<span style=color:#f92672>[</span>second<span style=color:#f92672>]</span> PASSED
+</span></span><span style=display:flex><span>test_app.py::TestApp::test_module_other<span style=color:#f92672>[</span>first<span style=color:#f92672>]</span> PASSED
+</span></span><span style=display:flex><span>test_app.py::TestApp::test_module_other<span style=color:#f92672>[</span>second<span style=color:#f92672>]</span> PASSED
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>test_app.py::TestAppSecondTime::test_app_class<span style=color:#f92672>[</span>first<span style=color:#f92672>]</span> Object: <span style=color:#ae81ff>8088427</span>
+</span></span><span style=display:flex><span>test_app.py::TestAppSecondTime::test_app_class<span style=color:#f92672>[</span>second<span style=color:#f92672>]</span> PASSED
+</span></span><span style=display:flex><span>test_app.py::TestAppSecondTime::test_app_module<span style=color:#f92672>[</span>first<span style=color:#f92672>]</span> PASSED
+</span></span><span style=display:flex><span>test_app.py::TestAppSecondTime::test_app_module<span style=color:#f92672>[</span>second<span style=color:#f92672>]</span> PASSED
+</span></span></code></pre></div><p>As we can see class fixture, though called each two times for TestApp, was initialised only once, thus saving us an expensive run. Similarly, the module fixture was initialized only once per two classes.</p><p>Conclusions:</p><ul><li>Fixture with Function Scope is initialized each time we call it.</li><li>Fixture with Class Scope is initialized once per class.</li><li>Fixture with Module Scope is initialized only once.</li></ul><p>That was the easy part. What is worth remembering, is that:</p><ul><li>Fixtures can be requested more than once per test - return values are cached.</li><li>The parametrization of test functions happens at collection time.</li></ul><hr><p>Resources:</p><ul><li><a href=https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#scope-sharing-fixtures-across-classes-modules-packages-or-session>Pytest reference - Scope</a></li></ul><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://pbedn.github.io/post/2022-08-05-small-advice-to-fellow-engineers/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://pbedn.github.io/post/2022-08-05-small-advice-to-fellow-engineers/>Small advice to fellow engineers</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24><nav class=next><a href=https://pbedn.github.io/post/2023-03-02-is-string-formatting-safe-to-use/>Is string formatting in Python safe to use or not?</a></nav></div><div class=pure-u-1-24 style=text-align:right><a href=https://pbedn.github.io/post/2023-03-02-is-string-formatting-safe-to-use/><i class="fa fa-chevron-right"></i></a></div></div></div></main></div></div><footer><script src=https://pbedn.github.io/js/ui.js></script><script src=https://pbedn.github.io/js/menus.js></script><script type=text/javascript>$("#highlight").click(function(){$("head").append('<link href="https://pbedn.github.io/css/atom-one-dark.css" rel="stylesheet" id="mycss"/>')})</script></footer></body></html>
