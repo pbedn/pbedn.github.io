@@ -8,8 +8,8 @@
 <a class=post-taxonomy-tag href=https://pbedn.github.io/tags/python>python</a>&nbsp;/
 <a class=post-taxonomy-tag href=https://pbedn.github.io/tags/mysql>mysql</a></div></div><p>Let&rsquo;s connect MySQL database installed in Ubuntu (WSL2) with Pycharm Professional on Windows.</p><h4 id=windows-wsl--ubuntu>Windows: WSL + Ubuntu</h4><p>WSL (Windows Subsystem for Linux) has two versions. The latest (version 2) is much improved and recommended,
 the only thing to remember is to have Windows version at least 2004 (check with <code>winver</code> command in the console).
-Microsoft has good guides <a href=https://docs.microsoft.com/en-us/windows/wsl/install-win10>how to set up WSL</a>.
-I am using Ubuntu 20.04, which has Python 3.8 by default.</p><h4 id=ubuntu-mysql--python-environment>Ubuntu: MySQL + Python environment</h4><p>Steps in order that MySQL could be accessed in Windows on 127.0.0.1:3307</p><ul><li><p>Install MySQL database (<a href=https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database>step-by-step-guide</a>)</p></li><li><p>Set the default authentication method (for PyCharm to be able to connect)</p></li></ul><pre tabindex=0><code>$ sudo mysql -u root -p
+Microsoft has good guides <a href=https://docs.microsoft.com/en-us/windows/wsl/install-win10 target=_blank>how to set up WSL</a>.
+I am using Ubuntu 20.04, which has Python 3.8 by default.</p><h4 id=ubuntu-mysql--python-environment>Ubuntu: MySQL + Python environment</h4><p>Steps in order that MySQL could be accessed in Windows on 127.0.0.1:3307</p><ul><li><p>Install MySQL database (<a href=https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database target=_blank>step-by-step-guide</a>)</p></li><li><p>Set the default authentication method (for PyCharm to be able to connect)</p></li></ul><pre tabindex=0><code>$ sudo mysql -u root -p
 mysql&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;new-password&#39;;
 mysql&gt; exit
 </code></pre><ul><li>Add configuration to &lsquo;/etc/mysql/my.cnf&rsquo; so database can be seen:</li></ul><pre tabindex=0><code>[mysqld]
