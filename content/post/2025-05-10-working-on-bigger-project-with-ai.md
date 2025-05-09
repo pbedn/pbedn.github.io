@@ -9,6 +9,8 @@ After initial disbelief, failed trials, and frustration, I finally started to ap
 
 Now, I am working on a new programming language, partially written by AI. I feel more like an architect and tester, sometimes taking on the role of a senior engineer, while the AI is like a restless and enthusiastic young developer. For this, I am using ChatGPT Plus.
 
+<!--more-->
+
 I learned that you should not give complex tasks to GPT-4, but rather break them down into smaller, progressive chunks. I’ve been surprised by the deep reasoning of the O3 model, which had no trouble analyzing dozens of files and making sense of them. These files include the lexer, parser, AST, type checker, code generator, and tests for them. So, it’s not just about reading prose, but analyzing a tightly connected network.
 
 For this reason, models like GPT-4 sometimes struggle with context, and I had to repaste files. But even then, it was often too much for it, and the quality would quickly degrade.
