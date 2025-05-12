@@ -1,6 +1,6 @@
 +++
 title = "Working on a bigger project with ai"
-date = "2025-05-10"
+date = "2025-05-11"
 draft = false
 tags = ['python', 'ai']
 +++
