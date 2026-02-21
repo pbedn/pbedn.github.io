@@ -7,13 +7,15 @@ features = ["blog", "python", "programming"]
 # Shown in the side menu
 copyright = "&#169; 2021 Pawel Bednarz"
 canonifyurls = true
-paginate = 10
 disableKinds=["RSS"]
 enableRobotsTXT = true
 
 DefaultContentLanguage = "en"
 
-[indexes]
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
   tag = "tags"
   topic = "topics"
 
@@ -24,10 +26,9 @@ DefaultContentLanguage = "en"
   highlightjs = "github"
   dateFormat = "02 Jan 2006"
   googleAnalytics = "G-JVR0TPVEEJ"
-
-[social]
-  linkedin = "pbedn"
-  github = "pbedn"
+  [params.social]
+    linkedin = "pbedn"
+    github = "pbedn"
 
 [Languages]
 [Languages.en]

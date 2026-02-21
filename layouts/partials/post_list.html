@@ -1,4 +1,4 @@
-{{ $paginator := .Paginate (where .Site.RegularPages "Section" "post") 10 }}
+{{ $paginator := .Paginate (where .Site.RegularPages "Section" "post") }}
 {{ range $paginator.Pages }}
   {{ .Render "summary"}}
 {{ end }}

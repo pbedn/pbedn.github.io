@@ -1,7 +1,7 @@
 <div class="pure-menu social">
   <ul class="pure-menu-list">
 
-    {{ with .Site.Social.linkedin }}
+    {{ with .Site.Params.social.linkedin }}
     <li class="pure-menu-item">
       <a class="pure-menu-link" href="https://linkedin.com/in/{{ . }}" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
     </li>
@@ -9,7 +9,7 @@
 
     <!-- Techie -->
 
-    {{ with .Site.Social.github }}
+    {{ with .Site.Params.social.github }}
     <li class="pure-menu-item">
       <a class="pure-menu-link" href="https://github.com/{{ . }}" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
     </li>

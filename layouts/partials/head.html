@@ -45,14 +45,14 @@
   {{ if findRE "https?://" . }}
       <link rel="stylesheet" href="{{ . }}">
   {{ else }}
-      <link rel="stylesheet" href="{{ $.Site.BaseURL }}{{ . }}">
+      <link rel="stylesheet" href="{{ . | relURL }}">
   {{ end }}
 {{ end }}
 {{ range .Site.Params.custom_js }}
   {{ if findRE "https?://" . }}
       <script src="{{ . }}"></script>
   {{ else }}
-      <script src="{{ $.Site.BaseURL }}{{ . }}"></script>
+      <script src="{{ . | relURL }}"></script>
   {{ end }}
 {{ end }}
 
